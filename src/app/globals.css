@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-body: 'Roboto', sans-serif;
+    --font-heading: 'Oswald', sans-serif;
+    --font-accent: 'Orbitron', sans-serif;
+
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.07);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+    --shadow-xl: 0 20px 50px rgba(0,0,0,0.2);
+    --shadow-inset: inset 0 2px 8px rgba(0,0,0,0.08);
+
+    /* Default theme (dark mode) */
+    --background: 222 84% 4.9%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 48 96% 58%; /* Gold */
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 91% 60%; /* Blue */
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 224 71.4% 4.1%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 48 96% 58%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 91% 60%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .light {
+      --background: 220 13% 95.9%;
+      --foreground: 224 71.4% 4.1%;
+      --card: 0 0% 100%;
+      --card-foreground: 224 71.4% 4.1%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 224 71.4% 4.1%;
+      --primary: 221 83% 53%; /* UEFA Blue */
+      --primary-foreground: 210 20% 98%;
+      --secondary: 220 14.3% 95.9%;
+      --secondary-foreground: 224 71.4% 4.1%;
+      --muted: 220 14.3% 95.9%;
+      --muted-foreground: 220 8.9% 46.1%;
+      --accent: 45 93% 47%; /* UEFA Gold */
+      --accent-foreground: 224 71.4% 4.1%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 20% 98%;
+      --border: 220 13% 91%;
+      --input: 220 13% 91%;
+      --ring: 224 71.4% 4.1%;
+
+      --sidebar-background: 0 0% 100%;
+      --sidebar-foreground: 224 71.4% 4.1%;
+      --sidebar-primary: 221 83% 53%;
+      --sidebar-primary-foreground: 210 20% 98%;
+      --sidebar-accent: 221 83% 53%;
+      --sidebar-accent-foreground: 210 20% 98%;
+      --sidebar-border: 220 13% 91%;
+      --sidebar-ring: 224 71.4% 4.1%;
+  }
+
+  .theme-crimson-night {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 347 77% 49%; /* Crimson Red */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 50%; /* Silver */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 347 77% 49%;
+    
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 347 77% 49%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 347 77% 49%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 347 77% 49%;
+  }
+
+  .theme-forest-guardian {
+    --background: 90 20% 12%;
+    --foreground: 90 10% 95%;
+    --card: 90 15% 15%;
+    --card-foreground: 90 10% 95%;
+    --popover: 90 20% 12%;
+    --popover-foreground: 90 10% 95%;
+    --primary: 140 60% 40%; /* Forest Green */
+    --primary-foreground: 90 10% 95%;
+    --secondary: 90 10% 20%;
+    --secondary-foreground: 90 10% 95%;
+    --muted: 90 10% 20%;
+    --muted-foreground: 90 5% 65%;
+    --accent: 40 50% 55%; /* Earthy Brown */
+    --accent-foreground: 90 10% 95%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 90 10% 95%;
+    --border: 90 10% 20%;
+    --input: 90 10% 20%;
+    --ring: 140 60% 40%;
+    
+    --sidebar-background: 90 20% 12%;
+    --sidebar-foreground: 90 10% 95%;
+    --sidebar-primary: 140 60% 40%;
+    --sidebar-primary-foreground: 90 10% 95%;
+    --sidebar-accent: 140 60% 40%;
+    --sidebar-accent-foreground: 90 10% 95%;
+    --sidebar-border: 90 10% 20%;
+    --sidebar-ring: 140 60% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+  .glass {
+    @apply bg-card/50 backdrop-blur-lg border border-border/20;
+  }
+}
+
+@layer utilities {
+  .bg-shape { 
+    position: absolute; 
+    background-color: var(--accent-blue); 
+    opacity: 0.05; 
+    border-radius: 20%; 
+    animation: float 20s infinite ease-in-out alternate, spin 30s infinite linear; 
+  }
+  .light .bg-shape { 
+    background-color: var(--accent-blue-light); 
+    opacity: 0.03; 
+  }
+}
+
+@keyframes float { 
+  0% { transform: translateY(0px) translateX(0px) scale(1); } 
+  50% { transform: translateY(-30px) translateX(20px) scale(1.1); } 
+  100% { transform: translateY(0px) translateX(0px) scale(1); } 
+}
+@keyframes spin { 
+  from { transform: rotate(0deg); } 
+  to { transform: rotate(360deg); } 
+}
+@keyframes ticker-scroll { 
+  0% { transform: translateX(100%); } 
+  100% { transform: translateX(-100%); } 
+}
+
+.news-ticker-container {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+    z-index: 998;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.news-ticker-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker-scroll 45s linear infinite;
+    font-size: 0.9em;
+}
+
+.news-ticker-content span {
+    margin-right: 50px;
+    opacity: 0.8;
+}
+.news-ticker-content span strong {
+    color: hsl(var(--primary));
+    font-weight: 500;
+}

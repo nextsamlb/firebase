@@ -1,0 +1,243 @@
+
+'use client';
+
+import React, { createContext, useState, useContext, useMemo, useEffect } from 'react';
+
+type Language = 'en' | 'ar';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+}
+
+const translations = {
+    en: {
+        home: "Home",
+        rankings: "Rankings",
+        matches: "Matches",
+        players: "Players",
+        market: "Market",
+        statsCentral: "Stats Central",
+        teamAnalysis: "Team Analysis",
+        mediaHub: "Media Hub",
+        history: "History",
+        rules: "Rules",
+        inbox: "Inbox",
+        admin: "Admin",
+        overview: "Overview",
+        statistics: "Statistics",
+        achievements: "Achievements",
+        aiReport: "AI Report",
+        personalInfo: "Personal Info",
+        email: "Email",
+        joined: "Joined",
+        quickStats: "Quick Stats",
+        goals: "Goals",
+        points: "Points",
+        winRate: "Win Rate",
+        performance: "Performance",
+        goalsPerMatch: "Goals/Match",
+        goalDifference: "Goal Difference",
+        bestPlayerVotes: "'Best Player' Votes",
+        worstPlayerVotes: "'Worst Player' Votes",
+        detailedStatistics: "Detailed Statistics",
+        matchesPlayed: "Matches Played",
+        wins: "Wins",
+        draws: "Draws",
+        losses: "Losses",
+        goalsFor: "Goals For",
+        goalsAgainst: "Goals Against",
+        achievementsAndAwards: "Achievements & Awards",
+        season1TopScorer: "Season 1 Top Scorer",
+        playerOfTheMonth: "Player of the Month (Jan)",
+        aiPerformanceAnalysis: "AI Performance Analysis",
+        noAiReport: "No AI report generated yet.",
+        generateAiReport: "Generate AI Report",
+        generatingReport: "Generating Report...",
+        editProfile: "Edit Profile",
+        fullName: "Full Name",
+        nickname: "Nickname",
+        avatarUrl: "Avatar URL",
+        saveChanges: "Save Changes",
+        cancel: "Cancel",
+        loadingTeamAnalysis: "Loading Team Analysis...",
+        teamAnalysisCenter: "Team Analysis Center",
+        teamAnalysisSubtitle: "AI-powered team performance and matchup analysis",
+        record: "Record",
+        form: "Form",
+        squad: "Squad",
+        selectTeam: "Select a team...",
+        generating: "Generating...",
+        generateAnalysis: "Generate Analysis",
+        teamAnalysisReport: "Team Analysis Report",
+        selectTeamForAnalysis: "Select a team and generate AI analysis to see detailed insights",
+        matchupAnalysis: "Matchup Analysis",
+        homeTeam: "Home Team",
+        selectHomeTeam: "Select home team...",
+        awayTeam: "Away Team",
+        selectAwayTeam: "Select away team...",
+        generateMatchupAnalysis: "Generate Matchup Analysis",
+        matchupAnalysisReport: "Matchup Analysis Report",
+        selectTwoTeamsForAnalysis: "Select two teams to generate AI-powered matchup analysis",
+        aiLeagueRecap: "AI League Recap",
+        aiSummaryDescription: "An AI-powered summary of the latest league action.",
+        noRecentActivity: "Click below to generate an AI summary of recent league activity.",
+        viewAll: "View All",
+        topStories: "Top Stories",
+        leagueLeader: "League Leader",
+        fanFavorite: "Fan Favorite",
+        votes: "Votes",
+        viewCompetition: "View Competition",
+        playerAnalysis: "Player Analysis",
+        playerAnalysisDescription: "Get an AI-powered performance report for any player.",
+        selectPlayer: "Select a player...",
+        generateReport: "Generate Report",
+        welcomeMessage: "Welcome",
+        welcomeSubtitle: "Ready to dominate the pitch?",
+        born: "Born",
+        physical: "Physical",
+        height: "Height",
+        weight: "Weight",
+        preferredFoot: "Preferred Foot",
+        position: "Position",
+        nationality: "Nationality",
+        generateSummary: "Generate Summary",
+    },
+    ar: {
+        home: "الرئيسية",
+        rankings: "الترتيب",
+        matches: "المباريات",
+        players: "اللاعبون",
+        market: "السوق",
+        statsCentral: "مركز الإحصائيات",
+        teamAnalysis: "تحليل الفرق",
+        mediaHub: "الوسائط",
+        history: "التاريخ",
+        rules: "القوانين",
+        inbox: "الرسائل",
+        admin: "الإدارة",
+        overview: "نظرة عامة",
+        statistics: "الإحصائيات",
+        achievements: "الإنجازات",
+        aiReport: "تقرير الذكاء الاصطناعي",
+        personalInfo: "معلومات شخصية",
+        email: "البريد الإلكتروني",
+        joined: "انضم في",
+        quickStats: "إحصائيات سريعة",
+        goals: "الأهداف",
+        points: "النقاط",
+        winRate: "نسبة الفوز",
+        performance: "الأداء",
+        goalsPerMatch: "أهداف/مباراة",
+        goalDifference: "فارق الأهداف",
+        bestPlayerVotes: "أصوات 'أفضل لاعب'",
+        worstPlayerVotes: "أصوات 'أسوأ لاعب'",
+        detailedStatistics: "إحصائيات مفصلة",
+        matchesPlayed: "المباريات الملعوبة",
+        wins: "فوز",
+        draws: "تعادل",
+        losses: "خسارة",
+        goalsFor: "الأهداف المسجلة",
+        goalsAgainst: "الأهداف المستقبلة",
+        achievementsAndAwards: "الإنجازات والجوائز",
+        season1TopScorer: "هداف الموسم الأول",
+        playerOfTheMonth: "لاعب الشهر (يناير)",
+        aiPerformanceAnalysis: "تحليل الأداء بالذكاء الاصطناعي",
+        noAiReport: "لم يتم إنشاء تقرير ذكاء اصطناعي بعد.",
+        generateAiReport: "إنشاء تقرير بالذكاء الاصطناعي",
+        generatingReport: "جارٍ إنشاء التقرير...",
+        editProfile: "تعديل الملف الشخصي",
+        fullName: "الاسم الكامل",
+        nickname: "اللقب",
+        avatarUrl: "رابط الصورة الرمزية",
+        saveChanges: "حفظ التغييرات",
+        cancel: "إلغاء",
+        loadingTeamAnalysis: "جاري تحميل تحليل الفرق...",
+        teamAnalysisCenter: "مركز تحليل الفرق",
+        teamAnalysisSubtitle: "تحليل أداء الفرق والمباريات بواسطة الذكاء الاصطناعي",
+        record: "السجل",
+        form: "المستوى",
+        squad: "الفريق",
+        selectTeam: "اختر فريق...",
+        generating: "جاري الإنشاء...",
+        generateAnalysis: "إنشاء تحليل",
+        teamAnalysisReport: "تقرير تحليل الفريق",
+        selectTeamForAnalysis: "اختر فريقًا وأنشئ تحليلًا بالذكاء الاصطناعي للاطلاع على رؤى مفصلة",
+        matchupAnalysis: "تحليل المواجهة",
+        homeTeam: "الفريق المضيف",
+        selectHomeTeam: "اختر الفريق المضيف...",
+        awayTeam: "الفريق الضيف",
+        selectAwayTeam: "اختر الفريق الضيف...",
+        generateMatchupAnalysis: "إنشاء تحليل المواجهة",
+        matchupAnalysisReport: "تقرير تحليل المواجهة",
+        selectTwoTeamsForAnalysis: "اختر فريقين لإنشاء تحليل مواجهة مدعوم بالذكاء الاصطناعي",
+        aiLeagueRecap: "ملخص الدوري بالذكاء الاصطناعي",
+        aiSummaryDescription: "ملخص مدعوم بالذكاء الاصطناعي لآخر أحداث الدوري.",
+        noRecentActivity: "انقر أدناه لإنشاء ملخص للذكاء الاصطناعي لأحدث أنشطة الدوري.",
+        viewAll: "عرض الكل",
+        topStories: "أهم الأخبار",
+        leagueLeader: "متصدر الدوري",
+        fanFavorite: "المفضل لدى الجماهير",
+        votes: "أصوات",
+        viewCompetition: "عرض المنافسة",
+        playerAnalysis: "تحليل اللاعب",
+        playerAnalysisDescription: "احصل على تقرير أداء مدعوم بالذكاء الاصطناعي لأي لاعب.",
+        selectPlayer: "اختر لاعب...",
+        generateReport: "إنشاء تقرير",
+        welcomeMessage: "مرحباً",
+        welcomeSubtitle: "هل أنت مستعد للسيطرة على الملعب؟",
+        born: "تاريخ الميلاد",
+        physical: "البيانات البدنية",
+        height: "الطول",
+        weight: "الوزن",
+        preferredFoot: "القدم المفضلة",
+        position: "المركز",
+        nationality: "الجنسية",
+        generateSummary: "إنشاء ملخص",
+    }
+};
+
+const LanguageContext = createContext<LanguageContextType | null>(null);
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>('en');
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('pifa-lang') as Language | null;
+    if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
+      setLanguageState(savedLang);
+      document.documentElement.lang = savedLang;
+      document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    }
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('pifa-lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  };
+  
+  const t = (key: string): string => {
+      const translation = translations[language];
+      // @ts-ignore
+      return translation[key] || translations.en[key] || key;
+  }
+
+  const value = useMemo(() => ({ language, setLanguage, t }), [language]);
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  )
+}
+
+export function useTranslation() {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useTranslation must be used within a LanguageProvider');
+  }
+  return context;
+}

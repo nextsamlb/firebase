@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+/node_modules
+
+# Build output
+/.next/
+/out/
+
+# Firebase
+/.firebase/
+/apphosting/
+firebase.json
+apphosting.yaml
+
+# Local Environment Variables
+# Never commit secrets!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel (if used)
+.vercel
+
+# Turbo
+.turbo
+
+# Miscellaneous
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor specific
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
