@@ -2,28 +2,17 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, Swords, Users, MoreHorizontal, Pencil, Trash2, ArrowUpDown } from "lucide-react"
-import { getMatches, getPlayers, type Match, type Player, updateMatch as updateMatchData } from "@/lib/data"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Calendar, ArrowUpDown } from "lucide-react"
+import { getMatches, getPlayers, type Match, type Player } from "@/lib/data"
 import { Skeleton } from "@/components/ui/skeleton"
 import { MatchList } from "@/components/matches/match-list"
 import { useAuth } from "@/hooks/use-auth"
 import { EditMatchForm } from "@/components/admin/edit-match-form"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
 import { updateMatchScore } from "@/app/actions"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { format } from "date-fns"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
 import { useTranslation } from "@/context/language-provider"
 
-
-const STAGES = ["Stage 1 (1v3)", "Stage 2 (1v2)", "Stage 3 (1v1)"]
-
-type SortKey = 'matchNum' | 'timestamp';
 
 export default function MatchesPage() {
   const [matches, setMatches] = useState<Match[]>([])
@@ -36,7 +25,7 @@ export default function MatchesPage() {
   const [isMatchDialogOpen, setIsMatchDialogOpen] = useState(false)
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null)
   
-  const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: 'ascending' | 'descending' } | null>({ key: 'matchNum', direction: 'ascending' });
+  const [sortConfig, setSortConfig] = useState<{ key: 'matchNum' | 'timestamp'; direction: 'ascending' | 'descending' } | null>({ key: 'matchNum', direction: 'ascending' });
 
   const fetchMatches = async () => {
     setLoading(true)
@@ -71,14 +60,6 @@ export default function MatchesPage() {
     return sortableMatches;
   }, [matches, sortConfig]);
 
-  const requestSort = (key: SortKey) => {
-    let direction: 'ascending' | 'descending' = 'ascending';
-    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
-    }
-    setSortConfig({ key, direction });
-  };
-
 
   const handleEditMatch = (match: Match) => {
     setSelectedMatch(match)
@@ -101,45 +82,6 @@ export default function MatchesPage() {
     setIsMatchDialogOpen(false);
     setSelectedMatch(null);
   }
-
-  const getPlayerById = (id: string) => players.find(p => p.id === id)
-
-  const getInitials = (name?: string) => {
-    if (!name) return '?'
-    const names = name.split(' ')
-    const initials = names.map((n) => n[0]).join('')
-    return initials.toUpperCase()
-  }
-
-  const getOpponentDisplay = (match: Match) => {
-    const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
-    const opponentPlayers = opponentIds.map(id => getPlayerById(id)).filter(p => p) as Player[];
-
-    if (opponentPlayers.length === 0) {
-      return <span className="text-muted-foreground">N/A</span>;
-    }
-
-    return (
-      <div className="flex items-center gap-2">
-        {opponentPlayers.length > 1 ? (
-          <div className="flex -space-x-2 rtl:space-x-reverse">
-            {opponentPlayers.map(p => (
-              <Avatar key={p.id} className="h-8 w-8 border-2 border-background">
-                <AvatarImage src={p.avatar} data-ai-hint="person face" />
-                <AvatarFallback>{getInitials(p.name)}</AvatarFallback>
-              </Avatar>
-            ))}
-          </div>
-        ) : (
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={opponentPlayers[0].avatar} data-ai-hint="person face" />
-            <AvatarFallback>{getInitials(opponentPlayers[0].name)}</AvatarFallback>
-          </Avatar>
-        )}
-        <span className="truncate">{opponentPlayers.map(p => p.name).join(', ')}</span>
-      </div>
-    );
-  };
 
 
   if (loading) {

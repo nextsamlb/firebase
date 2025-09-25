@@ -1,141 +1,47 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { FileText } from 'lucide-react';
 
-
-'use client';
-
-import { MainSidebar } from '@/components/main-sidebar';
-import { Button } from '@/components/ui/button';
-import { UserNav } from '@/components/user-nav';
-import { useAuth } from '@/hooks/use-auth';
-import { Home, Menu, Shield, Swords, BarChart3, Users, Store, X, Flame, Trophy as TrophyIcon, BarChart, History, Gavel, ImageIcon, Inbox, Languages, Rss, Database } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from '@/context/language-provider';
-import { getAppSettings, type NewsItem } from '@/lib/data';
-
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, loading } = useAuth();
-  const { t, language } = useTranslation();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [newsLoading, setNewsLoading] = useState(true);
-
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      const publicPaths = ['/rankings', '/matches', '/hall-of-fame', '/rules', '/media-hub', '/stats-central', '/team-analysis'];
-      const isPublic = publicPaths.some(path => pathname.startsWith(path));
-      
-      if (!isPublic && pathname !== '/login' && pathname !== '/signup') {
-          router.push('/login');
-      }
-    }
-  }, [isAuthenticated, loading, router, pathname]);
-
-  useEffect(() => {
-    async function fetchNews() {
-        setNewsLoading(true);
-        try {
-            const settings = await getAppSettings();
-            if (settings && settings.newsTicker) {
-                const sevenDaysAgo = new Date();
-                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-                const recentNews = settings.newsTicker.filter(item => {
-                    if(!item.timestamp) return true;
-                    return new Date(item.timestamp) > sevenDaysAgo
-                });
-                setNews(recentNews);
-            } else {
-                 setNews([
-                    { title: 'New Season Kicks Off!', excerpt: 'The PIFA 2025 season has officially started with thrilling opening matches.', timestamp: new Date().toISOString() },
-                    { title: 'Player "Sam" Breaks Goal Record', excerpt: 'A stunning performance sees a new league record for most goals in a single match.', timestamp: new Date().toISOString() },
-                ]);
-            }
-        } catch (e) {
-            console.error("Failed to fetch news ticker data", e);
-             setNews([
-                { title: 'Welcome to PIFA League', excerpt: 'The ultimate fantasy football experience.', timestamp: new Date().toISOString() },
-             ]);
-        } finally {
-            setNewsLoading(false);
-        }
-    }
-    fetchNews();
-  }, []);
-
-  const topNavLinks = [
-    { href: "/dashboard", icon: Home, label: t('home') },
-    { href: "/rankings", icon: BarChart3, label: t('rankings') },
-    { href: "/matches", icon: Swords, label: t('matches') },
-    { href: "/players", icon: Users, label: t('players') },
-  ];
-
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-background">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
+export default function RulesPage() {
   return (
-    <div className="md:flex h-screen w-screen overflow-hidden bg-background text-foreground" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-      <MainSidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-card text-card-foreground p-3 flex justify-between items-center shadow-md sticky top-0 z-[1000] border-b border-border">
-          <div className="flex items-center gap-3">
-             <div className="md:hidden">
-                <Button onClick={() => setIsNavOpen(!isNavOpen)} variant="ghost" size="icon">
-                    {isNavOpen ? <X /> : <Menu />}
-                </Button>
-            </div>
-             <div className="flex items-center gap-3">
-                <TrophyIcon className="w-8 h-8 text-primary" />
-                <div className="text-xl font-accent font-bold text-primary">PIFA LEAGUE</div>
-            </div>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
-             {topNavLinks.map(({ href, icon: Icon, label }) => (
-              <Link key={href} href={href} className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-all duration-300 px-3 py-2 rounded-md font-heading font-medium uppercase text-sm tracking-wider relative ${pathname.startsWith(href) ? 'active text-primary' : ''}`}>
-                    <Icon className="w-5 h-5" />
-                    <span>{label}</span>
-                </Link>
-            ))}
-          </div>
-           <div className="flex items-center gap-2">
-            <UserNav />
-          </div>
-        </header>
-
-         <div className="news-ticker-container">
-            <div className="news-ticker-content">
-                {!newsLoading && news.map((item, index) => <span key={index}><strong><Rss className="inline w-4 h-4 mr-1 text-primary"/>{item.title}:</strong> {item.excerpt}</span>)}
-            </div>
-        </div>
-        
-        <div className={`transition-all duration-350 ${isNavOpen ? 'block' : 'hidden'} md:hidden bg-card shadow-lg z-[999] border-b-2 border-border`}>
-         <ul className="flex flex-col md:flex-row md:justify-center md:gap-1">
-             {topNavLinks.map(({ href, icon: Icon, label }) => (
-              <li key={href}>
-                 <Link href={href} className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-all duration-300 px-4 py-3 font-heading font-medium uppercase text-sm tracking-wider relative before:content-[''] before:absolute before:w-0 before:h-1 before:bg-primary before:left-0 before:bottom-0 before:transition-all before:duration-350 hover:before:w-full ${pathname.startsWith(href) ? 'active text-primary' : ''}`}>
-                    <Icon className="w-5 h-5" />
-                    <span>{label}</span>
-                </Link>
-              </li>
-            ))}
-        </ul>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">League Rules</h1>
+        <p className="text-muted-foreground">
+          The official rules and regulations of the league.
+        </p>
       </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText />
+            Rules
+          </CardTitle>
+          <CardDescription>
+            Fair play is essential. Please read and understand the rules.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="prose prose-invert max-w-none">
+          <h2>1. General Conduct</h2>
+          <p>All players are expected to maintain a high standard of sportsmanship and fair play. Any form of cheating, glitch exploitation, or unsportsmanlike conduct will not be tolerated.</p>
+          
+          <h2>2. Match Rules</h2>
+          <ul>
+            <li>All matches are to be played on the specified platform and version of the game.</li>
+            <li>Players must report scores accurately and promptly after each match.</li>
+            <li>In case of a disconnection, the remaining time of the match should be played with the score at the time of disconnection.</li>
+          </ul>
 
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 relative">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-          {children}
-        </main>
-        
-        <footer className="bg-card text-muted-foreground text-center p-4 text-sm shadow-[0_-5px_15px_rgba(0,0,0,0.1)] border-t border-border">
-          <p>&copy; {new Date().getFullYear()} PIFA LEAGUE Stats. Pro Edition - All rights reserved.</p>
-        </footer>
-      </div>
+          <h2>3. Trading & Market</h2>
+          <ul>
+            <li>All player transfers must be done through the official market page.</li>
+            <li>Collusion or price-fixing in the market is strictly prohibited.</li>
+            <li>Trade offers must be reasonable and reflect fair market value.</li>
+          </ul>
+
+           <h2>4. Admin Discretion</h2>
+          <p>The league administrator has the final say in all disputes and may issue warnings, point deductions, or suspensions for rule violations.</p>
+        </CardContent>
+      </Card>
     </div>
   );
 }

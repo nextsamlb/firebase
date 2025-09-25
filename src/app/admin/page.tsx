@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Dialog,
   DialogContent,
@@ -38,10 +37,8 @@ import {
   MemoryStick,
   Server,
   Trophy,
-  Swords,
   Crown,
   PlayCircle,
-  Save,
   BarChart3,
   Calendar,
   Zap,
@@ -61,7 +58,6 @@ import {
 import { generateStageMatches } from '@/app/actions/league-actions'
 import { generateBullyingReport } from '@/app/actions'
 import { generateNewsTicker } from '@/app/actions/league-actions'
-import { Skeleton } from "@/components/ui/skeleton"
 import { EditUserForm } from '@/components/admin/edit-user-form'
 import { EditMatchForm } from '@/components/admin/edit-match-form'
 import { EditLeagueForm } from '@/components/admin/edit-league-form'
@@ -122,7 +118,7 @@ export default function SuperAdminPanel() {
   const [players, setPlayers] = useState<Player[]>([])
   const [matches, setMatches] = useState<Match[]>([])
   const [leagues, setLeagues] = useState<League[]>([]);
-  const [logs, setLogs] = useState(auditLogs)
+  const [logs] = useState(auditLogs)
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([])
   const [loading, setLoading] = useState(true)
   const [isUserDialogOpen, setIsUserDialogOpen] = useState(false)

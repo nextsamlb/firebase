@@ -1,5 +1,4 @@
 
-'use server'
 
 import type React from 'react'
 import {
@@ -18,7 +17,6 @@ import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { generateMostImprovedReport } from '@/ai/flows/generate-most-improved-report'
 
 
 const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: string) => string }) => {

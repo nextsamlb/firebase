@@ -3,27 +3,21 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { getPlayers, type Player } from '@/lib/data'
-import { notFound } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Mail,
   Calendar as CalendarIcon,
-  Shield,
-  Trophy,
-  BarChart3,
-  TrendingUp,
   User as UserIcon,
   Edit,
   Save,
   X,
-  MapPin,
-  Weight,
-  Award,
   Target,
   FileText,
-  Footprints,
   Cake,
+  Award,
+  TrendingUp,
+  Trophy,
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -37,7 +31,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import Image from 'next/image'
 import { useTranslation } from '@/context/language-provider'
 
 export default function PlayerProfileClient({ playerId }: { playerId: string }) {
@@ -274,7 +267,7 @@ export default function PlayerProfileClient({ playerId }: { playerId: string }) 
                 <Card className="glass border-primary/20">
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
-                      <BarChart3 className="w-5 h-5 text-primary" />
+                      <UserIcon className="w-5 h-5 text-primary" />
                       {t('physical')}
                     </CardTitle>
                   </CardHeader>

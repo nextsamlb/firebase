@@ -1,4 +1,3 @@
-
 'use client';
 
 import { MainSidebar } from '@/components/main-sidebar';
@@ -76,6 +75,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <p>Loading...</p>
       </div>
     );
+  }
+  
+  const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/signup');
+
+  if(isAuthPage) {
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
+            {children}
+        </main>
+    )
   }
 
   return (
