@@ -53,13 +53,15 @@ const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: stri
 export default async function HomePage() {
   const { t, language } = await getTranslations()
 
-  const [allPlayers, allMedia] = await Promise.all([
+  const [allPlayers, allMedia, allMatches] = await Promise.all([
       getPlayers(),
-      getMediaItems()
+      getMediaItems(),
+      getMatches(),
   ]);
 
   const players = allPlayers.filter(p => p.role === 'player');
   const media = allMedia.slice(0, 4);
+  const completedMatches = allMatches.filter(m => m.result);
 
   // Set an initial empty summary to avoid hitting rate limits on every page load.
   // The client will be responsible for fetching it on demand.
@@ -74,6 +76,17 @@ export default async function HomePage() {
 
   // The most improved player report is now generated on the client to avoid rate limiting.
   const mostImprovedReport = "";
+
+  const leagueStats = {
+      totalMatches: completedMatches.length,
+      totalGoals: players.reduce((sum, p) => sum + p.stats.goalsFor, 0),
+      avgGoalsPerMatch: completedMatches.length > 0
+          ? (completedMatches.reduce((sum, m) => {
+              const scores = m.result?.split('-').map(Number) || [0,0];
+              return sum + scores[0] + scores[1];
+          }, 0) / completedMatches.length).toFixed(2)
+          : '0.00',
+  }
 
   return (
     <div className="p-0 md:p-0 lg:p-0 space-y-8">
@@ -108,6 +121,7 @@ export default async function HomePage() {
         mostImprovedReport={mostImprovedReport}
         media={media}
         language={language}
+        leagueStats={leagueStats}
       />
     </div>
   )

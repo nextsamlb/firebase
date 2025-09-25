@@ -21,6 +21,9 @@ import {
   Swords,
   TrendingUp,
   LineChart,
+  Shield,
+  Activity,
+  Goal,
 } from 'lucide-react'
 import Link from 'next/link'
 import { getMatches, type Player, type Match, MediaItem } from '@/lib/data'
@@ -88,6 +91,11 @@ interface DashboardClientProps {
     mostImprovedReport: string;
     media: MediaItem[];
     language: 'en' | 'ar';
+    leagueStats: {
+        totalMatches: number;
+        totalGoals: number;
+        avgGoalsPerMatch: string;
+    }
 }
 
 export function DashboardClient({
@@ -98,6 +106,7 @@ export function DashboardClient({
     mostWins,
     fanFavorite,
     media: initialMedia,
+    leagueStats,
 }: DashboardClientProps) {
   const [activitySummary, setActivitySummary] = useState(initialActivitySummary);
   const [generatingSummary, setGeneratingSummary] = useState(false);
@@ -113,7 +122,7 @@ export function DashboardClient({
   const [generatingMatchupAnalysis, setGeneratingMatchupAnalysis] = useState(false)
   const [playerReport, setPlayerReport] = useState('');
   const [generatingReport, setGeneratingReport] = useState(false);
-  const [selectedPlayer, setSelectedPlayer] = useState<string>('');
+  const [selectedPlayer, setSelectedPlayer] = useState('');
   const [mostImprovedReport, setMostImprovedReport] = useState('');
   const [generatingMostImproved, setGeneratingMostImproved] = useState(false);
 
@@ -374,35 +383,71 @@ export function DashboardClient({
         </CardContent>
       </Card>
       
-      {/* Stat Leaders */}
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatLeaderCard icon={Trophy} title="Top Scorer" player={topScorer} value={topScorer?.stats.goalsFor || 0} unit="Goals" color="text-yellow-400" />
-        <StatLeaderCard icon={Award} title="Fan Favorite" player={fanFavorite} value={fanFavorite?.bestPlayerVotes || 0} unit="Votes" color="text-teal-400" />
-        <StatLeaderCard icon={Zap} title="Most Wins" player={mostWins} value={mostWins?.stats.wins || 0} unit="Wins" color="text-primary" />
-        
-        <Card className="glass flex flex-col">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-purple-400">Most Improved</CardTitle>
-                <LineChart className="h-4 w-4 text-purple-400" />
-            </CardHeader>
-            <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
-                 {generatingMostImproved ? <Skeleton className="h-32 w-full" /> : mostImprovedReport ? (
-                    <div
-                        className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
-                        dangerouslySetInnerHTML={{ __html: marked(mostImprovedReport) }}
-                    />
-                 ) : (
-                    <div className="text-center">
-                        <p className="text-xs text-muted-foreground mb-3">Generate a report to see who is on the rise.</p>
-                        <Button size="sm" variant="outline" onClick={handleGenerateMostImprovedReport} disabled={generatingMostImproved}>
-                            {generatingMostImproved ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
-                            Generate
-                        </Button>
+        {/* League Stats & Stat Leaders */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <Card className="glass lg:col-span-1">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-primary">
+                        <BarChart3 className="w-5 h-5"/>
+                        League at a Glance
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                        <div className="flex items-center gap-3">
+                            <Activity className="w-5 h-5 text-muted-foreground" />
+                            <span className="text-foreground">Total Matches Played</span>
+                        </div>
+                        <span className="font-bold text-lg text-primary">{leagueStats.totalMatches}</span>
                     </div>
-                 )}
-            </CardContent>
-        </Card>
-      </div>
+                     <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                        <div className="flex items-center gap-3">
+                            <Goal className="w-5 h-5 text-muted-foreground" />
+                            <span className="text-foreground">Total Goals Scored</span>
+                        </div>
+                        <span className="font-bold text-lg text-primary">{leagueStats.totalGoals}</span>
+                    </div>
+                     <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                        <div className="flex items-center gap-3">
+                            <Zap className="w-5 h-5 text-muted-foreground" />
+                            <span className="text-foreground">Avg Goals/Match</span>
+                        </div>
+                        <span className="font-bold text-lg text-primary">{leagueStats.avgGoalsPerMatch}</span>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <StatLeaderCard icon={Trophy} title="Top Scorer" player={topScorer} value={topScorer?.stats.goalsFor || 0} unit="Goals" color="text-yellow-400" />
+                <StatLeaderCard icon={Zap} title="Most Wins" player={mostWins} value={mostWins?.stats.wins || 0} unit="Wins" color="text-primary" />
+                <StatLeaderCard icon={Shield} title="Best Defense" player={bestDefense} value={bestDefense ? (bestDefense.stats.goalsAgainst / (bestDefense.stats.played || 1)).toFixed(2) : 0} unit="GA/Match" color="text-green-400" />
+                <StatLeaderCard icon={Award} title="Fan Favorite" player={fanFavorite} value={fanFavorite?.bestPlayerVotes || 0} unit="Votes" color="text-teal-400" />
+                <div className="sm:col-span-2 md:col-span-1">
+                    <Card className="glass flex flex-col h-full">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-purple-400">Most Improved</CardTitle>
+                            <LineChart className="h-4 w-4 text-purple-400" />
+                        </CardHeader>
+                        <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
+                            {generatingMostImproved ? <Skeleton className="h-32 w-full" /> : mostImprovedReport ? (
+                                <div
+                                    className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
+                                    dangerouslySetInnerHTML={{ __html: marked(mostImprovedReport) }}
+                                />
+                            ) : (
+                                <div className="text-center">
+                                    <p className="text-xs text-muted-foreground mb-3">Generate a report to see who is on the rise.</p>
+                                    <Button size="sm" variant="outline" onClick={handleGenerateMostImprovedReport} disabled={generatingMostImproved}>
+                                        {generatingMostImproved ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+                                        Generate
+                                    </Button>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        </div>
 
        {/* AI Analysis Center */}
         <Card className="glass">
