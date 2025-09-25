@@ -137,11 +137,11 @@ export default function SuperAdminPanel() {
   const [isAddMediaOpen, setIsAddMediaOpen] = useState(false);
   const [newMediaItem, setNewMediaItem] = useState({ title: '', description: '', src: '', hint: '' });
   const [systemStats, setSystemStats] = useState({
-    cpu: 45,
-    memory: 68,
-    disk: 32,
+    cpu: 0,
+    memory: 0,
+    disk: 0,
     uptime: "15 days, 6 hours",
-    onlineUsers: 127,
+    onlineUsers: 0,
     dbStatus: "healthy",
   })
   const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: 'ascending' | 'descending' } | null>({ key: 'matchNum', direction: 'ascending' });

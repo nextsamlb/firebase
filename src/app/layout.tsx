@@ -1,3 +1,4 @@
+
 'use client';
 
 import { MainSidebar } from '@/components/main-sidebar';
