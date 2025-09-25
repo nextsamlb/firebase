@@ -72,23 +72,8 @@ export default async function HomePage() {
   const bestDefense = activePlayers.length > 0 ? activePlayers.reduce((prev, current) => ((prev.stats.goalsAgainst / prev.stats.played) < (current.stats.goalsAgainst / current.stats.played)) ? prev : current) : null;
   const mostWins = players.length > 0 ? [...players].sort((a, b) => b.stats.wins - a.stats.wins)[0] : null;
 
-  // Generate Most Improved Player Report
-    let mostImprovedReport = "Could not generate report.";
-    if(players.length > 1) {
-        const playerStatsForReport = players.map(p => ({
-            id: p.id,
-            name: p.name,
-            previousWinRate: Math.random() * 0.5, // Mock previous data
-            currentWinRate: p.stats.played > 0 ? p.stats.wins / p.stats.played : 0,
-            previousGoals: Math.floor(Math.random() * p.stats.goalsFor),
-            currentGoals: p.stats.goalsFor,
-        }));
-        const reportResult = await generateMostImprovedReport({ players: playerStatsForReport });
-        if ('report' in reportResult) {
-            mostImprovedReport = reportResult.report;
-        }
-    }
-
+  // The most improved player report is now generated on the client to avoid rate limiting.
+  const mostImprovedReport = "";
 
   return (
     <div className="p-0 md:p-0 lg:p-0 space-y-8">

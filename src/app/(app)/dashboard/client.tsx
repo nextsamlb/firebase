@@ -20,11 +20,12 @@ import {
   BarChart3,
   Swords,
   TrendingUp,
+  LineChart,
 } from 'lucide-react'
 import Link from 'next/link'
 import { getMatches, type Player, type Match, MediaItem } from '@/lib/data'
 import Image from 'next/image'
-import { generateActivitySummary, generatePlayerReport, generateTeamAnalysis, generateMatchupAnalysis, type TeamStats, type MatchupData } from '@/app/actions'
+import { generateActivitySummary, generatePlayerReport, generateTeamAnalysis, generateMatchupAnalysis, type TeamStats, type MatchupData, generateMostImprovedReport } from '@/app/actions'
 import { useTranslation } from '@/context/language-provider'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -96,9 +97,7 @@ export function DashboardClient({
     bestDefense,
     mostWins,
     fanFavorite,
-    mostImprovedReport,
     media: initialMedia,
-    language
 }: DashboardClientProps) {
   const [activitySummary, setActivitySummary] = useState(initialActivitySummary);
   const [generatingSummary, setGeneratingSummary] = useState(false);
@@ -115,8 +114,10 @@ export function DashboardClient({
   const [playerReport, setPlayerReport] = useState('');
   const [generatingReport, setGeneratingReport] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
+  const [mostImprovedReport, setMostImprovedReport] = useState('');
+  const [generatingMostImproved, setGeneratingMostImproved] = useState(false);
 
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
 
   useEffect(() => {
     const teamStats: TeamStats[] = players.filter(p => p.role === 'player').map((player:Player) => ({
@@ -192,6 +193,33 @@ export function DashboardClient({
       setGeneratingTeamAnalysis(false)
     }
   }
+  
+  const handleGenerateMostImprovedReport = async () => {
+    if (players.length < 2) return;
+    setGeneratingMostImproved(true);
+    setMostImprovedReport('');
+    try {
+        const playerStatsForReport = players.map(p => ({
+            id: p.id,
+            name: p.name,
+            previousWinRate: Math.random() * 0.5, // Mock previous data
+            currentWinRate: p.stats.played > 0 ? p.stats.wins / p.stats.played : 0,
+            previousGoals: Math.floor(Math.random() * p.stats.goalsFor),
+            currentGoals: p.stats.goalsFor,
+        }));
+        const result = await generateMostImprovedReport({ players: playerStatsForReport });
+        if ('report' in result) {
+            setMostImprovedReport(result.report);
+        } else {
+            setMostImprovedReport('Failed to generate report.');
+        }
+    } catch (error) {
+      setMostImprovedReport('An error occurred while generating the report.');
+    } finally {
+        setGeneratingMostImproved(false);
+    }
+  }
+
 
   const handleGenerateMatchupAnalysis = async () => {
     const homeTeam = teams.find((t) => t.teamId === selectedHomeTeam)
@@ -355,12 +383,23 @@ export function DashboardClient({
         <Card className="glass flex flex-col">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-purple-400">Most Improved</CardTitle>
+                <LineChart className="h-4 w-4 text-purple-400" />
             </CardHeader>
             <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
-                 <div
-                    className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
-                    dangerouslySetInnerHTML={{ __html: marked(mostImprovedReport) }}
-                />
+                 {generatingMostImproved ? <Skeleton className="h-32 w-full" /> : mostImprovedReport ? (
+                    <div
+                        className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
+                        dangerouslySetInnerHTML={{ __html: marked(mostImprovedReport) }}
+                    />
+                 ) : (
+                    <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-3">Generate a report to see who is on the rise.</p>
+                        <Button size="sm" variant="outline" onClick={handleGenerateMostImprovedReport} disabled={generatingMostImproved}>
+                            {generatingMostImproved ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+                            Generate
+                        </Button>
+                    </div>
+                 )}
             </CardContent>
         </Card>
       </div>
@@ -552,5 +591,3 @@ export function DashboardClient({
     </div>
   )
 }
-
-    
