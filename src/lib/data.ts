@@ -225,6 +225,15 @@ export async function deleteMediaItem(itemId: string): Promise<void> {
     await deleteDoc(doc(db, 'mediaHubItems', itemId));
 }
 
+export async function clearMediaItems(): Promise<void> {
+    const mediaCol = collection(db, 'mediaHubItems');
+    const snapshot = await getDocs(mediaCol);
+    const batch = writeBatch(db);
+    snapshot.docs.forEach(doc => batch.delete(doc.ref));
+    await batch.commit();
+}
+
+
 // App Settings Functions
 export async function getAppSettings(): Promise<AppSettings | null> {
     const settingsRef = doc(db, 'app_settings', 'config');
@@ -369,3 +378,5 @@ export async function updateMatchScore(matchId: string, newScore: string | null)
     const updatedDoc = await getDoc(matchRef);
     return { id: updatedDoc.id, ...updatedDoc.data() } as Match;
 }
+
+    

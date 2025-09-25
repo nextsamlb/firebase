@@ -3,6 +3,7 @@
 import { collection, getDocs, writeBatch, getFirestore, doc } from 'firebase/firestore';
 import { app } from './firebase';
 import type { Player, Match, MediaItem, AppSettings } from './data';
+import { clearMediaItems } from './data';
 import * as rawData from './raw-data.json';
 
 async function seedDatabase() {
@@ -12,14 +13,17 @@ async function seedDatabase() {
         console.log('Starting database seed...');
 
         // 1. Clear existing collections
-        console.log('Clearing existing players, matches, mediaHubItems, app_settings...');
-        const collectionsToClear = ['players', 'matches', 'mediaHubItems', 'app_settings'];
+        console.log('Clearing existing players, matches, app_settings...');
+        await clearMediaItems();
+        console.log('Cleared mediaHubItems.');
+
+        const collectionsToClear = ['players', 'matches', 'app_settings'];
         for (const col of collectionsToClear) {
             const ref = collection(db, col);
             const snapshot = await getDocs(ref);
             snapshot.docs.forEach((doc) => batch.delete(doc.ref));
         }
-        console.log('Cleared existing data.');
+        console.log('Cleared existing data from players, matches, app_settings.');
 
         // 2. Prepare new player data
         const data = rawData.currentLeagueData;
@@ -147,20 +151,6 @@ async function seedDatabase() {
             newMatches.push(newMatch);
         });
         console.log(`Prepared ${newMatches.length} matches.`);
-
-        // 5. Add Media Hub Items
-        console.log('Preparing Media Hub items...');
-        const mediaItems: Omit<MediaItem, 'id'>[] = Array.from({ length: 12 }, (_, i) => ({
-            src: `https://picsum.photos/seed/media${i+1}/800/600`,
-            title: `Match Highlight ${i + 1}`,
-            description: `An amazing moment from one of the recent matches.`,
-            hint: `match highlight`
-        }));
-        mediaItems.forEach(item => {
-            const mediaDocRef = doc(collection(db, 'mediaHubItems'));
-            batch.set(mediaDocRef, {id: mediaDocRef.id, ...item});
-        });
-        console.log(`Prepared ${mediaItems.length} media items.`);
         
        
 
@@ -186,7 +176,7 @@ async function seedDatabase() {
         console.log(`   - Added ${data.players.length} players.`);
         console.log(`   - Added 1 admin user.`);
         console.log(`   - Added ${newMatches.length} matches.`);
-        console.log(`   - Added ${mediaItems.length} media items.`);
+        console.log(`   - Cleared Media Hub.`);
         console.log('   - Added default app settings.');
         console.log('-------------------------------------------');
 
@@ -200,3 +190,5 @@ seedDatabase().then(() => {
     console.log('Script finished.');
     process.exit(0);
 });
+
+    

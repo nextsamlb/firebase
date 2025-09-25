@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -37,8 +38,6 @@ export function MainSidebar() {
   const isCollapsed = state === 'collapsed';
 
   const sidebarLinks = [
-    { href: "/stats-central", icon: BarChart3, label: t('statsCentral') },
-    { href: "/team-analysis", icon: Trophy, label: t('teamAnalysis') },
     { href: "/media-hub", icon: ImageIcon, label: t('mediaHub') },
     { href: "/hall-of-fame", icon: History, label: t('history') },
     { href: "/rules", icon: Gavel, label: t('rules') },
@@ -90,3 +89,5 @@ export function MainSidebar() {
     </Sidebar>
   );
 }
+
+    

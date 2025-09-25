@@ -17,16 +17,20 @@ import {
   Quote,
   Loader2,
   RefreshCw,
+  BarChart3,
+  Swords,
+  TrendingUp,
 } from 'lucide-react'
-import { useAuth } from '@/hooks/use-auth'
 import Link from 'next/link'
 import { getMatches, type Player, type Match, MediaItem } from '@/lib/data'
 import Image from 'next/image'
-import { generateActivitySummary, generatePlayerReport } from '@/app/actions'
+import { generateActivitySummary, generatePlayerReport, generateTeamAnalysis, generateMatchupAnalysis, type TeamStats, type MatchupData } from '@/app/actions'
 import { useTranslation } from '@/context/language-provider'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {marked} from 'marked';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 
 const PlayerFact = ({ players }: { players: Player[] }) => {
     const [fact, setFact] = useState('');
@@ -76,8 +80,11 @@ const PlayerFact = ({ players }: { players: Player[] }) => {
 interface DashboardClientProps {
     players: Player[];
     initialActivitySummary: string;
-    topPlayer: Player | null;
+    topScorer: Player | null;
+    bestDefense: Player | null;
+    mostWins: Player | null;
     fanFavorite: Player | null;
+    mostImprovedReport: string;
     media: MediaItem[];
     language: 'en' | 'ar';
 }
@@ -85,20 +92,49 @@ interface DashboardClientProps {
 export function DashboardClient({
     players,
     initialActivitySummary,
-    topPlayer,
+    topScorer,
+    bestDefense,
+    mostWins,
     fanFavorite,
+    mostImprovedReport,
     media: initialMedia,
     language
 }: DashboardClientProps) {
   const [activitySummary, setActivitySummary] = useState(initialActivitySummary);
   const [generatingSummary, setGeneratingSummary] = useState(false);
+  const [media, setMedia] = useState<MediaItem[]>(initialMedia);
+  const [teams, setTeams] = useState<TeamStats[]>([])
+  
+  const [selectedTeam, setSelectedTeam] = useState<string>("")
+  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("")
+  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("")
+  const [teamAnalysis, setTeamAnalysis] = useState<string>("")
+  const [matchupAnalysis, setMatchupAnalysis] = useState<string>("")
+  const [generatingTeamAnalysis, setGeneratingTeamAnalysis] = useState(false)
+  const [generatingMatchupAnalysis, setGeneratingMatchupAnalysis] = useState(false)
   const [playerReport, setPlayerReport] = useState('');
   const [generatingReport, setGeneratingReport] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
-  const [media, setMedia] = useState<MediaItem[]>(initialMedia);
-  
-  const { user, isAuthenticated } = useAuth()
+
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const teamStats: TeamStats[] = players.filter(p => p.role === 'player').map((player:Player) => ({
+        teamId: player.id,
+        teamName: player.name,
+        players: [player],
+        totalMatches: player.stats.played,
+        wins: player.stats.wins,
+        draws: player.stats.draws,
+        losses: player.stats.losses,
+        goalsFor: player.stats.goalsFor,
+        goalsAgainst: player.stats.goalsAgainst,
+        averageGoalsPerMatch: player.stats.played > 0 ? parseFloat((player.stats.goalsFor / player.stats.played).toFixed(1)) : 0,
+        winPercentage: player.stats.played > 0 ? parseFloat(((player.stats.wins / player.stats.played) * 100).toFixed(1)) : 0,
+        form: ["W", "L", "W", "D", "W"], // Mock recent form
+    }));
+    setTeams(teamStats);
+  }, [players])
 
   const handleGenerateSummary = useCallback(async () => {
     setGeneratingSummary(true);
@@ -137,6 +173,66 @@ export function DashboardClient({
     }
   }, [language, players]);
 
+  const handleGenerateTeamAnalysis = async () => {
+    const team = teams.find((t) => t.teamId === selectedTeam)
+    if (!team) return
+
+    setGeneratingTeamAnalysis(true)
+    setTeamAnalysis('');
+    try {
+      const result = await generateTeamAnalysis({...team, language})
+      if ('analysis' in result) {
+        setTeamAnalysis(result.analysis)
+      } else {
+         console.error("Failed to generate team analysis:", result.error)
+      }
+    } catch (error) {
+      console.error("Failed to generate team analysis:", error)
+    } finally {
+      setGeneratingTeamAnalysis(false)
+    }
+  }
+
+  const handleGenerateMatchupAnalysis = async () => {
+    const homeTeam = teams.find((t) => t.teamId === selectedHomeTeam)
+    const awayTeam = teams.find((t) => t.teamId === selectedAwayTeam)
+    if (!homeTeam || !awayTeam) return
+
+    setGeneratingMatchupAnalysis(true)
+    setMatchupAnalysis('');
+    try {
+      const matchupData: MatchupData = {
+        homeTeam,
+        awayTeam,
+        headToHead: {
+          totalMeetings: 5,
+          homeWins: 2,
+          awayWins: 2,
+          draws: 1,
+          lastMeeting: {
+            date: "2024-12-15",
+            score: "2-1",
+            venue: "PIFA Stadium",
+          },
+        },
+        venue: "PIFA Stadium",
+        competition: "PIFA League",
+        language: language
+      }
+
+      const result = await generateMatchupAnalysis(matchupData)
+       if ('analysis' in result) {
+        setMatchupAnalysis(result.analysis)
+      } else {
+         console.error("Failed to generate matchup analysis:", result.error)
+      }
+    } catch (error) {
+      console.error("Failed to generate matchup analysis:", error)
+    } finally {
+      setGeneratingMatchupAnalysis(false)
+    }
+  }
+
   const handleGenerateReport = async () => {
     const player = players.find(p => p.id === selectedPlayer);
     if (!player) return;
@@ -173,145 +269,288 @@ export function DashboardClient({
     return initials.toUpperCase()
   }
 
-  return (
-    <>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
-           {/* AI Activity Summary */}
-          <Card className="glass border-primary/20">
+  const StatLeaderCard = ({ icon, title, player, value, unit, color } : { icon: React.ElementType, title: string, player: Player | null, value: string | number, unit: string, color: string}) => {
+    const Icon = icon;
+    if (!player) return null;
+    return (
+       <Card className="glass flex flex-col">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className={`text-sm font-medium ${color}`}>{title}</CardTitle>
+                <Icon className={`h-5 w-5 ${color}`} />
+            </CardHeader>
+            <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
+                <Avatar className="w-16 h-16 mb-2 border-2 border-primary">
+                    <AvatarImage src={player.avatar} />
+                    <AvatarFallback>{getInitials(player.name)}</AvatarFallback>
+                </Avatar>
+                <p className="font-bold text-lg text-foreground">{player.name}</p>
+                <p className={`text-2xl font-bold ${color} mt-1`}>{value} <span className="text-base font-medium">{unit}</span></p>
+            </CardContent>
+        </Card>
+    )
+  }
+
+  const renderAnalysis = (title: string, analysis: string, icon: React.ElementType) => {
+    const Icon = icon;
+    const htmlAnalysis = marked(analysis);
+    return (
+        <Card className="glass mt-6">
             <CardHeader>
-              <CardTitle className="text-white flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Newspaper className="w-5 h-5 text-primary" />
-                  {t('aiLeagueRecap')}
-                </div>
-                <Button onClick={handleGenerateSummary} disabled={generatingSummary} size="sm" variant="outline">
-                  {generatingSummary ? <Loader2 className="w-4 h-4 animate-spin"/> : <RefreshCw className="w-4 h-4" />}
-                </Button>
-              </CardTitle>
-              <CardDescription>{t('aiSummaryDescription')}</CardDescription>
+                <CardTitle className="flex items-center gap-2">
+                    <Icon className="w-5 h-5 text-primary" />
+                    {title}
+                </CardTitle>
             </CardHeader>
             <CardContent>
-              {generatingSummary ? (
-                 <Skeleton className="h-24 w-full" />
-              ) : activitySummary ? (
-                <p className="text-white/80 italic">{activitySummary}</p>
-              ) : (
-                <div className="text-center py-6">
-                    <Newspaper className="w-12 h-12 mx-auto text-muted-foreground/50 mb-4" />
-                    <p className="text-muted-foreground mb-4">{t('noRecentActivity')}</p>
-                    <Button onClick={handleGenerateSummary} disabled={generatingSummary} variant="default">
-                        {generatingSummary ? <Loader2 className="w-4 h-4 mr-2 animate-spin"/> : <Zap className="w-4 h-4 mr-2" />}
-                        {t('generateSummary')}
-                    </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-          
-           {/* Media Hub Section */}
-          <Card className="glass border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-white flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <ImageIcon className="w-5 h-5 text-primary" />
-                  {t('mediaHub')}
-                </div>
-                <Link href="/media-hub">
-                   <Button variant="outline" size="sm">{t('viewAll')}</Button>
-                </Link>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {media.map(item => (
-                  <Link href="/media-hub" key={item.id}>
-                    <Image src={item.src} alt={item.title} width={400} height={300} className="rounded-lg object-cover w-full h-auto shadow-md aspect-video hover:opacity-80 transition-opacity" data-ai-hint={item.hint}/>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="lg:col-span-1 space-y-8">
-           {/* Top Stories */}
-          <Card className="glass border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
-                <Flame className="w-5 h-5 text-primary" />
-                {t('topStories')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-               {topPlayer && (
-                <div className="flex items-start gap-4">
-                  <Avatar className="w-16 h-16 border-2 border-primary">
-                    <AvatarImage src={topPlayer.avatar} />
-                    <AvatarFallback>{getInitials(topPlayer.name)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('leagueLeader')}</p>
-                    <p className="font-bold text-white text-lg">{topPlayer.name}</p>
-                    <p className="font-bold text-primary">{topPlayer.stats.points} {t('points')}</p>
-                  </div>
-                </div>
-              )}
-              {fanFavorite && (
-                <div className="flex items-center gap-3">
-                  <Award className="w-6 h-6 text-teal-400"/>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{t('fanFavorite')}</p>
-                    <p className="font-bold text-white">{fanFavorite.name} ({fanFavorite.bestPlayerVotes} {t('votes')})</p>
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-          
-           {/* Player Analysis */}
-          <Card className="glass border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
-                <BrainCircuit className="w-5 h-5 text-primary" />
-                {t('playerAnalysis')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">{t('playerAnalysisDescription')}</p>
-              <Select value={selectedPlayer} onValueChange={setSelectedPlayer}>
-                  <SelectTrigger className="w-full bg-card/80 border-border text-foreground">
-                  <SelectValue placeholder={t('selectPlayer')} />
-                  </SelectTrigger>
-                  <SelectContent>
-                  {players.map((p) => (
-                      <SelectItem key={p.id} value={p.id}>
-                      {p.name}
-                      </SelectItem>
-                  ))}
-                  </SelectContent>
-              </Select>
-              <Button
-                  onClick={handleGenerateReport}
-                  disabled={!selectedPlayer || generatingReport}
-                  className="w-full"
-              >
-                  {generatingReport ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
-                  {generatingReport ? t('generating') : t('generateReport')}
-              </Button>
-
-              {generatingReport && <Skeleton className="h-48 w-full" />}
-              {playerReport && !generatingReport && (
                 <div 
-                    className="prose prose-sm prose-invert max-w-none text-white whitespace-pre-wrap rounded-md bg-muted/50 p-3 mt-4"
-                    dangerouslySetInnerHTML={{ __html: marked(playerReport) }}
+                    className="prose prose-sm prose-invert max-w-none text-foreground whitespace-pre-wrap" 
+                    dangerouslySetInnerHTML={{ __html: htmlAnalysis }}
                 />
-              )}
             </CardContent>
-          </Card>
-        </div>
+        </Card>
+    );
+  };
+
+
+  return (
+    <div className="space-y-8">
+      {/* AI Activity Summary */}
+      <Card className="glass border-primary/20">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Newspaper className="w-5 h-5 text-primary" />
+              {t('aiLeagueRecap')}
+            </div>
+            <Button onClick={handleGenerateSummary} disabled={generatingSummary} size="sm" variant="outline">
+              {generatingSummary ? <Loader2 className="w-4 h-4 animate-spin"/> : <RefreshCw className="w-4 h-4" />}
+            </Button>
+          </CardTitle>
+          <CardDescription>{t('aiSummaryDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {generatingSummary ? (
+             <Skeleton className="h-24 w-full" />
+          ) : activitySummary ? (
+            <p className="text-white/80 italic">{activitySummary}</p>
+          ) : (
+            <div className="text-center py-6">
+                <Newspaper className="w-12 h-12 mx-auto text-muted-foreground/50 mb-4" />
+                <p className="text-muted-foreground mb-4">{t('noRecentActivity')}</p>
+                <Button onClick={handleGenerateSummary} disabled={generatingSummary} variant="default">
+                    {generatingSummary ? <Loader2 className="w-4 h-4 mr-2 animate-spin"/> : <Zap className="w-4 h-4 mr-2" />}
+                    {t('generateSummary')}
+                </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+      
+      {/* Stat Leaders */}
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatLeaderCard icon={Trophy} title="Top Scorer" player={topScorer} value={topScorer?.stats.goalsFor || 0} unit="Goals" color="text-yellow-400" />
+        <StatLeaderCard icon={Award} title="Fan Favorite" player={fanFavorite} value={fanFavorite?.bestPlayerVotes || 0} unit="Votes" color="text-teal-400" />
+        <StatLeaderCard icon={Zap} title="Most Wins" player={mostWins} value={mostWins?.stats.wins || 0} unit="Wins" color="text-primary" />
+        
+        <Card className="glass flex flex-col">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-purple-400">Most Improved</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
+                 <div
+                    className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
+                    dangerouslySetInnerHTML={{ __html: marked(mostImprovedReport) }}
+                />
+            </CardContent>
+        </Card>
       </div>
+
+       {/* AI Analysis Center */}
+        <Card className="glass">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3">
+                 <BrainCircuit className="w-6 h-6 text-primary" />
+                AI Analysis Center
+            </CardTitle>
+            <CardDescription>
+                Get AI-powered analysis for players, teams, and matchups.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+             <Tabs defaultValue="player-analysis" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 glass mb-6">
+                    <TabsTrigger value="player-analysis">
+                        <TrendingUp className="w-4 h-4 me-2" />
+                        {t('playerAnalysis')}
+                    </TabsTrigger>
+                    <TabsTrigger value="team-analysis">
+                        <BarChart3 className="w-4 h-4 me-2" />
+                        {t('teamAnalysis')}
+                    </TabsTrigger>
+                    <TabsTrigger value="matchup-analysis">
+                         <Swords className="w-4 h-4 me-2" />
+                        {t('matchupAnalysis')}
+                    </TabsTrigger>
+                </TabsList>
+
+                {/* Player Analysis Tab */}
+                <TabsContent value="player-analysis" className="space-y-4">
+                    <p className="text-sm text-muted-foreground">{t('playerAnalysisDescription')}</p>
+                    <div className="flex flex-col md:flex-row items-center gap-4">
+                        <Select value={selectedPlayer} onValueChange={setSelectedPlayer}>
+                            <SelectTrigger className="w-full md:w-64 bg-card/80 border-border text-foreground">
+                            <SelectValue placeholder={t('selectPlayer')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                            {players.map((p) => (
+                                <SelectItem key={p.id} value={p.id}>
+                                {p.name}
+                                </SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
+                        <Button
+                            onClick={handleGenerateReport}
+                            disabled={!selectedPlayer || generatingReport}
+                            className="w-full md:w-auto"
+                        >
+                            {generatingReport ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+                            {generatingReport ? t('generating') : t('generateReport')}
+                        </Button>
+                    </div>
+
+                    {generatingReport && <Skeleton className="h-48 w-full" />}
+                    {playerReport && !generatingReport && (
+                        renderAnalysis("Player Report", playerReport, BrainCircuit)
+                    )}
+                </TabsContent>
+
+                {/* Team Analysis Tab */}
+                <TabsContent value="team-analysis" className="space-y-6">
+                    <div className="flex flex-col md:flex-row items-center gap-4">
+                        <Select value={selectedTeam} onValueChange={setSelectedTeam}>
+                            <SelectTrigger className="w-full md:w-64 bg-card/80 border-border text-foreground">
+                            <SelectValue placeholder={t('selectTeam')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                            {teams.map((team) => (
+                                <SelectItem key={team.teamId} value={team.teamId}>
+                                {team.teamName}
+                                </SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
+                        <Button
+                            onClick={handleGenerateTeamAnalysis}
+                            disabled={!selectedTeam || generatingTeamAnalysis}
+                            className="w-full md:w-auto"
+                        >
+                            {generatingTeamAnalysis ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+                            {generatingTeamAnalysis ? t('generating') : t('generateAnalysis')}
+                        </Button>
+                    </div>
+                    
+                    {generatingTeamAnalysis && <Skeleton className="w-full h-48" />}
+
+                    {teamAnalysis && !generatingTeamAnalysis && renderAnalysis(t('teamAnalysisReport'), teamAnalysis, BarChart3)}
+
+                </TabsContent>
+
+                {/* Matchup Analysis Tab */}
+                <TabsContent value="matchup-analysis" className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                        <div className="space-y-2">
+                            <label className="text-muted-foreground text-sm">{t('homeTeam')}</label>
+                            <Select value={selectedHomeTeam} onValueChange={setSelectedHomeTeam}>
+                                <SelectTrigger className="bg-card/80 border-border text-foreground">
+                                    <SelectValue placeholder={t('selectHomeTeam')} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {teams.map((team) => (
+                                    <SelectItem key={team.teamId} value={team.teamId} disabled={team.teamId === selectedAwayTeam}>
+                                        {team.teamName}
+                                    </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="text-center font-bold text-muted-foreground hidden md:block">VS</div>
+                        
+                        <div className="space-y-2">
+                            <label className="text-muted-foreground text-sm">{t('awayTeam')}</label>
+                            <Select value={selectedAwayTeam} onValueChange={setSelectedAwayTeam}>
+                            <SelectTrigger className="bg-card/80 border-border text-foreground">
+                                <SelectValue placeholder={t('selectAwayTeam')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {teams.map((team) => (
+                                <SelectItem key={team.teamId} value={team.teamId} disabled={team.teamId === selectedHomeTeam}>
+                                    {team.teamName}
+                                </SelectItem>
+                                ))}
+                            </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                        <div className="text-center mt-6">
+                        <Button
+                            onClick={handleGenerateMatchupAnalysis}
+                            disabled={
+                            !selectedHomeTeam ||
+                            !selectedAwayTeam ||
+                            selectedHomeTeam === selectedAwayTeam ||
+                            generatingMatchupAnalysis
+                            }
+                        >
+                            {generatingMatchupAnalysis ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+                            {generatingMatchupAnalysis ? t('generating') : t('generateMatchupAnalysis')}
+                        </Button>
+                    </div>
+                    
+                    {generatingMatchupAnalysis && <Skeleton className="w-full h-48" />}
+
+                    {matchupAnalysis && !generatingMatchupAnalysis && renderAnalysis(t('matchupAnalysisReport'), matchupAnalysis, Swords)}
+                </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      
+       {/* Media Hub Section */}
+        <Card className="glass border-primary/20">
+        <CardHeader>
+            <CardTitle className="text-white flex items-center justify-between">
+            <div className="flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-primary" />
+                {t('mediaHub')}
+            </div>
+            <Link href="/media-hub">
+                <Button variant="outline" size="sm">{t('viewAll')}</Button>
+            </Link>
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            {media.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {media.map(item => (
+                <Link href="/media-hub" key={item.id}>
+                <Image src={item.src} alt={item.title} width={400} height={300} className="rounded-lg object-cover w-full h-auto shadow-md aspect-video hover:opacity-80 transition-opacity" data-ai-hint={item.hint}/>
+                </Link>
+            ))}
+            </div>
+            ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                    <ImageIcon className="w-12 h-12 mx-auto mb-4" />
+                    <p>No recent match highlights.</p>
+                    <p className="text-sm">Complete a match to see AI-generated highlights here.</p>
+                </div>
+            )}
+        </CardContent>
+        </Card>
+
        <PlayerFact players={players} />
-    </>
+    </div>
   )
 }
+
+    

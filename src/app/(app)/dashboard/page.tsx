@@ -1,22 +1,23 @@
 
 import type React from 'react'
 import {
-  Trophy,
-  Users,
-  Award,
-  Newspaper,
-  ImageIcon,
-  Flame,
-} from 'lucide-react'
-import { getPlayers, getMatches, type Player, type Match, NewsItem, MediaItem, getMediaItems } from '@/lib/data'
+  getPlayers,
+  getMatches,
+  type Player,
+  type Match,
+  NewsItem,
+  MediaItem,
+  getMediaItems,
+} from '@/lib/data'
 import Image from 'next/image'
 import { getTranslations } from '@/context/language-provider-server'
 import { DashboardClient } from './client'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useAuth } from '@/hooks/use-auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { generateMostImprovedReport } from '@/ai/flows/generate-most-improved-report'
+
 
 const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: string) => string }) => {
     if (!topPlayer) return null;
@@ -26,7 +27,7 @@ const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: stri
             <Image 
                 src="https://picsum.photos/seed/hero-bg/1200/400"
                 alt="Stadium lights"
-                layout="fill"
+                fill
                 objectFit="cover"
                 className="absolute inset-0 -z-10 opacity-20"
                 data-ai-hint="stadium lights"
@@ -67,13 +68,28 @@ export default async function HomePage() {
 
   const topPlayer = players.length > 0 ? [...players].sort((a,b) => b.stats.points - a.stats.points)[0] : null;
   const fanFavorite = players.length > 0 ? [...players].sort((a,b) => b.bestPlayerVotes - a.bestPlayerVotes)[0] : null;
+  const topScorer = players.length > 0 ? [...players].sort((a, b) => b.stats.goalsFor - a.stats.goalsFor)[0] : null;
+  const activePlayers = players.filter(p => p.stats.played > 0);
+  const bestDefense = activePlayers.length > 0 ? activePlayers.reduce((prev, current) => ((prev.stats.goalsAgainst / prev.stats.played) < (current.stats.goalsAgainst / current.stats.played)) ? prev : current) : null;
+  const mostWins = players.length > 0 ? [...players].sort((a, b) => b.stats.wins - a.stats.wins)[0] : null;
 
-  const getInitials = (name: string) => {
-    if (!name) return '?'
-    const names = name.split(' ')
-    const initials = names.map((n) => n[0]).join('')
-    return initials.toUpperCase()
-  }
+  // Generate Most Improved Player Report
+    let mostImprovedReport = "Could not generate report.";
+    if(players.length > 1) {
+        const playerStatsForReport = players.map(p => ({
+            id: p.id,
+            name: p.name,
+            previousWinRate: Math.random() * 0.5, // Mock previous data
+            currentWinRate: p.stats.played > 0 ? p.stats.wins / p.stats.played : 0,
+            previousGoals: Math.floor(Math.random() * p.stats.goalsFor),
+            currentGoals: p.stats.goalsFor,
+        }));
+        const reportResult = await generateMostImprovedReport({ players: playerStatsForReport });
+        if ('report' in reportResult) {
+            mostImprovedReport = reportResult.report;
+        }
+    }
+
 
   return (
     <div className="p-0 md:p-0 lg:p-0 space-y-8">
@@ -101,11 +117,16 @@ export default async function HomePage() {
       <DashboardClient
         players={players}
         initialActivitySummary={initialActivitySummary}
-        topPlayer={topPlayer}
+        topScorer={topScorer}
+        bestDefense={bestDefense}
+        mostWins={mostWins}
         fanFavorite={fanFavorite}
+        mostImprovedReport={mostImprovedReport}
         media={media}
         language={language}
       />
     </div>
   )
 }
+
+    
