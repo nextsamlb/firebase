@@ -558,3 +558,5 @@ export default function PlayerProfileClient({ playerId }: { playerId: string }) 
       </div>
   )
 }
+
+    
