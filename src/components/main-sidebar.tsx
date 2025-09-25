@@ -40,6 +40,7 @@ export function MainSidebar() {
   const sidebarLinks = [
     { href: "/stats-central", icon: BarChart3, label: t('statsCentral') },
     { href: "/team-analysis", icon: Trophy, label: t('teamAnalysis') },
+    { href: "/competitions", icon: Trophy, label: t('competitions') },
     { href: "/media-hub", icon: ImageIcon, label: t('mediaHub') },
     { href: "/hall-of-fame", icon: History, label: t('history') },
     { href: "/rules", icon: Gavel, label: t('rules') },

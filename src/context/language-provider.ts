@@ -1,8 +1,15 @@
 
-import 'server-only'
-import { cookies } from 'next/headers'
+'use client';
+
+import React, { createContext, useState, useContext, useMemo, useEffect } from 'react';
 
 type Language = 'en' | 'ar';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+}
 
 const translations = {
     en: {
@@ -73,16 +80,9 @@ const translations = {
         generateMatchupAnalysis: "Generate Matchup Analysis",
         matchupAnalysisReport: "Matchup Analysis Report",
         selectTwoTeamsForAnalysis: "Select two teams to generate AI-powered matchup analysis",
-        born: "Born",
-        physical: "Physical",
-        height: "Height",
-        weight: "Weight",
-        preferredFoot: "Preferred Foot",
-        position: "Position",
-        nationality: "Nationality",
         aiLeagueRecap: "AI League Recap",
         aiSummaryDescription: "An AI-powered summary of the latest league action.",
-        noRecentActivity: "No recent activity to generate a summary from.",
+        noRecentActivity: "Click below to generate an AI summary of recent league activity.",
         viewAll: "View All",
         topStories: "Top Stories",
         leagueLeader: "League Leader",
@@ -95,6 +95,13 @@ const translations = {
         generateReport: "Generate Report",
         welcomeMessage: "Welcome",
         welcomeSubtitle: "Ready to dominate the pitch?",
+        born: "Born",
+        physical: "Physical",
+        height: "Height",
+        weight: "Weight",
+        preferredFoot: "Preferred Foot",
+        position: "Position",
+        nationality: "Nationality",
         generateSummary: "Generate Summary",
         competitions: "Competitions",
     },
@@ -168,7 +175,7 @@ const translations = {
         selectTwoTeamsForAnalysis: "اختر فريقين لإنشاء تحليل مواجهة مدعوم بالذكاء الاصطناعي",
         aiLeagueRecap: "ملخص الدوري بالذكاء الاصطناعي",
         aiSummaryDescription: "ملخص مدعوم بالذكاء الاصطناعي لآخر أحداث الدوري.",
-        noRecentActivity: "لا توجد أنشطة حديثة لإنشاء ملخص منها.",
+        noRecentActivity: "انقر أدناه لإنشاء ملخص للذكاء الاصطناعي لأحدث أنشطة الدوري.",
         viewAll: "عرض الكل",
         topStories: "أهم الأخبار",
         leagueLeader: "متصدر الدوري",
@@ -193,16 +200,46 @@ const translations = {
     }
 };
 
-export async function getTranslations() {
-  const cookieStore = cookies();
-  const langCookie = cookieStore.get('pifa-lang');
-  const language: Language = langCookie?.value === 'ar' ? 'ar' : 'en';
+const LanguageContext = createContext<LanguageContextType | null>(null);
 
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>('en');
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('pifa-lang') as Language | null;
+    if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
+      setLanguageState(savedLang);
+      document.documentElement.lang = savedLang;
+      document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    }
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('pifa-lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  };
+  
   const t = (key: string): string => {
-    const translation = translations[language];
-    // @ts-ignore
-    return translation[key] || translations.en[key] || key;
+      const translation = translations[language];
+      // @ts-ignore
+      return translation[key] || translations.en[key] || key;
   }
 
-  return { t, language };
+  const value = useMemo(() => ({ language, setLanguage, t }), [language]);
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  )
+}
+
+export function useTranslation() {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useTranslation must be used within a LanguageProvider');
+  }
+  return context;
 }
