@@ -1,4 +1,5 @@
 
+
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from "react"
@@ -55,7 +56,7 @@ import {
     getPlayers, Player, getMatches, Match, deletePlayer as deletePlayerData, 
     addPlayer as addPlayerData, updatePlayer as updatePlayerData, addMatch, 
     updateMatch, deleteMatch as deleteMatchData, MediaItem, getMediaItems, 
-    addMediaItem, deleteMediaItem
+    addMediaItem, deleteMediaItem, getLeagues, League, addLeague, updateLeague, deleteLeague
 } from '@/lib/data'
 import { generateStageMatches } from '@/app/actions/league-actions'
 import { generateBullyingReport } from '@/app/actions'
@@ -63,6 +64,7 @@ import { generateNewsTicker } from '@/app/actions/league-actions'
 import { Skeleton } from "@/components/ui/skeleton"
 import { EditUserForm } from '@/components/admin/edit-user-form'
 import { EditMatchForm } from '@/components/admin/edit-match-form'
+import { EditLeagueForm } from '@/components/admin/edit-league-form'
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Progress } from "@/components/ui/progress"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
@@ -112,15 +114,18 @@ export default function SuperAdminPanel() {
 
   const [players, setPlayers] = useState<Player[]>([])
   const [matches, setMatches] = useState<Match[]>([])
+  const [leagues, setLeagues] = useState<League[]>([]);
   const [logs, setLogs] = useState(auditLogs)
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([])
   const [loading, setLoading] = useState(true)
   const [isUserDialogOpen, setIsUserDialogOpen] = useState(false)
   const [isMatchDialogOpen, setIsMatchDialogOpen] = useState(false)
+  const [isLeagueDialogOpen, setIsLeagueDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
-  const [itemToDelete, setItemToDelete] = useState<{type: 'user' | 'match' | 'media', data: Player | Match | MediaItem} | null>(null)
+  const [itemToDelete, setItemToDelete] = useState<{type: 'user' | 'match' | 'media' | 'league', data: Player | Match | MediaItem | League} | null>(null)
   const [selectedUser, setSelectedUser] = useState<Player | null>(null)
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null)
+  const [selectedLeague, setSelectedLeague] = useState<League | null>(null);
   const [isCreating, setIsCreating] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [generatingMatches, setGeneratingMatches] = useState(false);
@@ -164,10 +169,16 @@ export default function SuperAdminPanel() {
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
-        const [allPlayers, allMatches, allMediaItems] = await Promise.all([getPlayers(), getMatches(), getMediaItems()])
+        const [allPlayers, allMatches, allMediaItems, allLeagues] = await Promise.all([
+            getPlayers(), 
+            getMatches(), 
+            getMediaItems(),
+            getLeagues()
+        ])
         setPlayers(allPlayers)
         setMatches(allMatches)
         setMediaItems(allMediaItems);
+        setLeagues(allLeagues);
     } catch(error){
         toast({ variant: "destructive", title: "Error", description: "Failed to load data."})
     } finally {
@@ -221,7 +232,7 @@ export default function SuperAdminPanel() {
   }
 
 
-  const handleCreate = (type: 'user' | 'match') => {
+  const handleCreate = (type: 'user' | 'match' | 'league') => {
       setIsCreating(true)
       if (type === 'user') {
         setSelectedUser(null)
@@ -229,6 +240,9 @@ export default function SuperAdminPanel() {
       } else if (type === 'match'){
         setSelectedMatch(null)
         setIsMatchDialogOpen(true)
+      } else if (type === 'league') {
+        setSelectedLeague(null)
+        setIsLeagueDialogOpen(true);
       }
   }
 
@@ -248,6 +262,10 @@ export default function SuperAdminPanel() {
           await deleteMediaItem(itemToDelete.data.id);
           setMediaItems(mediaItems.filter(item => item.id !== itemToDelete.data.id));
           toast({ title: 'Media Item Deleted', description: 'The media item has been removed.' });
+      } else if (itemToDelete.type === 'league') {
+          await deleteLeague(itemToDelete.data.id);
+          setLeagues(leagues.filter(l => l.id !== itemToDelete.data.id));
+          toast({ title: 'League Deleted', description: 'The league has been removed.' });
       }
     } catch (error) {
        toast({ variant: 'destructive', title: 'Error', description: `Failed to delete ${itemToDelete.type}.`})
@@ -270,7 +288,13 @@ export default function SuperAdminPanel() {
     setIsMatchDialogOpen(true)
   }
 
-  const handleDelete = (type: 'user' | 'match' | 'media', data: Player | Match | MediaItem) => {
+  const handleEditLeague = (leagueToEdit: League) => {
+    setSelectedLeague(leagueToEdit);
+    setIsCreating(false);
+    setIsLeagueDialogOpen(true);
+  }
+
+  const handleDelete = (type: 'user' | 'match' | 'media' | 'league', data: Player | Match | MediaItem | League) => {
     setItemToDelete({ type, data })
     setIsDeleteDialogOpen(true)
   }
@@ -326,6 +350,25 @@ export default function SuperAdminPanel() {
     setSelectedMatch(null)
     setIsCreating(false)
   }
+
+  const handleSaveLeague = async (leagueData: Omit<League, 'id'> | League) => {
+    try {
+        if (isCreating) {
+            const newLeague = await addLeague(leagueData as Omit<League, 'id'>);
+            setLeagues([...leagues, newLeague]);
+            toast({ title: 'League Created', description: `League "${newLeague.name}" has been created.` });
+        } else {
+            const updated = await updateLeague(leagueData as League);
+            setLeagues(leagues.map(l => l.id === updated.id ? updated : l));
+            toast({ title: 'League Updated', description: `League "${updated.name}" has been updated.` });
+        }
+    } catch (error) {
+        toast({ variant: 'destructive', title: 'Error', description: (error as Error).message });
+    }
+    setIsLeagueDialogOpen(false);
+    setSelectedLeague(null);
+    setIsCreating(false);
+  };
 
   const handleGenerateMatches = async (stageName: string) => {
     setGeneratingMatches(true);
@@ -547,44 +590,17 @@ export default function SuperAdminPanel() {
           </Card>
         </div>
 
-         {/* League Actions */}
-        <div className="mb-8">
-          <Card className="glass">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <PlayCircle className="w-5 h-5 text-primary" />
-                League Actions
-              </CardTitle>
-              <CardDescription>Generate matches for a specific league stage.</CardDescription>
-            </CardHeader>
-            <CardContent>
-               <div className="flex flex-col md:flex-row items-center gap-4">
-                  <div className="flex flex-wrap gap-2">
-                    <Button size="sm" disabled={generatingMatches} onClick={() => handleGenerateMatches("Stage 1 (1v3)")}>
-                        {generatingMatches ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
-                        Generate Stage 1
-                    </Button>
-                    <Button size="sm" disabled={generatingMatches} onClick={() => handleGenerateMatches("Stage 2 (1v2)")}>
-                        {generatingMatches ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
-                        Generate Stage 2
-                    </Button>
-                    <Button size="sm" disabled={generatingMatches} onClick={() => handleGenerateMatches("Stage 3 (1v1)")}>
-                        {generatingMatches ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Swords className="w-4 h-4 mr-2" />}
-                        Generate Stage 3
-                    </Button>
-                  </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
 
         {/* Main Admin Tabs */}
         <Tabs defaultValue="players" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 glass">
+          <TabsList className="grid w-full grid-cols-6 glass">
             <TabsTrigger value="players">
               <Users className="w-4 h-4 mr-2" />
               Players
+            </TabsTrigger>
+            <TabsTrigger value="leagues">
+                <Trophy className="w-4 h-4 mr-2" />
+                Leagues
             </TabsTrigger>
             <TabsTrigger value="matches">
               <Calendar className="w-4 h-4 mr-2" />
@@ -689,6 +705,59 @@ export default function SuperAdminPanel() {
                     </TableBody>
                   </Table>
                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Leagues Tab */}
+          <TabsContent value="leagues" className="space-y-4">
+            <Card className="glass">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                    <CardTitle className="flex items-center gap-2">
+                        <Trophy className="w-5 h-5 text-primary" />
+                        League Management
+                    </CardTitle>
+                    <Button onClick={() => handleCreate('league')}>
+                        <Plus className="w-4 h-4 mr-2" />
+                        Create League
+                    </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>League Name</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Entry Fee</TableHead>
+                            <TableHead>Prize Pool</TableHead>
+                            <TableHead>Top Scorer Prize</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {leagues.map(league => (
+                            <TableRow key={league.id}>
+                                <TableCell className="font-medium">{league.name}</TableCell>
+                                <TableCell>
+                                    <Badge variant={league.status === 'active' ? 'default' : 'secondary'}>{league.status.toUpperCase()}</Badge>
+                                </TableCell>
+                                <TableCell>${league.entryFee.toLocaleString()}</TableCell>
+                                <TableCell>${league.prizePool.toLocaleString()}</TableCell>
+                                <TableCell>${league.topScorerPrize.toLocaleString()}</TableCell>
+                                <TableCell className="text-right">
+                                    <Button variant="ghost" size="sm" onClick={() => handleEditLeague(league)}>
+                                        <Edit className="h-4 w-4" />
+                                    </Button>
+                                    <Button variant="ghost" size="sm" className="text-destructive" onClick={() => handleDelete('league', league)}>
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
@@ -1062,6 +1131,22 @@ export default function SuperAdminPanel() {
               />
             </DialogContent>
           </Dialog>
+        
+        <Dialog open={isLeagueDialogOpen} onOpenChange={setIsLeagueDialogOpen}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>{isCreating ? 'Create New League' : 'Edit League'}</DialogTitle>
+                    <DialogDescription>
+                        {isCreating ? 'Set up a new competition.' : 'Update the details for this league.'}
+                    </DialogDescription>
+                </DialogHeader>
+                <EditLeagueForm
+                    league={selectedLeague}
+                    onSave={handleSaveLeague}
+                    onCancel={() => setIsLeagueDialogOpen(false)}
+                />
+            </DialogContent>
+        </Dialog>
 
            <Dialog open={isAddMediaOpen} onOpenChange={setIsAddMediaOpen}>
               <DialogContent>

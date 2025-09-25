@@ -1,5 +1,6 @@
 
 
+
 // This file contains mock data for the PIFA LEAGUE Stats app.
 // In a real application, this data would be fetched from a database like Firestore.
 import { collection, getDocs, getFirestore, addDoc, deleteDoc, doc, query, where, updateDoc, increment, arrayUnion, getDoc, setDoc, writeBatch } from 'firebase/firestore';
@@ -89,6 +90,17 @@ export interface NewsItem {
 
 export interface AppSettings {
     newsTicker: NewsItem[];
+}
+
+export interface League {
+    id: string;
+    name: string;
+    status: 'upcoming' | 'active' | 'completed';
+    entryFee: number;
+    prizePool: number;
+    topScorerPrize: number;
+    pointsForWin: number;
+    winnerId?: string | null;
 }
 
 
@@ -249,6 +261,28 @@ export async function updateAppSettings(settings: Partial<AppSettings>): Promise
     await setDoc(settingsRef, settings, { merge: true });
 }
 
+// League Functions
+export async function getLeagues(): Promise<League[]> {
+    const leaguesCol = collection(db, 'leagues');
+    const leagueSnapshot = await getDocs(leaguesCol);
+    return leagueSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as League));
+}
+
+export async function addLeague(leagueData: Omit<League, 'id'>): Promise<League> {
+    const leagueRef = await addDoc(collection(db, 'leagues'), leagueData);
+    return { id: leagueRef.id, ...leagueData } as League;
+}
+
+export async function updateLeague(leagueData: League): Promise<League> {
+    const leagueRef = doc(db, 'leagues', leagueData.id);
+    await updateDoc(leagueRef, leagueData);
+    return leagueData;
+}
+
+export async function deleteLeague(leagueId: string): Promise<void> {
+    await deleteDoc(doc(db, 'leagues', leagueId));
+}
+
 // Other Functions
 export async function submitVote(
   matchId: string,
@@ -378,3 +412,4 @@ export async function updateMatchScore(matchId: string, newScore: string | null)
     const updatedDoc = await getDoc(matchRef);
     return { id: updatedDoc.id, ...updatedDoc.data() } as Match;
 }
+
