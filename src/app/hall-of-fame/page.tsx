@@ -1,6 +1,7 @@
+
 'use server'
 
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getPlayers, type Player } from '@/lib/data';
 import { Crown, Trophy, Zap } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

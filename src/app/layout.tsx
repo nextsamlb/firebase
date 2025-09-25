@@ -4,14 +4,22 @@ import { MainSidebar } from '@/components/main-sidebar';
 import { Button } from '@/components/ui/button';
 import { UserNav } from '@/components/user-nav';
 import { useAuth } from '@/hooks/use-auth';
-import { Home, Menu, Shield, Swords, BarChart3, Users, Store, X, Flame, Trophy as TrophyIcon, BarChart, History, Gavel, ImageIcon, Inbox, Languages, Rss, Database } from 'lucide-react';
+import { Home, Menu, Swords, BarChart3, Users, X, Rss, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from '@/context/language-provider';
 import { getAppSettings, type NewsItem } from '@/lib/data';
+import { Providers } from '@/context/providers';
+import { Inter, Oswald, Orbitron } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import './globals.css';
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
+const oswald = Oswald({ subsets: ['latin'], variable: '--font-heading' });
+const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-accent' });
+
+function RootLayoutContent({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
   const { t, language } = useTranslation();
   const router = useRouter();
@@ -99,7 +107,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </Button>
             </div>
              <div className="flex items-center gap-3">
-                <TrophyIcon className="w-8 h-8 text-primary" />
+                <Trophy className="w-8 h-8 text-primary" />
                 <div className="text-xl font-accent font-bold text-primary">PIFA LEAGUE</div>
             </div>
           </div>
@@ -145,5 +153,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </footer>
       </div>
     </div>
+  );
+}
+
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          inter.variable,
+          oswald.variable,
+          orbitron.variable
+        )}
+      >
+        <Providers>
+          <RootLayoutContent>{children}</RootLayoutContent>
+        </Providers>
+      </body>
+    </html>
   );
 }
