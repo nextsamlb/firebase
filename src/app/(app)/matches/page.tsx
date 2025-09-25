@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge"
 import { format } from "date-fns"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "@/context/language-provider"
 
 
 const STAGES = ["Stage 1 (1v3)", "Stage 2 (1v2)", "Stage 3 (1v1)"]
@@ -30,6 +31,7 @@ export default function MatchesPage() {
   const [loading, setLoading] = useState(true)
   const { user } = useAuth()
   const { toast } = useToast()
+  const { language } = useTranslation();
 
   const [isMatchDialogOpen, setIsMatchDialogOpen] = useState(false)
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null)
@@ -85,7 +87,7 @@ export default function MatchesPage() {
   
   const handleSaveMatch = async (updatedMatch: Match) => {
     try {
-      const result = await updateMatchScore({ matchId: updatedMatch.id, newScore: updatedMatch.result });
+      const result = await updateMatchScore({ matchId: updatedMatch.id, newScore: updatedMatch.result, language });
       if (result.error) {
         toast({ variant: 'destructive', title: 'Error', description: result.error });
       } else {
@@ -159,84 +161,12 @@ export default function MatchesPage() {
         <p className="text-muted-foreground">Browse schedules and results for each stage of the competition.</p>
       </div>
 
-      <Card>
-          <CardContent className="p-0">
-             <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[80px]">
-                           <Button variant="ghost" onClick={() => requestSort('matchNum')}>
-                             # <ArrowUpDown className="ml-2 h-4 w-4" />
-                           </Button>
-                        </TableHead>
-                        <TableHead>
-                           <Button variant="ghost" onClick={() => requestSort('timestamp')}>
-                             Date <ArrowUpDown className="ml-2 h-4 w-4" />
-                           </Button>
-                        </TableHead>
-                        <TableHead>Home</TableHead>
-                        <TableHead>Away</TableHead>
-                        <TableHead className="text-center">Result</TableHead>
-                        {user?.role === 'admin' && <TableHead className="text-right">Actions</TableHead>}
-                    </TableRow>
-                </TableHeader>
-
-                {STAGES.map(stage => {
-                    const stageMatches = sortedMatches.filter(m => m.stageName === stage);
-                    if (stageMatches.length === 0) return null;
-                    return (
-                        <TableBody key={stage}>
-                            <TableRow>
-                                <TableCell colSpan={user?.role === 'admin' ? 6: 5} className="font-bold text-lg bg-muted/50 text-primary">
-                                    {stage}
-                                </TableCell>
-                            </TableRow>
-                            {stageMatches.map(match => {
-                                 const player1 = getPlayerById(match.player1Id);
-                                 return (
-                                    <TableRow key={match.id}>
-                                        <TableCell className="font-medium">{match.matchNum}</TableCell>
-                                        <TableCell>{format(new Date(match.timestamp), 'MMM d, yyyy')}</TableCell>
-                                        <TableCell>
-                                            <div className="flex items-center gap-2">
-                                                <Avatar className="h-8 w-8">
-                                                    <AvatarImage src={player1?.avatar} data-ai-hint="person face" />
-                                                    <AvatarFallback>{getInitials(player1?.name)}</AvatarFallback>
-                                                </Avatar>
-                                                <span className="font-medium">{player1?.name || 'N/A'}</span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>{getOpponentDisplay(match)}</TableCell>
-                                        <TableCell className="text-center font-bold text-lg">
-                                            {match.result ? 
-                                                <Badge>{match.result}</Badge> 
-                                                : <Badge variant="outline">TBD</Badge>
-                                            }
-                                        </TableCell>
-                                        {user?.role === 'admin' && (
-                                            <TableCell className="text-right">
-                                                <Button variant="ghost" size="sm" onClick={() => handleEditMatch(match)}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Button>
-                                            </TableCell>
-                                        )}
-                                    </TableRow>
-                                 )
-                            })}
-                        </TableBody>
-                    )
-                })}
-
-             </Table>
-             {matches.length === 0 && (
-                <div className="text-center py-20 text-muted-foreground">
-                    <Calendar className="w-12 h-12 mx-auto mb-4" />
-                    <p>No matches have been generated yet.</p>
-                    <p className="text-sm">An admin can generate them from the admin panel.</p>
-                </div>
-            )}
-          </CardContent>
-      </Card>
+       <MatchList
+            matches={sortedMatches}
+            players={players}
+            isAdmin={user?.role === 'admin'}
+            onEditMatch={handleEditMatch}
+        />
 
 
       <Dialog

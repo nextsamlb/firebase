@@ -58,9 +58,9 @@ export interface Match {
   worstPlayerVoteId: string | null;
   votes: { [userId: string]: { best: string, worst: string } }; // Updated vote structure
   timestamp: string;
-  competitionId?: string;
   preMatchAnalysis?: string | null;
   postMatchCommentary?: string | null;
+  matchImage?: string | null;
 }
 
 export interface Message {
@@ -71,20 +71,6 @@ export interface Message {
   body: string;
   timestamp: string;
   read: boolean;
-}
-
-export interface LeagueSettings {
-  pointsForWin: number;
-  pointsForDraw: number;
-  pointsForLoss: number;
-}
-
-export interface League {
-  id: string;
-  name: string;
-  settings: LeagueSettings;
-  players: Player[];
-  matches: Match[];
 }
 
 export interface MediaItem {

@@ -15,4 +15,5 @@ import './flows/generate-matchup-analysis';
 import './flows/generate-news-ticker-flow';
 import './flows/generate-bullying-report';
 import './flows/generate-most-improved-report';
+import './flows/generate-image-flow';
     

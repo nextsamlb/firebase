@@ -34,6 +34,9 @@ import {
     generateBullyingReport as generateBullyingReportFlow,
     type BullyingReportInput,
 } from '@/ai/flows/generate-bullying-report';
+import {
+    generateImage as generateImageFlow,
+} from '@/ai/flows/generate-image-flow';
 
 import {
     updateMatchScore as updateMatchScoreData,
@@ -46,7 +49,9 @@ import {
     Match,
     Player,
     getAppSettings,
-    updateAppSettings
+    updateAppSettings,
+    getMediaItems,
+    addMediaItem
 } from '@/lib/data'
 import { z } from 'zod'
 import { generateNewsTicker } from './actions/league-actions'
@@ -101,6 +106,7 @@ const GenerateMatchCommentaryInputSchema = z.object({
     player2Name: z.string(),
     result: z.string(),
     stageName: z.string(),
+    language: z.string().optional(),
 });
 
 export async function generateMatchCommentary(
@@ -195,9 +201,6 @@ export { type MatchupData } from '@/ai/flows/generate-matchup-analysis';
 export async function generateTeamAnalysis(
   input: TeamStats
 ): Promise<{ analysis: string } | { error: string }> {
-  // We can't use a shared Zod schema here because of 'use server' constraints.
-  // Validation is now primarily handled inside the flow file itself.
-  // A full implementation would have a separate, non-server file for shared schemas.
   try {
     const result = await generateTeamAnalysisFlow(input);
     return result;
@@ -219,25 +222,60 @@ export async function generateMatchupAnalysis(
   }
 }
 
-async function triggerNewsGenerationOnScoreUpdate() {
-    console.log("Triggering background news generation...");
+async function triggerPostMatchContentGeneration(matchId: string, language: 'en' | 'ar') {
+    console.log(`Triggering background content generation for match ${matchId} in ${language}...`);
     try {
         const [players, matches] = await Promise.all([getPlayers(), getMatches()]);
-        const recentMatches = matches.filter(m => m.result).slice(0, 5);
-        const topPlayers = players.filter(p => p.role === 'player').sort((a,b) => b.stats.points - a.stats.points).slice(0,3);
+        const match = matches.find(m => m.id === matchId);
 
-        const languages = ['en', 'ar'];
-        for (const lang of languages) {
-            await generateNewsTicker({
-                matches: recentMatches.map(m => ({ player1Id: m.player1Id, result: m.result })),
-                players: topPlayers.map(p => ({ name: p.name, stats: { points: p.stats.points, goalsFor: p.stats.goalsFor }})),
-                language: lang
-            });
+        if (!match || !match.result) {
+            console.error("Match not found or result is missing.");
+            return;
         }
+
+        const player1 = players.find(p => p.id === match.player1Id);
+        const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
+        const opponents = opponentIds.map(id => players.find(p => p.id === id)).filter(Boolean) as Player[];
+
+        if (!player1 || opponents.length === 0) {
+            console.error("Players for the match not found.");
+            return;
+        }
+
+        // 1. Generate Commentary
+        const commentaryResult = await generateMatchCommentaryFlow({
+            player1Name: player1.name,
+            player2Name: opponents.map(p => p.name).join(' & '),
+            result: match.result,
+            stageName: match.stageName,
+            language
+        });
+
+        if ('error' in commentaryResult) throw new Error(commentaryResult.error);
         
-        console.log("Background news generation complete.");
+        await updateMatch({ ...match, postMatchCommentary: commentaryResult.commentary });
+
+        // 2. Generate Image Prompt from Commentary
+        const imagePrompt = `Soccer match moment: ${commentaryResult.commentary}. Players are ${player1.name} vs ${opponents.map(p=>p.name).join(' & ')}.`;
+        const imageResult = await generateImageFlow({ prompt: imagePrompt });
+        
+        if ('error' in imageResult) throw new Error(imageResult.error);
+
+        // 3. Save the generated image URL to the match and also to the media hub
+        await updateMatch({ ...match, postMatchCommentary: commentaryResult.commentary, matchImage: imageResult.imageUrl });
+        await addMediaItem({
+            title: `Highlight from ${player1.name} vs ${opponents.map(p=>p.name).join(' & ')}`,
+            description: commentaryResult.commentary,
+            src: imageResult.imageUrl,
+            hint: 'soccer football match'
+        })
+        
+        // 4. Trigger news generation in the background, don't await it
+        triggerNewsGenerationOnScoreUpdate(language);
+
+        console.log(`Background content generation for match ${matchId} complete.`);
     } catch (e) {
-        console.error("Error during background news generation:", e);
+        console.error(`Error during background content generation for match ${matchId}:`, e);
     }
 }
 
@@ -245,10 +283,11 @@ async function triggerNewsGenerationOnScoreUpdate() {
 const UpdateMatchScoreInputSchema = z.object({
     matchId: z.string(),
     newScore: z.string().regex(/^\d+-\d+$/, { message: "Score must be in 'X-Y' format." }).nullable(),
+    language: z.enum(['en', 'ar'])
 });
 
 export async function updateMatchScore(
-    input: { matchId: string; newScore: string | null }
+    input: z.infer<typeof UpdateMatchScoreInputSchema>
 ): Promise<{ updatedMatch: Match } | { error: string }> {
     const parsed = UpdateMatchScoreInputSchema.safeParse(input);
     if (!parsed.success) {
@@ -259,8 +298,7 @@ export async function updateMatchScore(
         const updatedMatch = await updateMatchScoreData(parsed.data.matchId, parsed.data.newScore);
         
         if (parsed.data.newScore) {
-            // Trigger news generation in the background, don't await it
-            triggerNewsGenerationOnScoreUpdate();
+            triggerPostMatchContentGeneration(parsed.data.matchId, parsed.data.language);
         }
 
         return { updatedMatch };
@@ -271,6 +309,25 @@ export async function updateMatchScore(
     }
 }
 
+
+async function triggerNewsGenerationOnScoreUpdate(language: 'en' | 'ar') {
+    console.log(`Triggering background news generation in ${language}...`);
+    try {
+        const [players, matches] = await Promise.all([getPlayers(), getMatches()]);
+        const recentMatches = matches.filter(m => m.result).slice(0, 5);
+        const topPlayers = players.filter(p => p.role === 'player').sort((a,b) => b.stats.points - a.stats.points).slice(0,3);
+
+        await generateNewsTicker({
+            matches: recentMatches.map(m => ({ player1Id: m.player1Id, result: m.result })),
+            players: topPlayers.map(p => ({ name: p.name, stats: { points: p.stats.points, goalsFor: p.stats.goalsFor }})),
+            language
+        });
+        
+        console.log("Background news generation complete.");
+    } catch (e) {
+        console.error("Error during background news generation:", e);
+    }
+}
 
 // Admin Player Actions
 export async function addPlayer(player: Omit<Player, 'id'>): Promise<{ player: Player } | { error: string }> {
@@ -307,7 +364,7 @@ export async function addMatch(match: Match): Promise<{ match: Match } | { error
 
 export async function updateMatch(match: Match): Promise<{ match: Match } | { error: string }> {
     if (match.result) {
-        const scoreUpdateResult = await updateMatchScore({ matchId: match.id, newScore: match.result });
+        const scoreUpdateResult = await updateMatchScore({ matchId: match.id, newScore: match.result, language: 'en' }); // Defaulting to 'en' here
          if ('error' in scoreUpdateResult) {
             return { error: scoreUpdateResult.error };
         }

@@ -11,6 +11,7 @@ import { MatchVoting } from './match-voting'
 import { PreMatchAnalysis } from './pre-match-analysis'
 import { Button } from '../ui/button'
 import { Edit } from 'lucide-react'
+import Image from 'next/image'
 
 interface MatchListProps {
   matches: Match[]
@@ -73,13 +74,13 @@ export function MatchList({
 
 
   return (
-    <div className="space-y-4 p-4 md:p-6">
+    <div className="space-y-4 p-0">
         {matches.map((match) => {
           const player1 = getPlayerById(match.player1Id);
           const opponents = getOpponentPlayers(match);
 
           return (
-             <Card key={match.id} className="overflow-hidden">
+             <Card key={match.id} className="overflow-hidden glass">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">

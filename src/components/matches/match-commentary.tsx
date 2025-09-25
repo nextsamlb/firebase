@@ -6,6 +6,8 @@ import { generateMatchCommentary } from '@/app/actions'
 import { Skeleton } from '@/components/ui/skeleton'
 import { updateMatch, type Match, type Player } from '@/lib/data'
 import { AlertCircle, Sparkles } from 'lucide-react'
+import Image from 'next/image'
+import { useTranslation } from '@/context/language-provider'
 
 interface MatchCommentaryProps {
   match: Match
@@ -17,6 +19,7 @@ export function MatchCommentary({ match, player1, opponents }: MatchCommentaryPr
   const [commentary, setCommentary] = useState(match.postMatchCommentary || '')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const { language } = useTranslation();
 
   useEffect(() => {
     const fetchOrGenerateCommentary = async () => {
@@ -40,6 +43,7 @@ export function MatchCommentary({ match, player1, opponents }: MatchCommentaryPr
         player2Name: opponentNames,
         result: match.result!,
         stageName: match.stageName,
+        language
       })
 
       if ('error' in result) {
@@ -47,26 +51,29 @@ export function MatchCommentary({ match, player1, opponents }: MatchCommentaryPr
         setCommentary('Could not load commentary.')
       } else {
         setCommentary(result.commentary)
-        // Save the generated commentary to the database
         try {
           await updateMatch({ ...match, postMatchCommentary: result.commentary })
         } catch (dbError) {
           console.error("Failed to save commentary to DB", dbError)
-          // Don't show a user-facing error for this, just log it.
         }
       }
       setLoading(false)
     }
 
     fetchOrGenerateCommentary()
-  }, [match, player1, opponents])
+  }, [match, player1, opponents, language])
 
   if (!match.result) {
     return null
   }
 
   return (
-    <div className="pt-4">
+    <div className="pt-4 mt-4 border-t">
+       {match.matchImage && (
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-4 shadow-lg">
+                <Image src={match.matchImage} alt={`Highlight from match ${match.matchNum}`} layout="fill" objectFit="cover" />
+            </div>
+        )}
       <div className="flex items-start gap-3 text-sm">
         <Sparkles className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
         <div className="flex-grow">
