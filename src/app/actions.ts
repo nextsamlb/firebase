@@ -35,6 +35,10 @@ import {
     type BullyingReportInput,
 } from '@/ai/flows/generate-bullying-report';
 import {
+    generateMostImprovedReport as generateMostImprovedReportFlow,
+    type MostImprovedReportInput,
+} from '@/ai/flows/generate-most-improved-report';
+import {
     generateImage as generateImageFlow,
 } from '@/ai/flows/generate-image-flow';
 
@@ -403,4 +407,13 @@ export async function generateBullyingReport(input: BullyingReportInput): Promis
         return { error: 'Failed to generate bullying report.' };
     }
 }
-    
+
+export async function generateMostImprovedReport(input: MostImprovedReportInput): Promise<{ report: string } | { error: string }> {
+    try {
+        const result = await generateMostImprovedReportFlow(input);
+        return result;
+    } catch (error) {
+        console.error('Error in generateMostImprovedReport flow:', error);
+        return { error: 'Failed to generate most improved report.' };
+    }
+}
