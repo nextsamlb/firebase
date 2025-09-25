@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Calendar, ArrowUpDown } from "lucide-react"
+import { Calendar } from "lucide-react"
 import { getMatches, getPlayers, type Match, type Player } from "@/lib/data"
 import { Skeleton } from "@/components/ui/skeleton"
 import { MatchList } from "@/components/matches/match-list"

@@ -1,7 +1,8 @@
+
 'use server'
 
 import { RankingsTable } from '@/components/rankings/rankings-table'
-import { getPlayers } from '@/lib/data'
+import { getPlayers, type Player } from '@/lib/data'
 import {
   Card,
   CardContent,

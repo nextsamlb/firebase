@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from "react"
@@ -396,7 +394,7 @@ export default function SuperAdminPanel() {
         const recentMatches = matches.filter(m => m.result).slice(0, 5);
         const topPlayers = [...players].sort((a,b) => b.stats.points - a.stats.points).slice(0,3);
 
-        const result = await generateNewsTicker({ matches: recentMatches, players: topPlayers, language });
+        const result = await generateNewsTicker({ matches: recentMatches.map(m => ({ player1Id: m.player1Id, result: m.result })), players: topPlayers.map(p => ({ name: p.name, stats: { points: p.stats.points, goalsFor: p.stats.goalsFor }})), language });
         
         if ('error' in result) {
             toast({ variant: 'destructive', title: 'Error', description: result.error });

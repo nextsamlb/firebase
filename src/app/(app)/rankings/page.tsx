@@ -1,58 +1,47 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { FileText } from 'lucide-react';
 
-'use server'
-
-import { RankingsTable } from '@/components/rankings/rankings-table'
-import { getPlayers, type Player } from '@/lib/data'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { BarChart3 } from 'lucide-react';
-
-export default async function RankingsPage() {
-  const allUsers = await getPlayers();
-  const players = allUsers.filter(p => p.role === 'player');
-  
-  const sortedPlayers = [...players]
-    // All users with stats are considered players for rankings.
-    .sort((a, b) => {
-      if (b.stats.points !== a.stats.points) {
-        return b.stats.points - a.stats.points
-      }
-      if (b.stats.goalDifference !== a.stats.goalDifference) {
-        return b.stats.goalDifference - a.stats.goalDifference
-      }
-      if (b.stats.goalsFor !== a.stats.goalsFor) {
-        return b.stats.goalsFor - a.stats.goalsFor
-      }
-      return a.name.localeCompare(b.name)
-    })
-
+export default function RulesPage() {
   return (
     <div className="space-y-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold tracking-tight flex items-center justify-center gap-3">
-          <BarChart3 className="w-8 h-8 text-accent-gold" />
-          League Standings
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          Official player rankings based on points, goal difference, and goals scored.
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">League Rules</h1>
+        <p className="text-muted-foreground">
+          The official rules and regulations of the league.
         </p>
       </div>
-      <Card className="bg-bg-surface border-border-primary shadow-lg">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-accent-blue">Current Rankings</CardTitle>
-          <CardDescription className="text-text-secondary">
-            Click on a player row to view detailed statistics and recent performance.
+          <CardTitle className="flex items-center gap-2">
+            <FileText />
+            Rules
+          </CardTitle>
+          <CardDescription>
+            Fair play is essential. Please read and understand the rules.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <RankingsTable players={sortedPlayers} />
+        <CardContent className="prose prose-invert max-w-none">
+          <h2>1. General Conduct</h2>
+          <p>All players are expected to maintain a high standard of sportsmanship and fair play. Any form of cheating, glitch exploitation, or unsportsmanlike conduct will not be tolerated.</p>
+          
+          <h2>2. Match Rules</h2>
+          <ul>
+            <li>All matches are to be played on the specified platform and version of the game.</li>
+            <li>Players must report scores accurately and promptly after each match.</li>
+            <li>In case of a disconnection, the remaining time of the match should be played with the score at the time of disconnection.</li>
+          </ul>
+
+          <h2>3. Trading & Market</h2>
+          <ul>
+            <li>All player transfers must be done through the official market page.</li>
+            <li>Collusion or price-fixing in the market is strictly prohibited.</li>
+            <li>Trade offers must be reasonable and reflect fair market value.</li>
+          </ul>
+
+           <h2>4. Admin Discretion</h2>
+          <p>The league administrator has the final say in all disputes and may issue warnings, point deductions, or suspensions for rule violations.</p>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

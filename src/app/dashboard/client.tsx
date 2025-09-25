@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import type React from 'react'
@@ -142,9 +140,10 @@ export function DashboardClient({
         averageGoalsPerMatch: player.stats.played > 0 ? parseFloat((player.stats.goalsFor / player.stats.played).toFixed(1)) : 0,
         winPercentage: player.stats.played > 0 ? parseFloat(((player.stats.wins / player.stats.played) * 100).toFixed(1)) : 0,
         form: ["W", "L", "W", "D", "W"], // Mock recent form
+        language,
     }));
     setTeams(teamStats);
-  }, [players])
+  }, [players, language])
 
   const handleGenerateSummary = useCallback(async () => {
     setGeneratingSummary(true);
