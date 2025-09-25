@@ -1,3 +1,4 @@
+
 'use client'
 
 import type React from 'react'
@@ -174,23 +175,8 @@ export function DashboardClient({
 
   return (
     <>
-      {isAuthenticated && user && (
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 -mt-4 mb-8">
-            <Avatar className="w-16 h-16 border-4 border-primary">
-              <AvatarImage src={user.avatar || "/placeholder.svg"} alt={user.nickname} />
-              <AvatarFallback className="bg-primary text-primary-foreground text-xl font-bold">
-                {getInitials(user.name)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-white">{t('welcomeMessage')}, {user.nickname}!</h3>
-              <p className="text-white/70">{t('welcomeSubtitle')}</p>
-            </div>
-          </div>
-        )}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-8 space-y-8">
-            <PlayerFact players={players} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-8">
            {/* AI Activity Summary */}
           <Card className="glass border-primary/20">
             <CardHeader>
@@ -248,7 +234,7 @@ export function DashboardClient({
           </Card>
         </div>
 
-        <div className="lg:col-span-4 space-y-8">
+        <div className="lg:col-span-1 space-y-8">
            {/* Top Stories */}
           <Card className="glass border-primary/20">
             <CardHeader>
@@ -325,6 +311,7 @@ export function DashboardClient({
           </Card>
         </div>
       </div>
+       <PlayerFact players={players} />
     </>
   )
 }

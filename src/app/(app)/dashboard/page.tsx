@@ -1,3 +1,4 @@
+
 import type React from 'react'
 import {
   Trophy,
@@ -13,6 +14,41 @@ import { getTranslations } from '@/context/language-provider-server'
 import { DashboardClient } from './client'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { useAuth } from '@/hooks/use-auth'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: string) => string }) => {
+    if (!topPlayer) return null;
+
+    return (
+        <div className="relative text-center p-8 md:p-12 rounded-3xl overflow-hidden glass min-h-[300px] flex flex-col justify-center items-center">
+            <Image 
+                src="https://picsum.photos/seed/hero-bg/1200/400"
+                alt="Stadium lights"
+                layout="fill"
+                objectFit="cover"
+                className="absolute inset-0 -z-10 opacity-20"
+                data-ai-hint="stadium lights"
+            />
+            <div className="relative z-10">
+                <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary">
+                    <AvatarImage src={topPlayer.avatar} alt={topPlayer.name} />
+                    <AvatarFallback>{topPlayer.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <p className="text-lg font-semibold text-primary">{t('leagueLeader')}</p>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 font-accent">
+                    {topPlayer.name}
+                </h2>
+                <p className="text-xl text-muted-foreground">{topPlayer.stats.points} {t('points')} | {topPlayer.stats.wins} {t('wins')}</p>
+                 <Link href={`/profile/${topPlayer.id}`} passHref>
+                    <Button variant="outline" className="mt-6">View Profile</Button>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
 
 export default async function HomePage() {
   const { t, language } = await getTranslations()
@@ -40,17 +76,10 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="relative p-4 md:p-6 lg:p-8 space-y-8">
-       {/* Background */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10">
-        <Image src="https://picsum.photos/seed/lobby/1920/1080" alt="Stadium background" layout="fill" objectFit="cover" data-ai-hint="stadium lights" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/90 to-background" />
-      </div>
-
+    <div className="p-0 md:p-0 lg:p-0 space-y-8">
        {/* Welcome Section */}
-        <div className="text-center">
-          <div className="glass p-6 md:p-8 rounded-3xl max-w-4xl mx-auto border border-primary/20">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+        <div className="text-center mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
               <Image
                 src="https://i.ibb.co/vvw5tKym/Designer-30.jpg"
                 alt="PIFA"
@@ -60,13 +89,13 @@ export default async function HomePage() {
                 data-ai-hint="logo"
               />
               <div>
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-2 font-accent">PIFA League Lobby</h1>
+                <h1 className="text-3xl md:text-5xl font-bold text-white font-accent">PIFA League</h1>
                 <p className="text-lg md:text-xl text-primary">Your Gateway to Football Excellence</p>
               </div>
             </div>
-            {/* User-specific welcome is now in Client Component */}
-          </div>
         </div>
+        
+        <HeroSection topPlayer={topPlayer} t={t} />
 
       {/* Main Content Grid */}
       <DashboardClient
