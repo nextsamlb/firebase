@@ -3,8 +3,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { getPlayers, getMatches, type Player, type Match } from '@/lib/data'
-import { BarChart3, TrendingUp, Target, Trophy, Users, Calendar, Award, Zap, Shield } from "lucide-react"
+import { BarChart3, TrendingUp, Target, Trophy, Users, Calendar, Award, Zap, Shield, Sparkles } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { generateMostImprovedReport } from '@/ai/flows/generate-most-improved-report'
+import { marked } from 'marked'
 
 interface StatData {
   totalPlayers: number
@@ -15,7 +17,7 @@ interface StatData {
   bestDefense: { name: string; conceded: number; avatar: string; }
   mostWins: { name: string; wins: number; avatar: string; }
   fanFavorite: { name: string; votes: number; avatar: string; }
-  mostScrutinized: { name: string; votes: number; avatar: string; }
+  mostImprovedReport: string;
 }
 
 export default async function StatsCentralPage() {
@@ -24,7 +26,7 @@ export default async function StatsCentralPage() {
 
   const playedMatches = matches.filter(m => m.result);
 
-  const calculateStats = (): StatData => {
+  const calculateStats = async (): Promise<StatData> => {
     
     const totalGoals = playedMatches.reduce((acc, match) => {
         if (match.result) {
@@ -50,10 +52,24 @@ export default async function StatsCentralPage() {
     const fanFavorite = players.length > 0
       ? players.reduce((prev, current) => (prev.bestPlayerVotes > current.bestPlayerVotes) ? prev : current)
       : null;
-      
-    const mostScrutinized = players.length > 0
-      ? players.reduce((prev, current) => (prev.worstPlayerVotes > current.worstPlayerVotes) ? prev : current)
-      : null;
+    
+    // Generate Most Improved Player Report
+    let mostImprovedReport = "Could not generate report.";
+    if(players.length > 1) {
+        const playerStatsForReport = players.map(p => ({
+            id: p.id,
+            name: p.name,
+            previousWinRate: Math.random() * 0.5, // Mock previous data
+            currentWinRate: p.stats.played > 0 ? p.stats.wins / p.stats.played : 0,
+            previousGoals: Math.floor(Math.random() * p.stats.goalsFor),
+            currentGoals: p.stats.goalsFor,
+        }));
+        const reportResult = await generateMostImprovedReport({ players: playerStatsForReport });
+        if ('report' in reportResult) {
+            mostImprovedReport = reportResult.report;
+        }
+    }
+
 
     return {
         totalPlayers: players.length,
@@ -64,11 +80,11 @@ export default async function StatsCentralPage() {
         bestDefense: bestDefense ? { name: bestDefense.name, conceded: bestDefense.stats.goalsAgainst, avatar: bestDefense.avatar } : { name: 'N/A', conceded: 0, avatar: ''},
         mostWins: mostWins ? { name: mostWins.name, wins: mostWins.stats.wins, avatar: mostWins.avatar } : { name: 'N/A', wins: 0, avatar: ''},
         fanFavorite: fanFavorite ? { name: fanFavorite.name, votes: fanFavorite.bestPlayerVotes, avatar: fanFavorite.avatar } : { name: 'N/A', votes: 0, avatar: ''},
-        mostScrutinized: mostScrutinized ? { name: mostScrutinized.name, votes: mostScrutinized.worstPlayerVotes, avatar: mostScrutinized.avatar } : { name: 'N/A', votes: 0, avatar: ''},
+        mostImprovedReport,
     }
   }
 
-  const stats = calculateStats();
+  const stats = await calculateStats();
 
   const getInitials = (name: string) => {
     if (!name) return '?'
@@ -164,7 +180,19 @@ export default async function StatsCentralPage() {
         <StatLeaderCard icon={Shield} title="Best Defense" player={stats.bestDefense} value={stats.bestDefense.conceded} unit="Conceded" color="text-blue-400" />
         <StatLeaderCard icon={Zap} title="Most Wins" player={stats.mostWins} value={stats.mostWins.wins} unit="Wins" color="text-primary" />
         <StatLeaderCard icon={Award} title="Fan Favorite" player={stats.fanFavorite} value={stats.fanFavorite.votes} unit="Votes" color="text-teal-400" />
-        <StatLeaderCard icon={Users} title="Most Scrutinized" player={stats.mostScrutinized} value={stats.mostScrutinized.votes} unit="Votes" color="text-red-400" />
+        
+        <Card className="glass flex flex-col md:col-span-2 lg:col-span-1">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-purple-400">Most Improved Player</CardTitle>
+                <Sparkles className="h-5 w-5 text-purple-400" />
+            </CardHeader>
+            <CardContent className="flex flex-col items-center justify-center text-center flex-grow">
+                 <div
+                    className="prose prose-sm prose-invert max-w-none text-muted-foreground text-left"
+                    dangerouslySetInnerHTML={{ __html: marked(stats.mostImprovedReport) }}
+                />
+            </CardContent>
+        </Card>
       </div>
     </div>
   )
