@@ -34,52 +34,67 @@ export default function CompetitionStageClient({ competitionId }: { competitionI
             const competitionMatches = allMatches.filter(m => m.competitionId === competitionId);
             const playerList = allUsers.filter(p => p.role === 'player');
             
-            const teamStandings: Record<string, Standing> = {};
+            // Calculate standings based on matches in THIS competition
+            const competitionPlayerStats: Record<string, PlayerStats> = {};
 
-            competitionMatches.forEach(match => {
-                const player1 = playerList.find(p => p.id === match.player1Id);
-                if (!player1) return;
-
-                const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
-                const opponents = opponentIds.map(id => playerList.find(p => p.id === id)).filter(Boolean) as Player[];
-                if (opponents.length === 0) return;
-
-                const teamKey = [player1.id, ...opponents.map(o => o.id)].sort().join('-');
-                
-                if (!teamStandings[teamKey]) {
-                     teamStandings[teamKey] = {
-                        ...player1,
-                        id: teamKey,
-                        name: `${player1.name} & Team`,
-                        isTeam: true,
-                        teamPlayerIds: [player1.id, ...opponents.map(o => o.id)],
-                        stats: { played: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0, assists: 0 },
-                    };
-                }
-
-                if (match.result) {
-                    const [score1, score2] = match.result.split('-').map(Number);
-                    teamStandings[teamKey].stats.played += 1;
-                    teamStandings[teamKey].stats.goalsFor += score1;
-                    teamStandings[teamKey].stats.goalsAgainst += score2;
-                    teamStandings[teamKey].stats.goalDifference += (score1 - score2);
-
-                    if (score1 > score2) {
-                        teamStandings[teamKey].stats.wins += 1;
-                        teamStandings[teamKey].stats.points += 3;
-                    } else if (score1 < score2) {
-                        teamStandings[teamKey].stats.losses += 1;
-                    } else {
-                        teamStandings[teamKey].stats.draws += 1;
-                        teamStandings[teamKey].stats.points += 1;
-                    }
-                }
+            playerList.forEach(p => {
+              competitionPlayerStats[p.id] = { played: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0, assists: 0 };
             });
 
-            const regularStandings = playerList.map(p => ({ ...p, isTeam: false }));
-            const combinedStandings = [...regularStandings, ...Object.values(teamStandings)];
+            competitionMatches.forEach(match => {
+              if (!match.result) return;
+              const scores = match.result.split('-').map(Number);
+              const playerIds = [match.player1Id, ...(match.player2Ids || (match.player2Id ? [match.player2Id] : []))];
 
-            const sortedStandings = combinedStandings.sort((a, b) => {
+              playerIds.forEach(id => {
+                if (competitionPlayerStats[id]) {
+                  competitionPlayerStats[id].played += 1;
+                }
+              });
+
+              const player1Stats = competitionPlayerStats[match.player1Id];
+              const p1Score = scores[0];
+              const p2Score = scores[1];
+              
+              player1Stats.goalsFor += p1Score;
+              player1Stats.goalsAgainst += p2Score;
+              player1Stats.goalDifference += (p1Score - p2Score);
+
+              if (p1Score > p2Score) {
+                player1Stats.wins += 1;
+                player1Stats.points += 3;
+              } else if (p1Score < p2Score) {
+                player1Stats.losses += 1;
+              } else {
+                player1Stats.draws += 1;
+                player1Stats.points += 1;
+              }
+              
+              const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
+              opponentIds.forEach(oppId => {
+                  const opponentStats = competitionPlayerStats[oppId];
+                  if (opponentStats) {
+                      opponentStats.goalsFor += p2Score;
+                      opponentStats.goalsAgainst += p1Score;
+                      opponentStats.goalDifference += (p2Score - p1Score);
+
+                      if (p2Score > p1Score) {
+                          opponentStats.wins += 1;
+                          opponentStats.points += 3;
+                      } else if (p2Score < p1Score) {
+                          opponentStats.losses += 1;
+                      } else {
+                          opponentStats.draws += 1;
+                          opponentStats.points += 1;
+                      }
+                  }
+              });
+            });
+
+            const standingsData = playerList.map(p => ({
+              ...p,
+              stats: competitionPlayerStats[p.id] || p.stats,
+            })).sort((a, b) => {
                 if (b.stats.points !== a.stats.points) return b.stats.points - a.stats.points;
                 if (b.stats.goalDifference !== a.stats.goalDifference) return b.stats.goalDifference - a.stats.goalDifference;
                 return b.stats.goalsFor - a.stats.goalsFor;
@@ -87,7 +102,7 @@ export default function CompetitionStageClient({ competitionId }: { competitionI
             
             setPlayers(playerList);
             setCompetition(competitionData);
-            setStandings(sortedStandings);
+            setStandings(standingsData);
             setMatches(competitionMatches.sort((a,b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()));
         } catch (error) {
             console.error("Failed to fetch competition data", error);
@@ -273,7 +288,7 @@ export default function CompetitionStageClient({ competitionId }: { competitionI
                     <thead>
                       <tr className="border-b border-border/50">
                         <th className="text-left py-3 px-2 text-muted-foreground font-medium">Pos</th>
-                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Player / Team</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Player</th>
                         <th className="text-center py-3 px-2 text-muted-foreground font-medium">P</th>
                         <th className="text-center py-3 px-2 text-muted-foreground font-medium">W</th>
                         <th className="text-center py-3 px-2 text-muted-foreground font-medium">D</th>

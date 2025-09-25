@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog"
@@ -9,39 +9,43 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Plus, Trophy } from "lucide-react"
 import Link from "next/link"
-
-// Mock data, in a real app this would come from your database
-const initialCompetitions = [
-  {
-    id: 'comp1',
-    name: 'PIFA League Season 1',
-    status: 'active',
-    players: 5,
-    maxPlayers: 5,
-    entryFee: 0,
-    prizePool: 1000,
-  },
-  {
-    id: 'comp2',
-    name: 'Summer Knockout Cup',
-    status: 'registration',
-    players: 2,
-    maxPlayers: 8,
-    entryFee: 100,
-    prizePool: 800,
-  },
-];
-
+import { Competition, getCompetitions } from "@/lib/data"
 
 export function CompetitionsClient() {
-  const [competitions, setCompetitions] = useState(initialCompetitions)
+  const [competitions, setCompetitions] = useState<Competition[]>([])
   const [isCreateOpen, setIsCreateOpen] = useState(false)
+  const [loading, setLoading] = useState(true);
   
-  // In a real app, you would have a form state and handle submission
-  // For now, this is a placeholder for the UI
+  useEffect(() => {
+    async function loadCompetitions() {
+        setLoading(true);
+        const comps = await getCompetitions();
+        setCompetitions(comps);
+        setLoading(false);
+    }
+    loadCompetitions();
+  }, [])
+  
   const handleCreateCompetition = () => {
-    // Logic to create a new competition would go here
+    // In a real app, form state would be handled and this would call an API
     setIsCreateOpen(false)
+  }
+
+  if (loading) {
+    return (
+        <Card>
+            <CardHeader>
+                 <CardTitle>Competition Management</CardTitle>
+                 <CardDescription>Create and manage leagues and tournaments.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col items-center justify-center rounded-lg border border-dashed p-12 text-center h-full">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    <p className="mt-4 text-sm text-muted-foreground">Loading competitions...</p>
+                </div>
+            </CardContent>
+        </Card>
+    )
   }
 
   return (
@@ -128,7 +132,7 @@ export function CompetitionsClient() {
             <Trophy className="h-12 w-12 text-muted-foreground" />
             <h2 className="mt-4 text-xl font-semibold">No Competitions Created</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Get started by creating your first league or tournament.
+              An admin can create one from the admin panel.
             </p>
           </div>
         )}
