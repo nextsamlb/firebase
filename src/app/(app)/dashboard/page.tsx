@@ -28,13 +28,12 @@ const HeroSection = ({ topPlayer, t }: { topPlayer: Player | null, t: (key: stri
                 src="https://picsum.photos/seed/hero-bg/1200/400"
                 alt="Stadium lights"
                 fill
-                objectFit="cover"
-                className="absolute inset-0 -z-10 opacity-20"
+                className="object-cover -z-10 opacity-20"
                 data-ai-hint="stadium lights"
             />
             <div className="relative z-10">
                 <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary">
-                    <AvatarImage src={topPlayer.avatar} alt={topPlayer.name} />
+                    <AvatarImage src={topPlayer.avatar} alt={topPlayer.name} data-ai-hint="person face" />
                     <AvatarFallback>{topPlayer.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <p className="text-lg font-semibold text-primary">{t('leagueLeader')}</p>
@@ -128,5 +127,3 @@ export default async function HomePage() {
     </div>
   )
 }
-
-    

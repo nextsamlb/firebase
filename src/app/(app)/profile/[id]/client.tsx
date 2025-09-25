@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -165,7 +164,7 @@ export default function PlayerProfileClient({ playerId }: { playerId: string }) 
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="relative">
                   <Avatar className="w-32 h-32 border-4 border-primary">
-                    <AvatarImage src={player.avatar || "/placeholder.svg"} alt={player.nickname} />
+                    <AvatarImage src={player.avatar} alt={player.nickname} data-ai-hint="person face" />
                     <AvatarFallback className="bg-primary text-primary-foreground text-3xl font-bold">
                       {getInitials(player.name)}
                     </AvatarFallback>
@@ -558,5 +557,3 @@ export default function PlayerProfileClient({ playerId }: { playerId: string }) 
       </div>
   )
 }
-
-    

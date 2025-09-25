@@ -643,7 +643,7 @@ export default function SuperAdminPanel() {
                           <TableCell>
                             <div className="flex items-center gap-3">
                               <Avatar className="w-10 h-10">
-                                <AvatarImage src={player.avatar || "/placeholder.svg"} />
+                                <AvatarImage src={player.avatar} data-ai-hint="person face" />
                                 <AvatarFallback>
                                   {getInitials(player.name)}
                                 </AvatarFallback>
@@ -983,7 +983,7 @@ export default function SuperAdminPanel() {
                                 {mediaItems.map(item => (
                                     <TableRow key={item.id}>
                                         <TableCell>
-                                            <Image src={item.src} alt={item.title} width={100} height={75} className="rounded-md object-cover" />
+                                            <Image src={item.src} alt={item.title} width={100} height={75} className="rounded-md object-cover" data-ai-hint={item.hint}/>
                                         </TableCell>
                                         <TableCell className="font-medium">{item.title}</TableCell>
                                         <TableCell className="text-muted-foreground">{item.description}</TableCell>

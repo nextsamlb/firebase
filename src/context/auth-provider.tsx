@@ -1,9 +1,9 @@
-
 'use client'
 
 import { getPlayers, type Player } from '@/lib/data'
 import { useRouter } from 'next/navigation'
 import React, { createContext, useState, useEffect, useCallback } from 'react'
+import { PlaceHolderImages } from '@/lib/placeholder-images'
 
 interface AuthContextType {
   isAuthenticated: boolean
@@ -70,6 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (existingUser) {
       return false // User already exists
     }
+    
     // This is a mock implementation. In a real app, you'd save to Firestore.
     const newUser: Player = {
       id: String(players.length + 1),
@@ -78,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
       role: 'player',
-      avatar: `https://images.unsplash.com/photo-1517462964-21fdcec3f25b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwZmFjZXxlbnwwfHx8fDE3NTg1ODQ3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080`,
+      avatar: PlaceHolderImages[Math.floor(Math.random() * PlaceHolderImages.length)].imageUrl,
       balance: 50000000,
       stats: { played: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0, assists: 0 },
       bestPlayerVotes: 0,
@@ -129,5 +130,3 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   )
 }
-
-    
