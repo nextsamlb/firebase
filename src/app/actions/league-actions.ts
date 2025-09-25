@@ -1,7 +1,6 @@
-
 'use server';
 
-import { getPlayers, addMatch, type Player, type Match, getAppSettings, updateAppSettings, type NewsItem, getCompetition } from '@/lib/data';
+import { getPlayers, addMatch, type Player, type Match, getAppSettings, updateAppSettings, type NewsItem } from '@/lib/data';
 import { writeBatch, getFirestore } from 'firebase/firestore';
 import { app } from '@/lib/firebase';
 import { generateNewsTicker as generateNewsTickerFlow, type GenerateNewsTickerInput } from '@/ai/flows/generate-news-ticker-flow';
@@ -28,18 +27,10 @@ function getCombinations<T>(array: T[], size: number): T[][] {
 }
 
 export async function generateStageMatches(
-  { stageName, competitionId }: { stageName: string, competitionId: string }
+  { stageName }: { stageName: string }
 ): Promise<{ matchCount: number } | { error: string }> {
   try {
     const allUsers = await getPlayers();
-    const competition = await getCompetition(competitionId);
-
-    if (!competition) {
-      return { error: 'Competition not found.' };
-    }
-    
-    // For now, we assume all players are in the competition.
-    // A real implementation would filter players based on enrollment.
     const players = allUsers.filter(p => p.role === 'player');
 
     if (players.length < 4) {
@@ -67,7 +58,6 @@ export async function generateStageMatches(
             bestPlayerVoteId: null,
             worstPlayerVoteId: null,
             votes: {},
-            competitionId: competitionId,
           };
           addMatch(newMatch); // This should be batched
         });
@@ -90,7 +80,6 @@ export async function generateStageMatches(
                     bestPlayerVoteId: null,
                     worstPlayerVoteId: null,
                     votes: {},
-                    competitionId: competitionId,
                 };
                 addMatch(newMatch);
             });
@@ -110,7 +99,6 @@ export async function generateStageMatches(
                 bestPlayerVoteId: null,
                 worstPlayerVoteId: null,
                 votes: {},
-                competitionId: competitionId,
             };
             addMatch(newMatch);
         });

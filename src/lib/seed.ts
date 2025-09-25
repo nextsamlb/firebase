@@ -2,7 +2,7 @@
 
 import { collection, getDocs, writeBatch, getFirestore, doc } from 'firebase/firestore';
 import { app } from './firebase';
-import type { Player, Match, MediaItem, AppSettings, Competition } from './data';
+import type { Player, Match, MediaItem, AppSettings } from './data';
 import * as rawData from './raw-data.json';
 
 async function seedDatabase() {
@@ -12,8 +12,8 @@ async function seedDatabase() {
         console.log('Starting database seed...');
 
         // 1. Clear existing collections
-        console.log('Clearing existing players, matches, mediaHubItems, app_settings, and competitions...');
-        const collectionsToClear = ['players', 'matches', 'mediaHubItems', 'app_settings', 'competitions'];
+        console.log('Clearing existing players, matches, mediaHubItems, app_settings...');
+        const collectionsToClear = ['players', 'matches', 'mediaHubItems', 'app_settings'];
         for (const col of collectionsToClear) {
             const ref = collection(db, col);
             const snapshot = await getDocs(ref);
@@ -21,39 +21,10 @@ async function seedDatabase() {
         }
         console.log('Cleared existing data.');
 
-        // 2. Add Competitions & get first competition ID
-        console.log('Preparing competitions...');
-        const competitions: Omit<Competition, 'id'>[] = [
-            {
-                name: 'PIFA League Season 1',
-                status: 'active',
-                players: 5,
-                maxPlayers: 5,
-                entryFee: 0,
-                prizePool: 1000,
-            },
-            {
-                name: 'Summer Knockout Cup',
-                status: 'registration',
-                players: 2,
-                maxPlayers: 8,
-                entryFee: 100,
-                prizePool: 800,
-            },
-        ];
-        const competitionRefs = competitions.map(comp => {
-            const compDocRef = doc(collection(db, 'competitions'));
-            batch.set(compDocRef, {id: compDocRef.id, ...comp});
-            return compDocRef;
-        });
-        const competitionId = competitionRefs[0].id;
-        console.log(`Prepared ${competitions.length} competitions.`);
-        
-
-        // 3. Prepare new player data
+        // 2. Prepare new player data
         const data = rawData.currentLeagueData;
         
-        // 4. Transform and add players
+        // 3. Transform and add players
         console.log('Preparing new player data...');
         const playerNameToId: { [key: string]: string } = {};
         
@@ -133,7 +104,7 @@ async function seedDatabase() {
         console.log('Added admin user.');
 
 
-        // 5. Transform and add matches
+        // 4. Transform and add matches
         console.log('Preparing new match data...');
         const newMatches: Omit<Match, 'id'>[] = [];
         data.allMatches.forEach((m: any) => {
@@ -158,7 +129,6 @@ async function seedDatabase() {
                 worstPlayerVoteId: null,
                 votes: {},
                 timestamp: new Date(m.createdAt).toISOString(),
-                competitionId: competitionId, // Link match to the first competition
             };
 
             const opponentNames = m.player2.split(' + ').map((name: string) => name.trim());
@@ -178,7 +148,7 @@ async function seedDatabase() {
         });
         console.log(`Prepared ${newMatches.length} matches.`);
 
-        // 6. Add Media Hub Items
+        // 5. Add Media Hub Items
         console.log('Preparing Media Hub items...');
         const mediaItems: Omit<MediaItem, 'id'>[] = Array.from({ length: 12 }, (_, i) => ({
             src: `https://picsum.photos/seed/media${i+1}/800/600`,
@@ -194,7 +164,7 @@ async function seedDatabase() {
         
        
 
-        // 7. Add default App Settings
+        // 6. Add default App Settings
         console.log('Preparing default app settings...');
         const defaultSettings: AppSettings = {
             newsTicker: [
@@ -207,7 +177,7 @@ async function seedDatabase() {
         batch.set(settingsRef, defaultSettings);
         console.log('Prepared default app settings.');
 
-        // 8. Commit the batch
+        // 7. Commit the batch
         console.log('Committing batch to Firestore...');
         await batch.commit();
         
@@ -217,7 +187,6 @@ async function seedDatabase() {
         console.log(`   - Added 1 admin user.`);
         console.log(`   - Added ${newMatches.length} matches.`);
         console.log(`   - Added ${mediaItems.length} media items.`);
-        console.log(`   - Added ${competitions.length} competitions.`);
         console.log('   - Added default app settings.');
         console.log('-------------------------------------------');
 

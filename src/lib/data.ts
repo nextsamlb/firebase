@@ -73,18 +73,6 @@ export interface Message {
   read: boolean;
 }
 
-export interface Competition {
-  id: string;
-  name: string;
-  status: 'registration' | 'active' | 'completed';
-  players: number;
-  maxPlayers: number;
-  entryFee: number;
-  prizePool: number;
-  winnerId?: string | null;
-  runnerUpId?: string | null;
-}
-
 export interface LeagueSettings {
   pointsForWin: number;
   pointsForDraw: number;
@@ -265,42 +253,6 @@ export async function updateAppSettings(settings: Partial<AppSettings>): Promise
     const settingsRef = doc(db, 'app_settings', 'config');
     await setDoc(settingsRef, settings, { merge: true });
 }
-
-// Competition Functions
-export async function getCompetitions(): Promise<Competition[]> {
-  const competitionsCol = collection(db, 'competitions');
-  const competitionSnapshot = await getDocs(competitionsCol);
-  return competitionSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Competition));
-}
-
-export async function getCompetition(id: string): Promise<Competition | null> {
-    const competitionRef = doc(db, 'competitions', id);
-    const docSnap = await getDoc(competitionRef);
-    if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() } as Competition;
-    }
-    return null;
-}
-
-export async function addCompetition(competitionData: Omit<Competition, 'id'>): Promise<Competition> {
-    const competitionRef = doc(collection(db, 'competitions'));
-    const newCompetition = { id: competitionRef.id, ...competitionData };
-    await setDoc(competitionRef, newCompetition);
-    return newCompetition;
-}
-
-export async function updateCompetition(competitionData: Competition): Promise<Competition> {
-    const competitionRef = doc(db, 'competitions', competitionData.id);
-    const { id, ...dataToUpdate } = competitionData;
-    await updateDoc(competitionRef, dataToUpdate);
-    return competitionData;
-}
-
-export async function deleteCompetition(competitionId: string): Promise<void> {
-    const competitionRef = doc(db, 'competitions', competitionId);
-    await deleteDoc(competitionRef);
-}
-
 
 // Other Functions
 export async function submitVote(

@@ -1,4 +1,3 @@
-
 'use client'
 
 import type React from 'react'
@@ -78,7 +77,6 @@ interface DashboardClientProps {
     initialActivitySummary: string;
     topPlayer: Player | null;
     fanFavorite: Player | null;
-    competitionLink: string;
     media: MediaItem[];
     language: 'en' | 'ar';
 }
@@ -88,7 +86,6 @@ export function DashboardClient({
     initialActivitySummary,
     topPlayer,
     fanFavorite,
-    competitionLink,
     media: initialMedia,
     language
 }: DashboardClientProps) {
@@ -283,12 +280,6 @@ export function DashboardClient({
                   </div>
                 </div>
               )}
-               <Link href={competitionLink}>
-                <Button className="w-full bg-primary hover:bg-primary/90 justify-center mt-2">
-                  <Trophy className="w-4 h-4 mr-2" />
-                  {t('viewCompetition')}
-                </Button>
-              </Link>
             </CardContent>
           </Card>
           

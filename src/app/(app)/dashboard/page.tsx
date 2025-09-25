@@ -1,4 +1,3 @@
-
 import type React from 'react'
 import {
   Trophy,
@@ -8,7 +7,7 @@ import {
   ImageIcon,
   Flame,
 } from 'lucide-react'
-import { getPlayers, getMatches, type Player, type Match, NewsItem, Competition, getCompetitions, MediaItem, getMediaItems } from '@/lib/data'
+import { getPlayers, getMatches, type Player, type Match, NewsItem, MediaItem, getMediaItems } from '@/lib/data'
 import Image from 'next/image'
 import { getTranslations } from '@/context/language-provider-server'
 import { DashboardClient } from './client'
@@ -18,9 +17,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 export default async function HomePage() {
   const { t, language } = await getTranslations()
 
-  const [allPlayers, allCompetitions, allMedia] = await Promise.all([
-      getPlayers(), 
-      getCompetitions(), 
+  const [allPlayers, allMedia] = await Promise.all([
+      getPlayers(),
       getMediaItems()
   ]);
 
@@ -31,7 +29,6 @@ export default async function HomePage() {
   // The client will be responsible for fetching it on demand.
   const initialActivitySummary = '';
 
-  const competitionLink = allCompetitions.length > 0 ? `/competitions/${allCompetitions[0].id}` : '/competitions';
   const topPlayer = players.length > 0 ? [...players].sort((a,b) => b.stats.points - a.stats.points)[0] : null;
   const fanFavorite = players.length > 0 ? [...players].sort((a,b) => b.bestPlayerVotes - a.bestPlayerVotes)[0] : null;
 
@@ -77,7 +74,6 @@ export default async function HomePage() {
         initialActivitySummary={initialActivitySummary}
         topPlayer={topPlayer}
         fanFavorite={fanFavorite}
-        competitionLink={competitionLink}
         media={media}
         language={language}
       />
