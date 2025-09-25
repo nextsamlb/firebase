@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -47,7 +47,9 @@ import {
   Zap,
   Loader2,
   Plus,
-  Megaphone
+  Megaphone,
+  ArrowUpDown,
+  Pencil
 } from "lucide-react"
 import { useAuth } from '@/hooks/use-auth'
 import { 
@@ -69,6 +71,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import Image from "next/image"
 import { useTranslation } from "@/context/language-provider"
+import { format } from "date-fns"
 
 const auditLogs = [
   {
@@ -99,6 +102,10 @@ const auditLogs = [
     details: "Suspended user johnny for policy violation",
   },
 ]
+
+type SortKey = 'matchNum' | 'timestamp';
+
+const STAGES = ["Stage 1 (1v3)", "Stage 2 (1v2)", "Stage 3 (1v1)"]
 
 export default function SuperAdminPanel() {
   const { user } = useAuth()
@@ -151,12 +158,15 @@ export default function SuperAdminPanel() {
     dbStatus: "healthy",
   })
   
+  const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: 'ascending' | 'descending' } | null>({ key: 'matchNum', direction: 'ascending' });
+
+  
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
         const [allPlayers, allMatches, allMediaItems, allCompetitions] = await Promise.all([getPlayers(), getMatches(), getMediaItems(), getCompetitions()])
         setPlayers(allPlayers)
-        setMatches(allMatches.sort((a,b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()))
+        setMatches(allMatches)
         setMediaItems(allMediaItems);
         setLeagues(allCompetitions);
         if (allCompetitions.length > 0 && !selectedCompetitionForMatchGen) {
@@ -392,7 +402,7 @@ export default function SuperAdminPanel() {
            toast({ title: 'Match Created', description: `Match has been created.` })
         } else {
            const result = await updateMatch(updatedMatch);
-            setMatches(matches.map((m) => (m.id === result.id ? result : m)).sort((a,b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()));
+            setMatches(matches.map((m) => (m.id === result.id ? result : m)));
             toast({ title: 'Match Updated', description: `Match has been updated.` })
         }
     } catch (error) {
@@ -544,10 +554,35 @@ export default function SuperAdminPanel() {
       player.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (player.nickname && player.nickname.toLowerCase().includes(searchTerm.toLowerCase())),
   )
+  
+  const sortedMatches = useMemo(() => {
+    let matchesToFilter = selectedLeagueFilter === 'all'
+      ? matches
+      : matches.filter(m => m.competitionId === selectedLeagueFilter);
 
-  const filteredMatches = selectedLeagueFilter === 'all'
-    ? matches
-    : matches.filter(m => m.competitionId === selectedLeagueFilter);
+    let sortableMatches = [...matchesToFilter];
+    if (sortConfig !== null) {
+      sortableMatches.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableMatches;
+  }, [matches, sortConfig, selectedLeagueFilter]);
+  
+  const requestSort = (key: SortKey) => {
+    let direction: 'ascending' | 'descending' = 'ascending';
+    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
 
   const getOpponentDisplay = (match: Match) => {
     const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
@@ -557,19 +592,23 @@ export default function SuperAdminPanel() {
       return <span className="text-muted-foreground">N/A</span>;
     }
     return (
-      <div className="flex items-center gap-3 flex-1 justify-end text-right">
-        <div>
-          <p className="font-semibold truncate">{opponentPlayers.map(p => p?.name).join(' & ')}</p>
-          <p className="text-sm text-muted-foreground">Away</p>
-        </div>
-        <div className="flex -space-x-4 rtl:space-x-reverse">
-          {opponentPlayers.map(p => (
-            <Avatar key={p?.id} className="w-12 h-12 border-2 border-primary">
-              <AvatarImage src={p?.avatar || "/placeholder.svg"} alt={p?.name} />
-              <AvatarFallback>{p?.name.charAt(0)}</AvatarFallback>
-            </Avatar>
-          ))}
-        </div>
+      <div className="flex items-center gap-2">
+        {opponentPlayers.length > 1 ? (
+          <div className="flex -space-x-2 rtl:space-x-reverse">
+            {opponentPlayers.map(p => (
+              <Avatar key={p.id} className="h-8 w-8 border-2 border-background">
+                <AvatarImage src={p.avatar} data-ai-hint="person face" />
+                <AvatarFallback>{getInitials(p.name)}</AvatarFallback>
+              </Avatar>
+            ))}
+          </div>
+        ) : (
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={opponentPlayers[0].avatar} data-ai-hint="person face" />
+            <AvatarFallback>{getInitials(opponentPlayers[0].name)}</AvatarFallback>
+          </Avatar>
+        )}
+        <span className="truncate">{opponentPlayers.map(p => p.name).join(', ')}</span>
       </div>
     )
   };
@@ -877,7 +916,7 @@ export default function SuperAdminPanel() {
 
           {/* Matches Tab */}
           <TabsContent value="matches" className="space-y-4">
-            <Card className="glass">
+             <Card className="glass">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="flex items-center gap-2">
@@ -901,61 +940,77 @@ export default function SuperAdminPanel() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {filteredMatches.map((match) => (
-                    <div key={match.id} className="p-6 rounded-lg border glass">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <Badge className={match.result ? "bg-green-500" : "bg-blue-500"}>
-                           {match.result ? 'COMPLETED' : 'UPCOMING'}
-                          </Badge>
-                          <span className="text-muted-foreground text-sm">{match.stageName} - Match #{match.matchNum}</span>
-                          <Badge variant="outline">{match.matchType}</Badge>
-                        </div>
-                        <span className="text-muted-foreground text-sm">{new Date(match.timestamp).toLocaleDateString()}</span>
-                      </div>
+              <CardContent className="p-0">
+                 <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[80px]">
+                               <Button variant="ghost" onClick={() => requestSort('matchNum')}>
+                                 # <ArrowUpDown className="ml-2 h-4 w-4" />
+                               </Button>
+                            </TableHead>
+                            <TableHead>
+                               <Button variant="ghost" onClick={() => requestSort('timestamp')}>
+                                 Date <ArrowUpDown className="ml-2 h-4 w-4" />
+                               </Button>
+                            </TableHead>
+                            <TableHead>Home</TableHead>
+                            <TableHead>Away</TableHead>
+                            <TableHead className="text-center">Result</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                    </TableHeader>
 
-                      <div className="flex items-center justify-between mt-4">
-                        {/* Home Team */}
-                        <div className="flex items-center gap-3 flex-1">
-                          <Avatar className="w-12 h-12 border-2 border-primary">
-                            <AvatarImage src={players.find(p=>p.id === match.player1Id)?.avatar || "/placeholder.svg"} alt={players.find(p=>p.id === match.player1Id)?.name} />
-                            <AvatarFallback>{getInitials(players.find(p=>p.id === match.player1Id)?.name)}</AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-semibold">{players.find(p=>p.id === match.player1Id)?.name}</p>
-                            <p className="text-sm text-muted-foreground">Home</p>
-                          </div>
-                        </div>
-
-                         <div className="flex items-center gap-4 px-6">
-                            {match.result ? (
-                              <div className="text-center">
-                                <div className="text-3xl font-bold">
-                                  {match.result}
-                                </div>
-                                 <Button size="sm" variant="outline" onClick={() => handleEditMatch(match)} className="mt-2">
-                                  <Edit className="w-4 h-4 mr-1" />
-                                  Edit
-                                </Button>
-                              </div>
-                            ) : (
-                              <div className="text-center">
-                                <div className="text-2xl font-bold text-muted-foreground">VS</div>
-                                <Button size="sm" variant="outline" onClick={() => handleEditMatch(match)} className="mt-2">
-                                  <Edit className="w-4 h-4 mr-1" />
-                                  Set Score
-                                </Button>
-                              </div>
-                            )}
-                          </div>
-                        
-                        {getOpponentDisplay(match)}
-                      </div>
+                    {STAGES.map(stage => {
+                        const stageMatches = sortedMatches.filter(m => m.stageName === stage);
+                        if (stageMatches.length === 0) return null;
+                        return (
+                            <TableBody key={stage}>
+                                <TableRow>
+                                    <TableCell colSpan={6} className="font-bold text-lg bg-muted/50 text-primary">
+                                        {stage}
+                                    </TableCell>
+                                </TableRow>
+                                {stageMatches.map(match => {
+                                     const player1 = players.find(p => p.id === match.player1Id);
+                                     return (
+                                        <TableRow key={match.id}>
+                                            <TableCell className="font-medium">{match.matchNum}</TableCell>
+                                            <TableCell>{format(new Date(match.timestamp), 'MMM d, yyyy')}</TableCell>
+                                            <TableCell>
+                                                <div className="flex items-center gap-2">
+                                                    <Avatar className="h-8 w-8">
+                                                        <AvatarImage src={player1?.avatar} data-ai-hint="person face" />
+                                                        <AvatarFallback>{getInitials(player1?.name)}</AvatarFallback>
+                                                    </Avatar>
+                                                    <span className="font-medium">{player1?.name || 'N/A'}</span>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>{getOpponentDisplay(match)}</TableCell>
+                                            <TableCell className="text-center font-bold text-lg">
+                                                {match.result ? 
+                                                    <Badge>{match.result}</Badge> 
+                                                    : <Badge variant="outline">TBD</Badge>
+                                                }
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <Button variant="ghost" size="sm" onClick={() => handleEditMatch(match)}>
+                                                    <Pencil className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                     )
+                                })}
+                            </TableBody>
+                        )
+                    })}
+                 </Table>
+                 {sortedMatches.length === 0 && (
+                    <div className="text-center py-20 text-muted-foreground">
+                        <Calendar className="w-12 h-12 mx-auto mb-4" />
+                        <p>No matches found for this filter.</p>
                     </div>
-                  ))}
-                </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -1392,3 +1447,5 @@ function LeagueForm({ league, onSave, onCancel }: { league: Competition | null, 
         </form>
     );
 }
+
+    
