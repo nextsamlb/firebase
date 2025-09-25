@@ -1,3 +1,5 @@
+
+
 'use server'
 
 import { RankingsTable } from '@/components/rankings/rankings-table'
