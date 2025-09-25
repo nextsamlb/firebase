@@ -160,7 +160,33 @@ export default function SuperAdminPanel() {
   
   const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: 'ascending' | 'descending' } | null>({ key: 'matchNum', direction: 'ascending' });
 
-  
+  const sortedMatches = useMemo(() => {
+    let matchesToFilter = selectedLeagueFilter === 'all'
+      ? matches
+      : matches.filter(m => m.competitionId === selectedLeagueFilter);
+
+    let sortableMatches = [...matchesToFilter];
+    if (sortConfig !== null) {
+      sortableMatches.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableMatches;
+  }, [matches, sortConfig, selectedLeagueFilter]);
+
+  const filteredPlayers = useMemo(() => players.filter(p => p.role === 'player').filter(
+    (player) =>
+      player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      player.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (player.nickname && player.nickname.toLowerCase().includes(searchTerm.toLowerCase())),
+  ), [players, searchTerm]);
+
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
@@ -521,60 +547,6 @@ export default function SuperAdminPanel() {
     }
   }
 
-  if (user?.role !== 'admin') {
-    return (
-      <div className="flex items-center justify-center p-4">
-        <Card className="max-w-md">
-          <CardContent className="p-8 text-center">
-            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Access Denied</h2>
-            <p className="text-muted-foreground">Administrator privileges required</p>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
-    if (loading) {
-    return (
-      <div className="flex items-center justify-center">
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="text-center glass p-8 rounded-2xl">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
-            <p className="text-white text-xl font-semibold">Loading Admin Panel...</p>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const filteredPlayers = players.filter(p => p.role === 'player').filter(
-    (player) =>
-      player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      player.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (player.nickname && player.nickname.toLowerCase().includes(searchTerm.toLowerCase())),
-  )
-  
-  const sortedMatches = useMemo(() => {
-    let matchesToFilter = selectedLeagueFilter === 'all'
-      ? matches
-      : matches.filter(m => m.competitionId === selectedLeagueFilter);
-
-    let sortableMatches = [...matchesToFilter];
-    if (sortConfig !== null) {
-      sortableMatches.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortableMatches;
-  }, [matches, sortConfig, selectedLeagueFilter]);
-  
   const requestSort = (key: SortKey) => {
     let direction: 'ascending' | 'descending' = 'ascending';
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -582,7 +554,6 @@ export default function SuperAdminPanel() {
     }
     setSortConfig({ key, direction });
   };
-
 
   const getOpponentDisplay = (match: Match) => {
     const opponentIds = match.player2Ids || (match.player2Id ? [match.player2Id] : []);
@@ -634,6 +605,32 @@ export default function SuperAdminPanel() {
       matches: { label: "Matches", color: "hsl(var(--chart-2))" },
   }
 
+  if (user?.role !== 'admin') {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <Card className="max-w-md">
+          <CardContent className="p-8 text-center">
+            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2">Access Denied</h2>
+            <p className="text-muted-foreground">Administrator privileges required</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="text-center glass p-8 rounded-2xl">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
+            <p className="text-white text-xl font-semibold">Loading Admin Panel...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative overflow-y-auto">
