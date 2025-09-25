@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { MainSidebar } from '@/components/main-sidebar';
@@ -31,7 +32,7 @@ function RootLayoutContent({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      const publicPaths = ['/rankings', '/matches', '/hall-of-fame', '/rules', '/media-hub', '/stats-central', '/team-analysis'];
+      const publicPaths = ['/rankings', '/matches', '/hall-of-fame', '/rules', '/media-hub'];
       const isPublic = publicPaths.some(path => pathname.startsWith(path));
       
       if (!isPublic && pathname !== '/login' && pathname !== '/signup') {
