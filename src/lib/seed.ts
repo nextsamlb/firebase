@@ -190,5 +190,3 @@ seedDatabase().then(() => {
     console.log('Script finished.');
     process.exit(0);
 });
-
-    

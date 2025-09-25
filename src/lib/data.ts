@@ -378,5 +378,3 @@ export async function updateMatchScore(matchId: string, newScore: string | null)
     const updatedDoc = await getDoc(matchRef);
     return { id: updatedDoc.id, ...updatedDoc.data() } as Match;
 }
-
-    
