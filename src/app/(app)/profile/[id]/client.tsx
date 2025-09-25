@@ -501,6 +501,46 @@ export default function PlayerProfileClient({ playerId }: { playerId: string }) 
                   />
                 </div>
               </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+                 <div>
+                  <Label htmlFor="height">{t('height')} (cm)</Label>
+                  <Input
+                    id="height"
+                    type="number"
+                    value={editForm.height || ""}
+                    onChange={(e) => setEditForm({ ...editForm, height: parseInt(e.target.value) || undefined })}
+                  />
+                </div>
+                 <div>
+                  <Label htmlFor="weight">{t('weight')} (kg)</Label>
+                  <Input
+                    id="weight"
+                    type="number"
+                    value={editForm.weight || ""}
+                    onChange={(e) => setEditForm({ ...editForm, weight: parseInt(e.target.value) || undefined })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="preferredFoot">{t('preferredFoot')}</Label>
+                  <Input
+                    id="preferredFoot"
+                    value={editForm.preferredFoot || ""}
+                    onChange={(e) => setEditForm({ ...editForm, preferredFoot: e.target.value as Player['preferredFoot'] })}
+                  />
+                </div>
+              </div>
+              
+               <div>
+                  <Label htmlFor="dateOfBirth">{t('born')}</Label>
+                  <Input
+                    id="dateOfBirth"
+                    type="date"
+                    value={editForm.dateOfBirth ? editForm.dateOfBirth.split('T')[0] : ""}
+                    onChange={(e) => setEditForm({ ...editForm, dateOfBirth: new Date(e.target.value).toISOString() })}
+                  />
+                </div>
+
 
               <div className="flex gap-4 pt-4">
                 <Button onClick={handleSave} className="flex-1">
