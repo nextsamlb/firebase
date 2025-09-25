@@ -1,0 +1,5127 @@
+
+{
+  "currentLeagueData": {
+    "players": [
+      {
+        "name": "Sameh",
+        "nickname": "",
+        "reelUrl": "",
+        "image": "https://i.ibb.co/Ndn529dw/image-7.jpg",
+        "marketValue": 48113,
+        "balance": 49189,
+        "transferHistory": [],
+        "transferOffers": [],
+        "accountHistory": [],
+        "played": 5,
+        "wins": 2,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 17,
+        "goalsAgainst": 13,
+        "goalDifference": 4,
+        "points": 7,
+        "matches": [],
+        "bestPlayerVotes": 0,
+        "worstPlayerVotes": 0,
+        "form": [
+          "L",
+          "W",
+          "W",
+          "L",
+          "D"
+        ],
+        "marketHistory": [
+          {
+            "value": 48500,
+            "date": 1758662739259
+          },
+          {
+            "value": 49955,
+            "date": 1758662739259
+          },
+          {
+            "value": 51454,
+            "date": 1758662739259
+          },
+          {
+            "value": 49910,
+            "date": 1758662739259
+          },
+          {
+            "value": 49411,
+            "date": 1758662739259
+          },
+          {
+            "value": 48917,
+            "date": 1758662739259
+          },
+          {
+            "value": 48428,
+            "date": 1758662739260
+          },
+          {
+            "value": 47944,
+            "date": 1758662739260
+          },
+          {
+            "value": 48423,
+            "date": 1758662739260
+          },
+          {
+            "value": 47939,
+            "date": 1758662739260
+          },
+          {
+            "value": 47460,
+            "date": 1758662739260
+          },
+          {
+            "value": 47935,
+            "date": 1758662739260
+          },
+          {
+            "value": 48031,
+            "date": 1758662739260
+          },
+          {
+            "value": 47551,
+            "date": 1758662739260
+          },
+          {
+            "value": 48027,
+            "date": 1758662739260
+          },
+          {
+            "value": 48507,
+            "date": 1758662739260
+          },
+          {
+            "value": 48604,
+            "date": 1758662739260
+          },
+          {
+            "value": 48118,
+            "date": 1758662739260
+          },
+          {
+            "value": 47637,
+            "date": 1758662739260
+          },
+          {
+            "value": 48113,
+            "date": 1758662739260
+          }
+        ]
+      },
+      {
+        "name": "Houssam",
+        "nickname": "",
+        "reelUrl": "",
+        "image": "https://i.ibb.co/GQh3vzRX/image-6.jpg",
+        "marketValue": 58161,
+        "balance": 52753,
+        "transferHistory": [],
+        "transferOffers": [],
+        "accountHistory": [],
+        "played": 5,
+        "wins": 5,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 27,
+        "goalsAgainst": 15,
+        "goalDifference": 12,
+        "points": 15,
+        "matches": [],
+        "bestPlayerVotes": 0,
+        "worstPlayerVotes": 0,
+        "form": [
+          "W",
+          "W",
+          "W",
+          "W",
+          "W"
+        ],
+        "marketHistory": [
+          {
+            "value": 50500,
+            "date": 1758662739259
+          },
+          {
+            "value": 49995,
+            "date": 1758662739259
+          },
+          {
+            "value": 49495,
+            "date": 1758662739259
+          },
+          {
+            "value": 50980,
+            "date": 1758662739259
+          },
+          {
+            "value": 52509,
+            "date": 1758662739259
+          },
+          {
+            "value": 54084,
+            "date": 1758662739260
+          },
+          {
+            "value": 55707,
+            "date": 1758662739260
+          },
+          {
+            "value": 55150,
+            "date": 1758662739260
+          },
+          {
+            "value": 55702,
+            "date": 1758662739260
+          },
+          {
+            "value": 55145,
+            "date": 1758662739260
+          },
+          {
+            "value": 54594,
+            "date": 1758662739260
+          },
+          {
+            "value": 55140,
+            "date": 1758662739260
+          },
+          {
+            "value": 55691,
+            "date": 1758662739260
+          },
+          {
+            "value": 55134,
+            "date": 1758662739260
+          },
+          {
+            "value": 55685,
+            "date": 1758662739260
+          },
+          {
+            "value": 55796,
+            "date": 1758662739260
+          },
+          {
+            "value": 55908,
+            "date": 1758662739260
+          },
+          {
+            "value": 57585,
+            "date": 1758662739260
+          },
+          {
+            "value": 58161,
+            "date": 1758662739260
+          }
+        ]
+      },
+      {
+        "name": "Bahaa",
+        "nickname": "",
+        "reelUrl": "",
+        "image": "https://i.ibb.co/9mDRK0MF/bahaa.gif",
+        "marketValue": 53371,
+        "balance": 51143,
+        "transferHistory": [],
+        "transferOffers": [],
+        "accountHistory": [],
+        "played": 6,
+        "wins": 4,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 24,
+        "goalsAgainst": 15,
+        "goalDifference": 9,
+        "points": 13,
+        "matches": [],
+        "bestPlayerVotes": 0,
+        "worstPlayerVotes": 0,
+        "form": [
+          "L",
+          "W",
+          "W",
+          "W",
+          "D"
+        ],
+        "marketHistory": [
+          {
+            "value": 50500,
+            "date": 1758662739259
+          },
+          {
+            "value": 49995,
+            "date": 1758662739259
+          },
+          {
+            "value": 50495,
+            "date": 1758662739259
+          },
+          {
+            "value": 49990,
+            "date": 1758662739259
+          },
+          {
+            "value": 49490,
+            "date": 1758662739259
+          },
+          {
+            "value": 48995,
+            "date": 1758662739260
+          },
+          {
+            "value": 50465,
+            "date": 1758662739260
+          },
+          {
+            "value": 48951,
+            "date": 1758662739260
+          },
+          {
+            "value": 50420,
+            "date": 1758662739260
+          },
+          {
+            "value": 51933,
+            "date": 1758662739260
+          },
+          {
+            "value": 51414,
+            "date": 1758662739260
+          },
+          {
+            "value": 51517,
+            "date": 1758662739260
+          },
+          {
+            "value": 52032,
+            "date": 1758662739260
+          },
+          {
+            "value": 51512,
+            "date": 1758662739260
+          },
+          {
+            "value": 52027,
+            "date": 1758662739260
+          },
+          {
+            "value": 52131,
+            "date": 1758662739260
+          },
+          {
+            "value": 52235,
+            "date": 1758662739260
+          },
+          {
+            "value": 51713,
+            "date": 1758662739260
+          },
+          {
+            "value": 53264,
+            "date": 1758662739260
+          },
+          {
+            "value": 53371,
+            "date": 1758662739260
+          }
+        ]
+      },
+      {
+        "name": "Tarek",
+        "nickname": "",
+        "reelUrl": "",
+        "image": "https://i.ibb.co/vvw5tKym/Designer-30.jpg",
+        "marketValue": 48211,
+        "balance": 49289,
+        "transferHistory": [],
+        "transferOffers": [],
+        "accountHistory": [],
+        "played": 5,
+        "wins": 2,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 21,
+        "goalsAgainst": 20,
+        "goalDifference": 1,
+        "points": 7,
+        "matches": [],
+        "bestPlayerVotes": 0,
+        "worstPlayerVotes": 0,
+        "form": [
+          "W",
+          "L",
+          "D",
+          "L",
+          "W"
+        ],
+        "marketHistory": [
+          {
+            "value": 50500,
+            "date": 1758662739259
+          },
+          {
+            "value": 49995,
+            "date": 1758662739259
+          },
+          {
+            "value": 50495,
+            "date": 1758662739259
+          },
+          {
+            "value": 49990,
+            "date": 1758662739259
+          },
+          {
+            "value": 49490,
+            "date": 1758662739260
+          },
+          {
+            "value": 48995,
+            "date": 1758662739260
+          },
+          {
+            "value": 48505,
+            "date": 1758662739260
+          },
+          {
+            "value": 48020,
+            "date": 1758662739260
+          },
+          {
+            "value": 47540,
+            "date": 1758662739260
+          },
+          {
+            "value": 48966,
+            "date": 1758662739260
+          },
+          {
+            "value": 47497,
+            "date": 1758662739260
+          },
+          {
+            "value": 47592,
+            "date": 1758662739260
+          },
+          {
+            "value": 46164,
+            "date": 1758662739260
+          },
+          {
+            "value": 46626,
+            "date": 1758662739260
+          },
+          {
+            "value": 47092,
+            "date": 1758662739260
+          },
+          {
+            "value": 47186,
+            "date": 1758662739260
+          },
+          {
+            "value": 46714,
+            "date": 1758662739260
+          },
+          {
+            "value": 46807,
+            "date": 1758662739260
+          },
+          {
+            "value": 48211,
+            "date": 1758662739260
+          }
+        ]
+      },
+      {
+        "name": "Ezz",
+        "nickname": "",
+        "reelUrl": "",
+        "image": "https://i.ibb.co/LzqxTBH7/EZZ-White-hair-grey-beard-caricature-always-promises-to-win-in-fifa-and-he-loses-print-the-the-k.jpg",
+        "marketValue": 44950,
+        "balance": 48071,
+        "transferHistory": [],
+        "transferOffers": [],
+        "accountHistory": [],
+        "played": 5,
+        "wins": 1,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 18,
+        "goalsAgainst": 27,
+        "goalDifference": -9,
+        "points": 4,
+        "matches": [],
+        "bestPlayerVotes": 0,
+        "worstPlayerVotes": 0,
+        "form": [
+          "W",
+          "L",
+          "L",
+          "D",
+          "L"
+        ],
+        "marketHistory": [
+          {
+            "value": 49500,
+            "date": 1758662739259
+          },
+          {
+            "value": 49005,
+            "date": 1758662739259
+          },
+          {
+            "value": 49495,
+            "date": 1758662739259
+          },
+          {
+            "value": 49000,
+            "date": 1758662739260
+          },
+          {
+            "value": 48510,
+            "date": 1758662739260
+          },
+          {
+            "value": 48025,
+            "date": 1758662739260
+          },
+          {
+            "value": 48505,
+            "date": 1758662739260
+          },
+          {
+            "value": 48020,
+            "date": 1758662739260
+          },
+          {
+            "value": 47540,
+            "date": 1758662739260
+          },
+          {
+            "value": 48015,
+            "date": 1758662739260
+          },
+          {
+            "value": 48111,
+            "date": 1758662739260
+          },
+          {
+            "value": 48592,
+            "date": 1758662739260
+          },
+          {
+            "value": 50050,
+            "date": 1758662739260
+          },
+          {
+            "value": 48549,
+            "date": 1758662739260
+          },
+          {
+            "value": 47093,
+            "date": 1758662739260
+          },
+          {
+            "value": 47187,
+            "date": 1758662739260
+          },
+          {
+            "value": 46715,
+            "date": 1758662739260
+          },
+          {
+            "value": 46808,
+            "date": 1758662739260
+          },
+          {
+            "value": 46340,
+            "date": 1758662739260
+          },
+          {
+            "value": 44950,
+            "date": 1758662739260
+          }
+        ]
+      }
+    ],
+    "allMatches": [
+      {
+        "matchNum": 1,
+        "player1": "Sameh",
+        "player2": "Bahaa + Houssam + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "2-4",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 2,
+        "player1": "Sameh",
+        "player2": "Bahaa + Ezz + Houssam",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "8-0",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 3,
+        "player1": "Sameh",
+        "player2": "Ezz + Houssam + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "2-1",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 4,
+        "player1": "Sameh",
+        "player2": "Bahaa + Ezz + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "2-5",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 5,
+        "player1": "Houssam",
+        "player2": "Bahaa + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "5-2",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 6,
+        "player1": "Houssam",
+        "player2": "Bahaa + Ezz + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-3",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 7,
+        "player1": "Houssam",
+        "player2": "Ezz + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "9-6",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 8,
+        "player1": "Houssam",
+        "player2": "Bahaa + Ezz + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-3",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 9,
+        "player1": "Bahaa",
+        "player2": "Houssam + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "6-2",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 10,
+        "player1": "Bahaa",
+        "player2": "Ezz + Houssam + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-7",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 11,
+        "player1": "Bahaa",
+        "player2": "Ezz + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "3-2",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 12,
+        "player1": "Bahaa",
+        "player2": "Ezz + Houssam + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "3-1",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 13,
+        "player1": "Tarek",
+        "player2": "Bahaa + Houssam + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "3-2",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 14,
+        "player1": "Tarek",
+        "player2": "Ezz + Houssam + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-5",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 15,
+        "player1": "Tarek",
+        "player2": "Bahaa + Ezz + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "3-3",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 16,
+        "player1": "Tarek",
+        "player2": "Bahaa + Ezz + Houssam",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "1-4",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 17,
+        "player1": "Ezz",
+        "player2": "Bahaa + Houssam + Sameh",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-3",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 18,
+        "player1": "Ezz",
+        "player2": "Houssam + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-5",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 19,
+        "player1": "Ezz",
+        "player2": "Bahaa + Sameh + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "2-6",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 20,
+        "player1": "Ezz",
+        "player2": "Bahaa + Houssam + Tarek",
+        "matchType": "1v3",
+        "stageName": "Stage 1 (1v3)",
+        "result": "4-4",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 21,
+        "player1": "Sameh",
+        "player2": "Bahaa + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "3-3",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 22,
+        "player1": "Sameh",
+        "player2": "Houssam + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 23,
+        "player1": "Sameh",
+        "player2": "Ezz + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 24,
+        "player1": "Sameh",
+        "player2": "Bahaa + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 25,
+        "player1": "Sameh",
+        "player2": "Bahaa + Ezz",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 26,
+        "player1": "Sameh",
+        "player2": "Ezz + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 27,
+        "player1": "Houssam",
+        "player2": "Bahaa + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 28,
+        "player1": "Houssam",
+        "player2": "Sameh + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 29,
+        "player1": "Houssam",
+        "player2": "Ezz + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 30,
+        "player1": "Houssam",
+        "player2": "Bahaa + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 31,
+        "player1": "Houssam",
+        "player2": "Bahaa + Ezz",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "5-1",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 32,
+        "player1": "Houssam",
+        "player2": "Ezz + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 33,
+        "player1": "Bahaa",
+        "player2": "Houssam + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 34,
+        "player1": "Bahaa",
+        "player2": "Sameh + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "6-1",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 35,
+        "player1": "Bahaa",
+        "player2": "Ezz + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 36,
+        "player1": "Bahaa",
+        "player2": "Houssam + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 37,
+        "player1": "Bahaa",
+        "player2": "Ezz + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 38,
+        "player1": "Bahaa",
+        "player2": "Ezz + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "2-2",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 39,
+        "player1": "Tarek",
+        "player2": "Houssam + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 40,
+        "player1": "Tarek",
+        "player2": "Bahaa + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 41,
+        "player1": "Tarek",
+        "player2": "Ezz + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "10-6",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 42,
+        "player1": "Tarek",
+        "player2": "Bahaa + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 43,
+        "player1": "Tarek",
+        "player2": "Ezz + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 44,
+        "player1": "Tarek",
+        "player2": "Bahaa + Ezz",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 45,
+        "player1": "Ezz",
+        "player2": "Houssam + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": "4-9",
+        "status": "played",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 46,
+        "player1": "Ezz",
+        "player2": "Bahaa + Sameh",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 47,
+        "player1": "Ezz",
+        "player2": "Sameh + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 48,
+        "player1": "Ezz",
+        "player2": "Bahaa + Houssam",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 49,
+        "player1": "Ezz",
+        "player2": "Houssam + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 50,
+        "player1": "Ezz",
+        "player2": "Bahaa + Tarek",
+        "matchType": "1v2",
+        "stageName": "Stage 2 (1v2)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 51,
+        "player1": "Sameh",
+        "player2": "Houssam",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 52,
+        "player1": "Sameh",
+        "player2": "Bahaa",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 53,
+        "player1": "Sameh",
+        "player2": "Tarek",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 54,
+        "player1": "Sameh",
+        "player2": "Ezz",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 55,
+        "player1": "Houssam",
+        "player2": "Bahaa",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 56,
+        "player1": "Houssam",
+        "player2": "Tarek",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 57,
+        "player1": "Houssam",
+        "player2": "Ezz",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 58,
+        "player1": "Bahaa",
+        "player2": "Tarek",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 59,
+        "player1": "Bahaa",
+        "player2": "Ezz",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      },
+      {
+        "matchNum": 60,
+        "player1": "Tarek",
+        "player2": "Ezz",
+        "matchType": "1v1",
+        "stageName": "Stage 3 (1v1)",
+        "result": null,
+        "status": "upcoming",
+        "date": null,
+        "bestPlayerVote": null,
+        "worstPlayerVote": null,
+        "votedBy": [],
+        "createdAt": "2025-09-16T16:08:07.950Z",
+        "updatedAt": null,
+        "notes": "",
+        "highlights": [],
+        "referee": null,
+        "location": null,
+        "customData": {}
+      }
+    ],
+    "stages": [
+      "Stage 1 (1v3)",
+      "Stage 2 (1v2)",
+      "Stage 3 (1v1)"
+    ],
+    "currentStageName": "Stage 2 (1v2)",
+    "leagueSettings": {
+      "leagueName": "PIFA 03",
+      "pointsWin": 3,
+      "pointsDraw": 1,
+      "pointsLoss": 0
+    },
+    "news": [
+      {
+        "id": "news-1758219820365",
+        "title": "Sameh Sets Early Goal Record",
+        "content": "**Sameh 'The Sniper'** nets impressive goals!",
+        "date": "2025-09-18T18:23:40.365Z"
+      },
+      {
+        "id": "news-1758219720365",
+        "title": "Early Surprises in Stage 1",
+        "content": "Underdog players pull off stunning victories!",
+        "date": "2025-09-17T18:23:40.365Z"
+      },
+      {
+        "id": "news-1758219620365",
+        "title": "PIFA Super League Kicks Off!",
+        "content": "The much anticipated PIFA Super League has officially started!",
+        "date": "2025-09-16T18:23:40.365Z"
+      }
+    ],
+    "pifaAccountBalance": 10000000,
+    "marketOpen": false,
+    "historicalLeagues": [
+      {
+        "leagueName": "Pre-App Championship (Houssam's Era)",
+        "completionDate": "2023-01-15T00:00:00.000Z",
+        "leagueWinner": "Houssam",
+        "players": [
+          {
+            "name": "Houssam",
+            "points": 25,
+            "played": 10,
+            "wins": 8,
+            "draws": 1,
+            "losses": 1,
+            "goalsFor": 30,
+            "goalsAgainst": 10,
+            "goalDifference": 20,
+            "bestPlayerVotes": 5,
+            "worstPlayerVotes": 0,
+            "matches": [],
+            "image": "assets/images/default_player.png",
+            "nickname": "",
+            "reelUrl": "",
+            "form": []
+          },
+          {
+            "name": "Bahaa",
+            "points": 22,
+            "played": 10,
+            "wins": 7,
+            "draws": 1,
+            "losses": 2,
+            "goalsFor": 28,
+            "goalsAgainst": 12,
+            "goalDifference": 16,
+            "bestPlayerVotes": 3,
+            "worstPlayerVotes": 1,
+            "matches": [],
+            "image": "assets/images/default_player.png",
+            "nickname": "",
+            "reelUrl": "",
+            "form": []
+          },
+          {
+            "name": "Sameh",
+            "points": 22,
+            "played": 10,
+            "wins": 7,
+            "draws": 1,
+            "losses": 2,
+            "goalsFor": 25,
+            "goalsAgainst": 15,
+            "goalDifference": 10,
+            "bestPlayerVotes": 2,
+            "worstPlayerVotes": 1,
+            "matches": [],
+            "image": "assets/images/default_player.png",
+            "nickname": "",
+            "reelUrl": "",
+            "form": []
+          },
+          {
+            "name": "Ezz",
+            "points": 18,
+            "played": 10,
+            "wins": 6,
+            "draws": 0,
+            "losses": 4,
+            "goalsFor": 20,
+            "goalsAgainst": 18,
+            "goalDifference": 2,
+            "bestPlayerVotes": 1,
+            "worstPlayerVotes": 2,
+            "matches": [],
+            "image": "assets/images/default_player.png",
+            "nickname": "",
+            "reelUrl": "",
+            "form": []
+          },
+          {
+            "name": "Tarek",
+            "points": 15,
+            "played": 10,
+            "wins": 5,
+            "draws": 0,
+            "losses": 5,
+            "goalsFor": 15,
+            "goalsAgainst": 20,
+            "goalDifference": -5,
+            "bestPlayerVotes": 0,
+            "worstPlayerVotes": 3,
+            "matches": [],
+            "image": "assets/images/default_player.png",
+            "nickname": "",
+            "reelUrl": "",
+            "form": []
+          }
+        ],
+        "allMatches": [],
+        "leagueSettings": {
+          "leagueName": "Pre-App Championship (Houssam's Era)",
+          "pointsWin": 3,
+          "pointsDraw": 1,
+          "pointsLoss": 0
+        },
+        "news": []
+      },
+      {
+        "players": [
+          {
+            "name": "Sameh",
+            "nickname": "",
+            "image": "https://i.ibb.co/Ndn529dw/image-7.jpg",
+            "reelUrl": "",
+            "played": 14,
+            "wins": 5,
+            "draws": 2,
+            "losses": 7,
+            "goalsFor": 44,
+            "goalsAgainst": 49,
+            "goalDifference": -5,
+            "points": 17,
+            "matches": [],
+            "bestPlayerVotes": 1,
+            "worstPlayerVotes": 0,
+            "passCompletion": 0,
+            "shotsOnTarget": 0,
+            "form": [
+              "W",
+              "L",
+              "L",
+              "W",
+              "L"
+            ],
+            "marketValue": 43567,
+            "balance": 47586,
+            "transferHistory": [],
+            "transferOffers": [],
+            "accountHistory": [],
+            "marketHistory": [
+              {
+                "value": 50366,
+                "date": 1752013657525
+              },
+              {
+                "value": 48855,
+                "date": 1752013657525
+              },
+              {
+                "value": 47389,
+                "date": 1752013657525
+              },
+              {
+                "value": 48811,
+                "date": 1752013657525
+              },
+              {
+                "value": 48323,
+                "date": 1752013657525
+              },
+              {
+                "value": 47840,
+                "date": 1752013657525
+              },
+              {
+                "value": 47362,
+                "date": 1752013657525
+              },
+              {
+                "value": 46888,
+                "date": 1752013657525
+              },
+              {
+                "value": 46419,
+                "date": 1752013657525
+              },
+              {
+                "value": 45955,
+                "date": 1752013657525
+              },
+              {
+                "value": 46047,
+                "date": 1752013657525
+              },
+              {
+                "value": 46507,
+                "date": 1752013657525
+              },
+              {
+                "value": 46972,
+                "date": 1752013657525
+              },
+              {
+                "value": 47442,
+                "date": 1752013657525
+              },
+              {
+                "value": 47916,
+                "date": 1752013657525
+              },
+              {
+                "value": 48395,
+                "date": 1752013657525
+              },
+              {
+                "value": 45975,
+                "date": 1752013657525
+              },
+              {
+                "value": 43676,
+                "date": 1752013657525
+              },
+              {
+                "value": 45860,
+                "date": 1752013657525
+              },
+              {
+                "value": 43567,
+                "date": 1752013657525
+              }
+            ],
+            "_stageStats": {
+              "played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goalsFor": 0,
+              "goalsAgainst": 0,
+              "goalDifference": 0,
+              "points": 0,
+              "bestPlayerVotes": 0
+            }
+          },
+          {
+            "name": "Houssam",
+            "nickname": "",
+            "image": "https://i.ibb.co/GQh3vzRX/image-6.jpg",
+            "reelUrl": "",
+            "played": 14,
+            "wins": 10,
+            "draws": 3,
+            "losses": 1,
+            "goalsFor": 69,
+            "goalsAgainst": 34,
+            "goalDifference": 35,
+            "points": 33,
+            "matches": [],
+            "bestPlayerVotes": 0,
+            "worstPlayerVotes": 0,
+            "passCompletion": 0,
+            "shotsOnTarget": 0,
+            "form": [
+              "W",
+              "W",
+              "D",
+              "L",
+              "W"
+            ],
+            "marketValue": 65028,
+            "balance": 55245,
+            "transferHistory": [],
+            "transferOffers": [],
+            "accountHistory": [],
+            "marketHistory": [
+              {
+                "value": 52249,
+                "date": 1752013657525
+              },
+              {
+                "value": 53816,
+                "date": 1752013657525
+              },
+              {
+                "value": 55430,
+                "date": 1752013657525
+              },
+              {
+                "value": 57093,
+                "date": 1752013657525
+              },
+              {
+                "value": 58806,
+                "date": 1752013657525
+              },
+              {
+                "value": 58924,
+                "date": 1752013657525
+              },
+              {
+                "value": 60692,
+                "date": 1752013657525
+              },
+              {
+                "value": 60085,
+                "date": 1752013657525
+              },
+              {
+                "value": 60205,
+                "date": 1752013657525
+              },
+              {
+                "value": 60807,
+                "date": 1752013657525
+              },
+              {
+                "value": 60929,
+                "date": 1752013657525
+              },
+              {
+                "value": 61538,
+                "date": 1752013657525
+              },
+              {
+                "value": 60923,
+                "date": 1752013657525
+              },
+              {
+                "value": 61532,
+                "date": 1752013657525
+              },
+              {
+                "value": 61655,
+                "date": 1752013657525
+              },
+              {
+                "value": 61778,
+                "date": 1752013657525
+              },
+              {
+                "value": 64867,
+                "date": 1752013657525
+              },
+              {
+                "value": 65191,
+                "date": 1752013657525
+              },
+              {
+                "value": 61931,
+                "date": 1752013657525
+              },
+              {
+                "value": 65028,
+                "date": 1752013657525
+              }
+            ],
+            "_stageStats": {
+              "played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goalsFor": 0,
+              "goalsAgainst": 0,
+              "goalDifference": 0,
+              "points": 0,
+              "bestPlayerVotes": 0
+            }
+          },
+          {
+            "name": "Bahaa",
+            "nickname": "",
+            "image": "https://i.ibb.co/9mDRK0MF/bahaa.gif",
+            "reelUrl": "",
+            "played": 14,
+            "wins": 8,
+            "draws": 4,
+            "losses": 2,
+            "goalsFor": 49,
+            "goalsAgainst": 29,
+            "goalDifference": 20,
+            "points": 28,
+            "matches": [],
+            "bestPlayerVotes": 0,
+            "worstPlayerVotes": 1,
+            "passCompletion": 0,
+            "shotsOnTarget": 0,
+            "form": [
+              "W",
+              "W",
+              "D",
+              "D",
+              "W"
+            ],
+            "marketValue": 63503,
+            "balance": 55528,
+            "transferHistory": [],
+            "transferOffers": [],
+            "accountHistory": [],
+            "marketHistory": [
+              {
+                "value": 51425,
+                "date": 1752013657525
+              },
+              {
+                "value": 50911,
+                "date": 1752013657525
+              },
+              {
+                "value": 50402,
+                "date": 1752013657525
+              },
+              {
+                "value": 50503,
+                "date": 1752013657525
+              },
+              {
+                "value": 52018,
+                "date": 1752013657525
+              },
+              {
+                "value": 53579,
+                "date": 1752013657525
+              },
+              {
+                "value": 55186,
+                "date": 1752013657525
+              },
+              {
+                "value": 55296,
+                "date": 1752013657525
+              },
+              {
+                "value": 53637,
+                "date": 1752013657525
+              },
+              {
+                "value": 55246,
+                "date": 1752013657525
+              },
+              {
+                "value": 55798,
+                "date": 1752013657525
+              },
+              {
+                "value": 56356,
+                "date": 1752013657525
+              },
+              {
+                "value": 56920,
+                "date": 1752013657525
+              },
+              {
+                "value": 57489,
+                "date": 1752013657525
+              },
+              {
+                "value": 57604,
+                "date": 1752013657525
+              },
+              {
+                "value": 57028,
+                "date": 1752013657525
+              },
+              {
+                "value": 59879,
+                "date": 1752013657525
+              },
+              {
+                "value": 60178,
+                "date": 1752013657525
+              },
+              {
+                "value": 60479,
+                "date": 1752013657525
+              },
+              {
+                "value": 63503,
+                "date": 1752013657525
+              }
+            ],
+            "_stageStats": {
+              "played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goalsFor": 0,
+              "goalsAgainst": 0,
+              "goalDifference": 0,
+              "points": 0,
+              "bestPlayerVotes": 0
+            }
+          },
+          {
+            "name": "Tarek",
+            "nickname": "",
+            "image": "https://i.ibb.co/vvw5tKym/Designer-30.jpg",
+            "reelUrl": "",
+            "played": 14,
+            "wins": 5,
+            "draws": 3,
+            "losses": 6,
+            "goalsFor": 38,
+            "goalsAgainst": 35,
+            "goalDifference": 3,
+            "points": 18,
+            "matches": [],
+            "bestPlayerVotes": 0,
+            "worstPlayerVotes": 0,
+            "passCompletion": 0,
+            "shotsOnTarget": 0,
+            "form": [
+              "L",
+              "L",
+              "W",
+              "D",
+              "D"
+            ],
+            "marketValue": 44991,
+            "balance": 48322,
+            "transferHistory": [],
+            "transferOffers": [],
+            "accountHistory": [],
+            "marketHistory": [
+              {
+                "value": 51194,
+                "date": 1752013657525
+              },
+              {
+                "value": 50682,
+                "date": 1752013657525
+              },
+              {
+                "value": 50175,
+                "date": 1752013657525
+              },
+              {
+                "value": 49673,
+                "date": 1752013657525
+              },
+              {
+                "value": 49176,
+                "date": 1752013657525
+              },
+              {
+                "value": 49274,
+                "date": 1752013657525
+              },
+              {
+                "value": 48781,
+                "date": 1752013657525
+              },
+              {
+                "value": 48879,
+                "date": 1752013657525
+              },
+              {
+                "value": 47413,
+                "date": 1752013657525
+              },
+              {
+                "value": 45991,
+                "date": 1752013657525
+              },
+              {
+                "value": 44611,
+                "date": 1752013657525
+              },
+              {
+                "value": 45949,
+                "date": 1752013657525
+              },
+              {
+                "value": 44571,
+                "date": 1752013657525
+              },
+              {
+                "value": 45017,
+                "date": 1752013657525
+              },
+              {
+                "value": 45107,
+                "date": 1752013657525
+              },
+              {
+                "value": 44656,
+                "date": 1752013657525
+              },
+              {
+                "value": 42423,
+                "date": 1752013657525
+              },
+              {
+                "value": 44544,
+                "date": 1752013657525
+              },
+              {
+                "value": 44767,
+                "date": 1752013657525
+              },
+              {
+                "value": 44991,
+                "date": 1752013657525
+              }
+            ],
+            "_stageStats": {
+              "played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goalsFor": 0,
+              "goalsAgainst": 0,
+              "goalDifference": 0,
+              "points": 0,
+              "bestPlayerVotes": 0
+            }
+          },
+          {
+            "name": "Ezz",
+            "nickname": "",
+            "image": "https://i.ibb.co/LzqxTBH7/EZZ-White-hair-grey-beard-caricature-always-promises-to-win-in-fifa-and-he-loses-print-the-the-k.jpg",
+            "reelUrl": "",
+            "played": 14,
+            "wins": 4,
+            "draws": 4,
+            "losses": 6,
+            "goalsFor": 59,
+            "goalsAgainst": 63,
+            "goalDifference": -4,
+            "points": 16,
+            "matches": [],
+            "bestPlayerVotes": 0,
+            "worstPlayerVotes": 0,
+            "passCompletion": 0,
+            "shotsOnTarget": 0,
+            "form": [
+              "W",
+              "W",
+              "L",
+              "L",
+              "D"
+            ],
+            "marketValue": 42564,
+            "balance": 47126,
+            "transferHistory": [],
+            "transferOffers": [],
+            "accountHistory": [],
+            "marketHistory": [
+              {
+                "value": 48232,
+                "date": 1752013657525
+              },
+              {
+                "value": 47750,
+                "date": 1752013657525
+              },
+              {
+                "value": 47846,
+                "date": 1752013657525
+              },
+              {
+                "value": 47368,
+                "date": 1752013657525
+              },
+              {
+                "value": 46894,
+                "date": 1752013657525
+              },
+              {
+                "value": 47363,
+                "date": 1752013657525
+              },
+              {
+                "value": 46889,
+                "date": 1752013657525
+              },
+              {
+                "value": 47358,
+                "date": 1752013657525
+              },
+              {
+                "value": 46884,
+                "date": 1752013657525
+              },
+              {
+                "value": 47353,
+                "date": 1752013657525
+              },
+              {
+                "value": 45932,
+                "date": 1752013657525
+              },
+              {
+                "value": 44554,
+                "date": 1752013657525
+              },
+              {
+                "value": 43217,
+                "date": 1752013657525
+              },
+              {
+                "value": 43303,
+                "date": 1752013657525
+              },
+              {
+                "value": 43390,
+                "date": 1752013657525
+              },
+              {
+                "value": 44692,
+                "date": 1752013657525
+              },
+              {
+                "value": 46927,
+                "date": 1752013657525
+              },
+              {
+                "value": 44581,
+                "date": 1752013657525
+              },
+              {
+                "value": 42352,
+                "date": 1752013657525
+              },
+              {
+                "value": 42564,
+                "date": 1752013657525
+              }
+            ],
+            "_stageStats": {
+              "played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0,
+              "goalsFor": 0,
+              "goalsAgainst": 0,
+              "goalDifference": 0,
+              "points": 0,
+              "bestPlayerVotes": 0
+            }
+          }
+        ],
+        "allMatches": [
+          {
+            "matchNum": 1,
+            "player1": "Sameh",
+            "player2": "Bahaa + Houssam + Tarek",
+            "result": "4-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": "Sameh",
+            "worstPlayerVote": "Bahaa",
+            "votedBy": []
+          },
+          {
+            "matchNum": 2,
+            "player1": "Sameh",
+            "player2": "Bahaa + Ezz + Houssam",
+            "result": "4-5",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 3,
+            "player1": "Sameh",
+            "player2": "Ezz + Houssam + Tarek",
+            "result": "2-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 4,
+            "player1": "Sameh",
+            "player2": "Bahaa + Ezz + Tarek",
+            "result": "3-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 5,
+            "player1": "Houssam",
+            "player2": "Bahaa + Sameh + Tarek",
+            "result": "2-2",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 6,
+            "player1": "Houssam",
+            "player2": "Bahaa + Ezz + Sameh",
+            "result": "3-1",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 7,
+            "player1": "Houssam",
+            "player2": "Ezz + Sameh + Tarek",
+            "result": "8-2",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 8,
+            "player1": "Houssam",
+            "player2": "Bahaa + Ezz + Tarek",
+            "result": "7-2",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 9,
+            "player1": "Bahaa",
+            "player2": "Houssam + Sameh + Tarek",
+            "result": "0-1",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 10,
+            "player1": "Bahaa",
+            "player2": "Ezz + Houssam + Sameh",
+            "result": "2-1",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 11,
+            "player1": "Bahaa",
+            "player2": "Ezz + Sameh + Tarek",
+            "result": "4-4",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 12,
+            "player1": "Bahaa",
+            "player2": "Ezz + Houssam + Tarek",
+            "result": "3-0",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 13,
+            "player1": "Tarek",
+            "player2": "Bahaa + Houssam + Sameh",
+            "result": "1-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 14,
+            "player1": "Tarek",
+            "player2": "Ezz + Houssam + Sameh",
+            "result": "4-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 15,
+            "player1": "Tarek",
+            "player2": "Bahaa + Ezz + Sameh",
+            "result": "4-2",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 16,
+            "player1": "Tarek",
+            "player2": "Bahaa + Ezz + Houssam",
+            "result": "7-2",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 17,
+            "player1": "Ezz",
+            "player2": "Bahaa + Houssam + Sameh",
+            "result": "3-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 18,
+            "player1": "Ezz",
+            "player2": "Houssam + Sameh + Tarek",
+            "result": "6-5",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 19,
+            "player1": "Ezz",
+            "player2": "Bahaa + Sameh + Tarek",
+            "result": "4-5",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 20,
+            "player1": "Ezz",
+            "player2": "Bahaa + Houssam + Tarek",
+            "result": "5-3",
+            "status": "played",
+            "stageName": "Stage 1",
+            "matchType": "1v3",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 21,
+            "player1": "Sameh",
+            "player2": "Bahaa + Houssam",
+            "result": "3-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 22,
+            "player1": "Sameh",
+            "player2": "Houssam + Tarek",
+            "result": "3-1",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 23,
+            "player1": "Sameh",
+            "player2": "Ezz + Houssam",
+            "result": "6-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 24,
+            "player1": "Sameh",
+            "player2": "Bahaa + Tarek",
+            "result": "3-5",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 25,
+            "player1": "Sameh",
+            "player2": "Bahaa + Ezz",
+            "result": "2-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 26,
+            "player1": "Sameh",
+            "player2": "Ezz + Tarek",
+            "result": "4-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 27,
+            "player1": "Houssam",
+            "player2": "Bahaa + Sameh",
+            "result": "6-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 28,
+            "player1": "Houssam",
+            "player2": "Sameh + Tarek",
+            "result": "2-0",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 29,
+            "player1": "Houssam",
+            "player2": "Ezz + Sameh",
+            "result": "11-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 30,
+            "player1": "Houssam",
+            "player2": "Bahaa + Tarek",
+            "result": "2-1",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 31,
+            "player1": "Houssam",
+            "player2": "Bahaa + Ezz",
+            "result": "3-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 32,
+            "player1": "Houssam",
+            "player2": "Ezz + Tarek",
+            "result": "5-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 33,
+            "player1": "Bahaa",
+            "player2": "Houssam + Sameh",
+            "result": "3-0",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 34,
+            "player1": "Bahaa",
+            "player2": "Sameh + Tarek",
+            "result": "5-4",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 35,
+            "player1": "Bahaa",
+            "player2": "Ezz + Sameh",
+            "result": "6-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 36,
+            "player1": "Bahaa",
+            "player2": "Houssam + Tarek",
+            "result": "2-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 37,
+            "player1": "Bahaa",
+            "player2": "Ezz + Houssam",
+            "result": "2-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 38,
+            "player1": "Bahaa",
+            "player2": "Ezz + Tarek",
+            "result": "4-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 39,
+            "player1": "Tarek",
+            "player2": "Houssam + Sameh",
+            "result": "1-1",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 40,
+            "player1": "Tarek",
+            "player2": "Bahaa + Sameh",
+            "result": "2-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 41,
+            "player1": "Tarek",
+            "player2": "Ezz + Sameh",
+            "result": "1-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 42,
+            "player1": "Tarek",
+            "player2": "Bahaa + Houssam",
+            "result": "1-4",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 43,
+            "player1": "Tarek",
+            "player2": "Ezz + Houssam",
+            "result": "4-0",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 44,
+            "player1": "Tarek",
+            "player2": "Bahaa + Ezz",
+            "result": "2-3",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 45,
+            "player1": "Ezz",
+            "player2": "Houssam + Sameh",
+            "result": "3-5",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 46,
+            "player1": "Ezz",
+            "player2": "Bahaa + Sameh",
+            "result": "3-4",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 47,
+            "player1": "Ezz",
+            "player2": "Sameh + Tarek",
+            "result": "4-6",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 48,
+            "player1": "Ezz",
+            "player2": "Bahaa + Houssam",
+            "result": "5-5",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 49,
+            "player1": "Ezz",
+            "player2": "Houssam + Tarek",
+            "result": "5-5",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 50,
+            "player1": "Ezz",
+            "player2": "Bahaa + Tarek",
+            "result": "4-2",
+            "status": "played",
+            "stageName": "Stage 2",
+            "matchType": "1v2",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 51,
+            "player1": "Sameh",
+            "player2": "Houssam",
+            "result": "3-6",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 52,
+            "player1": "Sameh",
+            "player2": "Bahaa",
+            "result": "2-7",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 53,
+            "player1": "Sameh",
+            "player2": "Tarek",
+            "result": "2-0",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 54,
+            "player1": "Sameh",
+            "player2": "Ezz",
+            "result": "3-6",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 55,
+            "player1": "Houssam",
+            "player2": "Bahaa",
+            "result": "3-3",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 56,
+            "player1": "Houssam",
+            "player2": "Tarek",
+            "result": "4-5",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 57,
+            "player1": "Houssam",
+            "player2": "Ezz",
+            "result": "7-5",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 58,
+            "player1": "Bahaa",
+            "player2": "Tarek",
+            "result": "2-2",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 59,
+            "player1": "Bahaa",
+            "player2": "Ezz",
+            "result": "6-2",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          },
+          {
+            "matchNum": 60,
+            "player1": "Tarek",
+            "player2": "Ezz",
+            "result": "4-4",
+            "status": "played",
+            "stageName": "Stage 3",
+            "matchType": "1v1",
+            "date": null,
+            "bestPlayerVote": null,
+            "worstPlayerVote": null,
+            "votedBy": []
+          }
+        ],
+        "stages": [
+          "Stage 1",
+          "Stage 2",
+          "Stage 3"
+        ],
+        "currentStageName": "Stage 3",
+        "leagueSettings": {
+          "leagueName": "PIFA 02",
+          "pointsWin": 3,
+          "pointsDraw": 1,
+          "pointsLoss": 0
+        },
+        "news": [
+          {
+            "id": "news-1749683365633-gjde4",
+            "title": "the new app",
+            "content": "testing",
+            "date": "2025-06-11T23:09:25.633Z"
+          },
+          {
+            "id": "news-1749584616179-vkb6n",
+            "title": "الرئيس في تصريح اولي",
+            "content": "ما يجري هو بهدف اضعاف موقع الرئاسة",
+            "date": "2025-06-10T19:43:36.179Z"
+          },
+          {
+            "id": "news-1749568382863-u0m1y",
+            "title": "حسام بعد اخطائه السابقة",
+            "content": "هل سيكون لعبه مغايرا الليلة ؟؟؟",
+            "date": "2025-06-10T15:13:02.863Z"
+          },
+          {
+            "id": "news-1749568320223-bgf8g",
+            "title": "الجولة الرابعة من دوري البيفا",
+            "content": "ماذا تخبىء الجولة الرابعة ؟ هل سيقوم احدهم بتركيبه الليلة ؟",
+            "date": "2025-06-10T15:12:00.223Z"
+          },
+          {
+            "id": "news-1749568299417-sgf7a",
+            "title": "الرئيس يتابع موضوع تطوير الموقع الرسمي للبيفا دون كلل او ملل",
+            "content": "الرئيس يتابع موضوع تطوير الموقع الرسمي للبيفا دون كلل او ملل مع ابن خالته السيد بهاء والنتائج مرتقبة",
+            "date": "2025-06-10T15:11:39.417Z"
+          }
+        ],
+        "pifaAccountBalance": 10000000,
+        "marketOpen": false,
+        "historicalLeagues": [
+          {
+            "leagueName": "Pre-App Championship (Houssam's Era)",
+            "completionDate": "2023-01-15T00:00:00.000Z",
+            "leagueWinner": "Houssam",
+            "players": [
+              {
+                "name": "Houssam",
+                "points": 25,
+                "played": 10,
+                "wins": 8,
+                "draws": 1,
+                "losses": 1,
+                "goalsFor": 30,
+                "goalsAgainst": 10,
+                "goalDifference": 20,
+                "bestPlayerVotes": 5,
+                "worstPlayerVotes": 0,
+                "matches": [],
+                "image": "assets/images/default_player.png",
+                "nickname": "",
+                "reelUrl": "",
+                "form": []
+              },
+              {
+                "name": "Bahaa",
+                "points": 22,
+                "played": 10,
+                "wins": 7,
+                "draws": 1,
+                "losses": 2,
+                "goalsFor": 28,
+                "goalsAgainst": 12,
+                "goalDifference": 16,
+                "bestPlayerVotes": 3,
+                "worstPlayerVotes": 1,
+                "matches": [],
+                "image": "assets/images/default_player.png",
+                "nickname": "",
+                "reelUrl": "",
+                "form": []
+              },
+              {
+                "name": "Sameh",
+                "points": 22,
+                "played": 10,
+                "wins": 7,
+                "draws": 1,
+                "losses": 2,
+                "goalsFor": 25,
+                "goalsAgainst": 15,
+                "goalDifference": 10,
+                "bestPlayerVotes": 2,
+                "worstPlayerVotes": 1,
+                "matches": [],
+                "image": "assets/images/default_player.png",
+                "nickname": "",
+                "reelUrl": "",
+                "form": []
+              },
+              {
+                "name": "Ezz",
+                "points": 18,
+                "played": 10,
+                "wins": 6,
+                "draws": 0,
+                "losses": 4,
+                "goalsFor": 20,
+                "goalsAgainst": 18,
+                "goalDifference": 2,
+                "bestPlayerVotes": 1,
+                "worstPlayerVotes": 2,
+                "matches": [],
+                "image": "assets/images/default_player.png",
+                "nickname": "",
+                "reelUrl": "",
+                "form": []
+              },
+              {
+                "name": "Tarek",
+                "points": 15,
+                "played": 10,
+                "wins": 5,
+                "draws": 0,
+                "losses": 5,
+                "goalsFor": 15,
+                "goalsAgainst": 20,
+                "goalDifference": -5,
+                "bestPlayerVotes": 0,
+                "worstPlayerVotes": 3,
+                "matches": [],
+                "image": "assets/images/default_player.png",
+                "nickname": "",
+                "reelUrl": "",
+                "form": []
+              }
+            ],
+            "allMatches": [],
+            "leagueSettings": {
+              "leagueName": "Pre-App Championship (Houssam's Era)",
+              "pointsWin": 3,
+              "pointsDraw": 1,
+              "pointsLoss": 0
+            },
+            "news": []
+          }
+        ],
+        "completionDate": "2025-07-08T22:29:34.852Z",
+        "leagueName": "PIFA 02 (09/07/2025)"
+      }
+    ]
+  },
+  "historicalLeagues": [
+    {
+      "leagueName": "Pre-App Championship (Houssam's Era)",
+      "completionDate": "2023-01-15T00:00:00.000Z",
+      "leagueWinner": "Houssam",
+      "players": [
+        {
+          "name": "Houssam",
+          "points": 25,
+          "played": 10,
+          "wins": 8,
+          "draws": 1,
+          "losses": 1,
+          "goalsFor": 30,
+          "goalsAgainst": 10,
+          "goalDifference": 20,
+          "bestPlayerVotes": 5,
+          "worstPlayerVotes": 0,
+          "matches": [],
+          "image": "assets/images/default_player.png",
+          "nickname": "",
+          "reelUrl": "",
+          "form": []
+        },
+        {
+          "name": "Bahaa",
+          "points": 22,
+          "played": 10,
+          "wins": 7,
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 28,
+          "goalsAgainst": 12,
+          "goalDifference": 16,
+          "bestPlayerVotes": 3,
+          "worstPlayerVotes": 1,
+          "matches": [],
+          "image": "assets/images/default_player.png",
+          "nickname": "",
+          "reelUrl": "",
+          "form": []
+        },
+        {
+          "name": "Sameh",
+          "points": 22,
+          "played": 10,
+          "wins": 7,
+          "draws": 1,
+          "losses": 2,
+          "goalsFor": 25,
+          "goalsAgainst": 15,
+          "goalDifference": 10,
+          "bestPlayerVotes": 2,
+          "worstPlayerVotes": 1,
+          "matches": [],
+          "image": "assets/images/default_player.png",
+          "nickname": "",
+          "reelUrl": "",
+          "form": []
+        },
+        {
+          "name": "Ezz",
+          "points": 18,
+          "played": 10,
+          "wins": 6,
+          "draws": 0,
+          "losses": 4,
+          "goalsFor": 20,
+          "goalsAgainst": 18,
+          "goalDifference": 2,
+          "bestPlayerVotes": 1,
+          "worstPlayerVotes": 2,
+          "matches": [],
+          "image": "assets/images/default_player.png",
+          "nickname": "",
+          "reelUrl": "",
+          "form": []
+        },
+        {
+          "name": "Tarek",
+          "points": 15,
+          "played": 10,
+          "wins": 5,
+          "draws": 0,
+          "losses": 5,
+          "goalsFor": 15,
+          "goalsAgainst": 20,
+          "goalDifference": -5,
+          "bestPlayerVotes": 0,
+          "worstPlayerVotes": 3,
+          "matches": [],
+          "image": "assets/images/default_player.png",
+          "nickname": "",
+          "reelUrl": "",
+          "form": []
+        }
+      ],
+      "allMatches": [],
+      "leagueSettings": {
+        "leagueName": "Pre-App Championship (Houssam's Era)",
+        "pointsWin": 3,
+        "pointsDraw": 1,
+        "pointsLoss": 0
+      },
+      "news": []
+    },
+    {
+      "players": [
+        {
+          "name": "Sameh",
+          "nickname": "",
+          "image": "https://i.ibb.co/Ndn529dw/image-7.jpg",
+          "reelUrl": "",
+          "played": 14,
+          "wins": 5,
+          "draws": 2,
+          "losses": 7,
+          "goalsFor": 44,
+          "goalsAgainst": 49,
+          "goalDifference": -5,
+          "points": 17,
+          "matches": [],
+          "bestPlayerVotes": 1,
+          "worstPlayerVotes": 0,
+          "passCompletion": 0,
+          "shotsOnTarget": 0,
+          "form": [
+            "W",
+            "L",
+            "L",
+            "W",
+            "L"
+          ],
+          "marketValue": 43567,
+          "balance": 47586,
+          "transferHistory": [],
+          "transferOffers": [],
+          "accountHistory": [],
+          "marketHistory": [
+            {
+              "value": 50366,
+              "date": 1752013657525
+            },
+            {
+              "value": 48855,
+              "date": 1752013657525
+            },
+            {
+              "value": 47389,
+              "date": 1752013657525
+            },
+            {
+              "value": 48811,
+              "date": 1752013657525
+            },
+            {
+              "value": 48323,
+              "date": 1752013657525
+            },
+            {
+              "value": 47840,
+              "date": 1752013657525
+            },
+            {
+              "value": 47362,
+              "date": 1752013657525
+            },
+            {
+              "value": 46888,
+              "date": 1752013657525
+            },
+            {
+              "value": 46419,
+              "date": 1752013657525
+            },
+            {
+              "value": 45955,
+              "date": 1752013657525
+            },
+            {
+              "value": 46047,
+              "date": 1752013657525
+            },
+            {
+              "value": 46507,
+              "date": 1752013657525
+            },
+            {
+              "value": 46972,
+              "date": 1752013657525
+            },
+            {
+              "value": 47442,
+              "date": 1752013657525
+            },
+            {
+              "value": 47916,
+              "date": 1752013657525
+            },
+            {
+              "value": 48395,
+              "date": 1752013657525
+            },
+            {
+              "value": 45975,
+              "date": 1752013657525
+            },
+            {
+              "value": 43676,
+              "date": 1752013657525
+            },
+            {
+              "value": 45860,
+              "date": 1752013657525
+            },
+            {
+              "value": 43567,
+              "date": 1752013657525
+            }
+          ],
+          "_stageStats": {
+            "played": 0,
+            "wins": 0,
+            "draws": 0,
+            "losses": 0,
+            "goalsFor": 0,
+            "goalsAgainst": 0,
+            "goalDifference": 0,
+            "points": 0,
+            "bestPlayerVotes": 0
+          }
+        },
+        {
+          "name": "Houssam",
+          "nickname": "",
+          "image": "https://i.ibb.co/GQh3vzRX/image-6.jpg",
+          "reelUrl": "",
+          "played": 14,
+          "wins": 10,
+          "draws": 3,
+          "losses": 1,
+          "goalsFor": 69,
+          "goalsAgainst": 34,
+          "goalDifference": 35,
+          "points": 33,
+          "matches": [],
+          "bestPlayerVotes": 0,
+          "worstPlayerVotes": 0,
+          "passCompletion": 0,
+          "shotsOnTarget": 0,
+          "form": [
+            "W",
+            "W",
+            "D",
+            "L",
+            "W"
+          ],
+          "marketValue": 65028,
+          "balance": 55245,
+          "transferHistory": [],
+          "transferOffers": [],
+          "accountHistory": [],
+          "marketHistory": [
+            {
+              "value": 52249,
+              "date": 1752013657525
+            },
+            {
+              "value": 53816,
+              "date": 1752013657525
+            },
+            {
+              "value": 55430,
+              "date": 1752013657525
+            },
+            {
+              "value": 57093,
+              "date": 1752013657525
+            },
+            {
+              "value": 58806,
+              "date": 1752013657525
+            },
+            {
+              "value": 58924,
+              "date": 1752013657525
+            },
+            {
+              "value": 60692,
+              "date": 1752013657525
+            },
+            {
+              "value": 60085,
+              "date": 1752013657525
+            },
+            {
+              "value": 60205,
+              "date": 1752013657525
+            },
+            {
+              "value": 60807,
+              "date": 1752013657525
+            },
+            {
+              "value": 60929,
+              "date": 1752013657525
+            },
+            {
+              "value": 61538,
+              "date": 1752013657525
+            },
+            {
+              "value": 60923,
+              "date": 1752013657525
+            },
+            {
+              "value": 61532,
+              "date": 1752013657525
+            },
+            {
+              "value": 61655,
+              "date": 1752013657525
+            },
+            {
+              "value": 61778,
+              "date": 1752013657525
+            },
+            {
+              "value": 64867,
+              "date": 1752013657525
+            },
+            {
+              "value": 65191,
+              "date": 1752013657525
+            },
+            {
+              "value": 61931,
+              "date": 1752013657525
+            },
+            {
+              "value": 65028,
+              "date": 1752013657525
+            }
+          ],
+          "_stageStats": {
+            "played": 0,
+            "wins": 0,
+            "draws": 0,
+            "losses": 0,
+            "goalsFor": 0,
+            "goalsAgainst": 0,
+            "goalDifference": 0,
+            "points": 0,
+            "bestPlayerVotes": 0
+          }
+        },
+        {
+          "name": "Bahaa",
+          "nickname": "",
+          "image": "https://i.ibb.co/9mDRK0MF/bahaa.gif",
+          "reelUrl": "",
+          "played": 14,
+          "wins": 8,
+          "draws": 4,
+          "losses": 2,
+          "goalsFor": 49,
+          "goalsAgainst": 29,
+          "goalDifference": 20,
+          "points": 28,
+          "matches": [],
+          "bestPlayerVotes": 0,
+          "worstPlayerVotes": 1,
+          "passCompletion": 0,
+          "shotsOnTarget": 0,
+          "form": [
+            "W",
+            "W",
+            "D",
+            "D",
+            "W"
+          ],
+          "marketValue": 63503,
+          "balance": 55528,
+          "transferHistory": [],
+          "transferOffers": [],
+          "accountHistory": [],
+          "marketHistory": [
+            {
+              "value": 51425,
+              "date": 1752013657525
+            },
+            {
+              "value": 50911,
+              "date": 1752013657525
+            },
+            {
+              "value": 50402,
+              "date": 1752013657525
+            },
+            {
+              "value": 50503,
+              "date": 1752013657525
+            },
+            {
+              "value": 52018,
+              "date": 1752013657525
+            },
+            {
+              "value": 53579,
+              "date": 1752013657525
+            },
+            {
+              "value": 55186,
+              "date": 1752013657525
+            },
+            {
+              "value": 55296,
+              "date": 1752013657525
+            },
+            {
+              "value": 53637,
+              "date": 1752013657525
+            },
+            {
+              "value": 55246,
+              "date": 1752013657525
+            },
+            {
+              "value": 55798,
+              "date": 1752013657525
+            },
+            {
+              "value": 56356,
+              "date": 1752013657525
+            },
+            {
+              "value": 56920,
+              "date": 1752013657525
+            },
+            {
+              "value": 57489,
+              "date": 1752013657525
+            },
+            {
+              "value": 57604,
+              "date": 1752013657525
+            },
+            {
+              "value": 57028,
+              "date": 1752013657525
+            },
+            {
+              "value": 59879,
+              "date": 1752013657525
+            },
+            {
+              "value": 60178,
+              "date": 1752013657525
+            },
+            {
+              "value": 60479,
+              "date": 1752013657525
+            },
+            {
+              "value": 63503,
+              "date": 1752013657525
+            }
+          ],
+          "_stageStats": {
+            "played": 0,
+            "wins": 0,
+            "draws": 0,
+            "losses": 0,
+            "goalsFor": 0,
+            "goalsAgainst": 0,
+            "goalDifference": 0,
+            "points": 0,
+            "bestPlayerVotes": 0
+          }
+        },
+        {
+          "name": "Tarek",
+          "nickname": "",
+          "image": "https://i.ibb.co/vvw5tKym/Designer-30.jpg",
+          "reelUrl": "",
+          "played": 14,
+          "wins": 5,
+          "draws": 3,
+          "losses": 6,
+          "goalsFor": 38,
+          "goalsAgainst": 35,
+          "goalDifference": 3,
+          "points": 18,
+          "matches": [],
+          "bestPlayerVotes": 0,
+          "worstPlayerVotes": 0,
+          "passCompletion": 0,
+          "shotsOnTarget": 0,
+          "form": [
+            "L",
+            "L",
+            "W",
+            "D",
+            "D"
+          ],
+          "marketValue": 44991,
+          "balance": 48322,
+          "transferHistory": [],
+          "transferOffers": [],
+          "accountHistory": [],
+          "marketHistory": [
+            {
+              "value": 51194,
+              "date": 1752013657525
+            },
+            {
+              "value": 50682,
+              "date": 1752013657525
+            },
+            {
+              "value": 50175,
+              "date": 1752013657525
+            },
+            {
+              "value": 49673,
+              "date": 1752013657525
+            },
+            {
+              "value": 49176,
+              "date": 1752013657525
+            },
+            {
+              "value": 49274,
+              "date": 1752013657525
+            },
+            {
+              "value": 48781,
+              "date": 1752013657525
+            },
+            {
+              "value": 48879,
+              "date": 1752013657525
+            },
+            {
+              "value": 47413,
+              "date": 1752013657525
+            },
+            {
+              "value": 45991,
+              "date": 1752013657525
+            },
+            {
+              "value": 44611,
+              "date": 1752013657525
+            },
+            {
+              "value": 45949,
+              "date": 1752013657525
+            },
+            {
+              "value": 44571,
+              "date": 1752013657525
+            },
+            {
+              "value": 45017,
+              "date": 1752013657525
+            },
+            {
+              "value": 45107,
+              "date": 1752013657525
+            },
+            {
+              "value": 44656,
+              "date": 1752013657525
+            },
+            {
+              "value": 42423,
+              "date": 1752013657525
+            },
+            {
+              "value": 44544,
+              "date": 1752013657525
+            },
+            {
+              "value": 44767,
+              "date": 1752013657525
+            },
+            {
+              "value": 44991,
+              "date": 1752013657525
+            }
+          ],
+          "_stageStats": {
+            "played": 0,
+            "wins": 0,
+            "draws": 0,
+            "losses": 0,
+            "goalsFor": 0,
+            "goalsAgainst": 0,
+            "goalDifference": 0,
+            "points": 0,
+            "bestPlayerVotes": 0
+          }
+        },
+        {
+          "name": "Ezz",
+          "nickname": "",
+          "image": "https://i.ibb.co/LzqxTBH7/EZZ-White-hair-grey-beard-caricature-always-promises-to-win-in-fifa-and-he-loses-print-the-the-k.jpg",
+          "reelUrl": "",
+          "played": 14,
+          "wins": 4,
+          "draws": 4,
+          "losses": 6,
+          "goalsFor": 59,
+          "goalsAgainst": 63,
+          "goalDifference": -4,
+          "points": 16,
+          "matches": [],
+          "bestPlayerVotes": 0,
+          "worstPlayerVotes": 0,
+          "passCompletion": 0,
+          "shotsOnTarget": 0,
+          "form": [
+            "W",
+            "W",
+            "L",
+            "L",
+            "D"
+          ],
+          "marketValue": 42564,
+          "balance": 47126,
+          "transferHistory": [],
+          "transferOffers": [],
+          "accountHistory": [],
+          "marketHistory": [
+            {
+              "value": 48232,
+              "date": 1752013657525
+            },
+            {
+              "value": 47750,
+              "date": 1752013657525
+            },
+            {
+              "value": 47846,
+              "date": 1752013657525
+            },
+            {
+              "value": 47368,
+              "date": 1752013657525
+            },
+            {
+              "value": 46894,
+              "date": 1752013657525
+            },
+            {
+              "value": 47363,
+              "date": 1752013657525
+            },
+            {
+              "value": 46889,
+              "date": 1752013657525
+            },
+            {
+              "value": 47358,
+              "date": 1752013657525
+            },
+            {
+              "value": 46884,
+              "date": 1752013657525
+            },
+            {
+              "value": 47353,
+              "date": 1752013657525
+            },
+            {
+              "value": 45932,
+              "date": 1752013657525
+            },
+            {
+              "value": 44554,
+              "date": 1752013657525
+            },
+            {
+              "value": 43217,
+              "date": 1752013657525
+            },
+            {
+              "value": 43303,
+              "date": 1752013657525
+            },
+            {
+              "value": 43390,
+              "date": 1752013657525
+            },
+            {
+              "value": 44692,
+              "date": 1752013657525
+            },
+            {
+              "value": 46927,
+              "date": 1752013657525
+            },
+            {
+              "value": 44581,
+              "date": 1752013657525
+            },
+            {
+              "value": 42352,
+              "date": 1752013657525
+            },
+            {
+              "value": 42564,
+              "date": 1752013657525
+            }
+          ],
+          "_stageStats": {
+            "played": 0,
+            "wins": 0,
+            "draws": 0,
+            "losses": 0,
+            "goalsFor": 0,
+            "goalsAgainst": 0,
+            "goalDifference": 0,
+            "points": 0,
+            "bestPlayerVotes": 0
+          }
+        }
+      ],
+      "allMatches": [
+        {
+          "matchNum": 1,
+          "player1": "Sameh",
+          "player2": "Bahaa + Houssam + Tarek",
+          "result": "4-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": "Sameh",
+          "worstPlayerVote": "Bahaa",
+          "votedBy": []
+        },
+        {
+          "matchNum": 2,
+          "player1": "Sameh",
+          "player2": "Bahaa + Ezz + Houssam",
+          "result": "4-5",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 3,
+          "player1": "Sameh",
+          "player2": "Ezz + Houssam + Tarek",
+          "result": "2-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 4,
+          "player1": "Sameh",
+          "player2": "Bahaa + Ezz + Tarek",
+          "result": "3-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 5,
+          "player1": "Houssam",
+          "player2": "Bahaa + Sameh + Tarek",
+          "result": "2-2",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 6,
+          "player1": "Houssam",
+          "player2": "Bahaa + Ezz + Sameh",
+          "result": "3-1",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 7,
+          "player1": "Houssam",
+          "player2": "Ezz + Sameh + Tarek",
+          "result": "8-2",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 8,
+          "player1": "Houssam",
+          "player2": "Bahaa + Ezz + Tarek",
+          "result": "7-2",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 9,
+          "player1": "Bahaa",
+          "player2": "Houssam + Sameh + Tarek",
+          "result": "0-1",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 10,
+          "player1": "Bahaa",
+          "player2": "Ezz + Houssam + Sameh",
+          "result": "2-1",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 11,
+          "player1": "Bahaa",
+          "player2": "Ezz + Sameh + Tarek",
+          "result": "4-4",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 12,
+          "player1": "Bahaa",
+          "player2": "Ezz + Houssam + Tarek",
+          "result": "3-0",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 13,
+          "player1": "Tarek",
+          "player2": "Bahaa + Houssam + Sameh",
+          "result": "1-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 14,
+          "player1": "Tarek",
+          "player2": "Ezz + Houssam + Sameh",
+          "result": "4-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 15,
+          "player1": "Tarek",
+          "player2": "Bahaa + Ezz + Sameh",
+          "result": "4-2",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 16,
+          "player1": "Tarek",
+          "player2": "Bahaa + Ezz + Houssam",
+          "result": "7-2",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 17,
+          "player1": "Ezz",
+          "player2": "Bahaa + Houssam + Sameh",
+          "result": "3-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 18,
+          "player1": "Ezz",
+          "player2": "Houssam + Sameh + Tarek",
+          "result": "6-5",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 19,
+          "player1": "Ezz",
+          "player2": "Bahaa + Sameh + Tarek",
+          "result": "4-5",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 20,
+          "player1": "Ezz",
+          "player2": "Bahaa + Houssam + Tarek",
+          "result": "5-3",
+          "status": "played",
+          "stageName": "Stage 1",
+          "matchType": "1v3",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 21,
+          "player1": "Sameh",
+          "player2": "Bahaa + Houssam",
+          "result": "3-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 22,
+          "player1": "Sameh",
+          "player2": "Houssam + Tarek",
+          "result": "3-1",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 23,
+          "player1": "Sameh",
+          "player2": "Ezz + Houssam",
+          "result": "6-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 24,
+          "player1": "Sameh",
+          "player2": "Bahaa + Tarek",
+          "result": "3-5",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 25,
+          "player1": "Sameh",
+          "player2": "Bahaa + Ezz",
+          "result": "2-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 26,
+          "player1": "Sameh",
+          "player2": "Ezz + Tarek",
+          "result": "4-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 27,
+          "player1": "Houssam",
+          "player2": "Bahaa + Sameh",
+          "result": "6-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 28,
+          "player1": "Houssam",
+          "player2": "Sameh + Tarek",
+          "result": "2-0",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 29,
+          "player1": "Houssam",
+          "player2": "Ezz + Sameh",
+          "result": "11-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 30,
+          "player1": "Houssam",
+          "player2": "Bahaa + Tarek",
+          "result": "2-1",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 31,
+          "player1": "Houssam",
+          "player2": "Bahaa + Ezz",
+          "result": "3-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 32,
+          "player1": "Houssam",
+          "player2": "Ezz + Tarek",
+          "result": "5-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 33,
+          "player1": "Bahaa",
+          "player2": "Houssam + Sameh",
+          "result": "3-0",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 34,
+          "player1": "Bahaa",
+          "player2": "Sameh + Tarek",
+          "result": "5-4",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 35,
+          "player1": "Bahaa",
+          "player2": "Ezz + Sameh",
+          "result": "6-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 36,
+          "player1": "Bahaa",
+          "player2": "Houssam + Tarek",
+          "result": "2-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 37,
+          "player1": "Bahaa",
+          "player2": "Ezz + Houssam",
+          "result": "2-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 38,
+          "player1": "Bahaa",
+          "player2": "Ezz + Tarek",
+          "result": "4-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 39,
+          "player1": "Tarek",
+          "player2": "Houssam + Sameh",
+          "result": "1-1",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 40,
+          "player1": "Tarek",
+          "player2": "Bahaa + Sameh",
+          "result": "2-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 41,
+          "player1": "Tarek",
+          "player2": "Ezz + Sameh",
+          "result": "1-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 42,
+          "player1": "Tarek",
+          "player2": "Bahaa + Houssam",
+          "result": "1-4",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 43,
+          "player1": "Tarek",
+          "player2": "Ezz + Houssam",
+          "result": "4-0",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 44,
+          "player1": "Tarek",
+          "player2": "Bahaa + Ezz",
+          "result": "2-3",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 45,
+          "player1": "Ezz",
+          "player2": "Houssam + Sameh",
+          "result": "3-5",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 46,
+          "player1": "Ezz",
+          "player2": "Bahaa + Sameh",
+          "result": "3-4",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 47,
+          "player1": "Ezz",
+          "player2": "Sameh + Tarek",
+          "result": "4-6",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 48,
+          "player1": "Ezz",
+          "player2": "Bahaa + Houssam",
+          "result": "5-5",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 49,
+          "player1": "Ezz",
+          "player2": "Houssam + Tarek",
+          "result": "5-5",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 50,
+          "player1": "Ezz",
+          "player2": "Bahaa + Tarek",
+          "result": "4-2",
+          "status": "played",
+          "stageName": "Stage 2",
+          "matchType": "1v2",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 51,
+          "player1": "Sameh",
+          "player2": "Houssam",
+          "result": "3-6",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 52,
+          "player1": "Sameh",
+          "player2": "Bahaa",
+          "result": "2-7",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 53,
+          "player1": "Sameh",
+          "player2": "Tarek",
+          "result": "2-0",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 54,
+          "player1": "Sameh",
+          "player2": "Ezz",
+          "result": "3-6",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 55,
+          "player1": "Houssam",
+          "player2": "Bahaa",
+          "result": "3-3",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 56,
+          "player1": "Houssam",
+          "player2": "Tarek",
+          "result": "4-5",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 57,
+          "player1": "Houssam",
+          "player2": "Ezz",
+          "result": "7-5",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 58,
+          "player1": "Bahaa",
+          "player2": "Tarek",
+          "result": "2-2",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 59,
+          "player1": "Bahaa",
+          "player2": "Ezz",
+          "result": "6-2",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        },
+        {
+          "matchNum": 60,
+          "player1": "Tarek",
+          "player2": "Ezz",
+          "result": "4-4",
+          "status": "played",
+          "stageName": "Stage 3",
+          "matchType": "1v1",
+          "date": null,
+          "bestPlayerVote": null,
+          "worstPlayerVote": null,
+          "votedBy": []
+        }
+      ],
+      "stages": [
+        "Stage 1",
+        "Stage 2",
+        "Stage 3"
+      ],
+      "currentStageName": "Stage 3",
+      "leagueSettings": {
+        "leagueName": "PIFA 02",
+        "pointsWin": 3,
+        "pointsDraw": 1,
+        "pointsLoss": 0
+      },
+      "news": [
+        {
+          "id": "news-1749683365633-gjde4",
+          "title": "the new app",
+          "content": "testing",
+          "date": "2025-06-11T23:09:25.633Z"
+        },
+        {
+          "id": "news-1749584616179-vkb6n",
+          "title": "الرئيس في تصريح اولي",
+          "content": "ما يجري هو بهدف اضعاف موقع الرئاسة",
+          "date": "2025-06-10T19:43:36.179Z"
+        },
+        {
+          "id": "news-1749568382863-u0m1y",
+          "title": "حسام بعد اخطائه السابقة",
+          "content": "هل سيكون لعبه مغايرا الليلة ؟؟؟",
+          "date": "2025-06-10T15:13:02.863Z"
+        },
+        {
+          "id": "news-1749568320223-bgf8g",
+          "title": "الجولة الرابعة من دوري البيفا",
+          "content": "ماذا تخبىء الجولة الرابعة ؟ هل سيقوم احدهم بتركيبه الليلة ؟",
+          "date": "2025-06-10T15:12:00.223Z"
+        },
+        {
+          "id": "news-1749568299417-sgf7a",
+          "title": "الرئيس يتابع موضوع تطوير الموقع الرسمي للبيفا دون كلل او ملل",
+          "content": "الرئيس يتابع موضوع تطوير الموقع الرسمي للبيفا دون كلل او ملل مع ابن خالته السيد بهاء والنتائج مرتقبة",
+          "date": "2025-06-10T15:11:39.417Z"
+        }
+      ],
+      "pifaAccountBalance": 10000000,
+      "marketOpen": false,
+      "historicalLeagues": [
+        {
+          "leagueName": "Pre-App Championship (Houssam's Era)",
+          "completionDate": "2023-01-15T00:00:00.000Z",
+          "leagueWinner": "Houssam",
+          "players": [
+            {
+              "name": "Houssam",
+              "points": 25,
+              "played": 10,
+              "wins": 8,
+              "draws": 1,
+              "losses": 1,
+              "goalsFor": 30,
+              "goalsAgainst": 10,
+              "goalDifference": 20,
+              "bestPlayerVotes": 5,
+              "worstPlayerVotes": 0,
+              "matches": [],
+              "image": "assets/images/default_player.png",
+              "nickname": "",
+              "reelUrl": "",
+              "form": []
+            },
+            {
+              "name": "Bahaa",
+              "points": 22,
+              "played": 10,
+              "wins": 7,
+              "draws": 1,
+              "losses": 2,
+              "goalsFor": 28,
+              "goalsAgainst": 12,
+              "goalDifference": 16,
+              "bestPlayerVotes": 3,
+              "worstPlayerVotes": 1,
+              "matches": [],
+              "image": "assets/images/default_player.png",
+              "nickname": "",
+              "reelUrl": "",
+              "form": []
+            },
+            {
+              "name": "Sameh",
+              "points": 22,
+              "played": 10,
+              "wins": 7,
+              "draws": 1,
+              "losses": 2,
+              "goalsFor": 25,
+              "goalsAgainst": 15,
+              "goalDifference": 10,
+              "bestPlayerVotes": 2,
+              "worstPlayerVotes": 1,
+              "matches": [],
+              "image": "assets/images/default_player.png",
+              "nickname": "",
+              "reelUrl": "",
+              "form": []
+            },
+            {
+              "name": "Ezz",
+              "points": 18,
+              "played": 10,
+              "wins": 6,
+              "draws": 0,
+              "losses": 4,
+              "goalsFor": 20,
+              "goalsAgainst": 18,
+              "goalDifference": 2,
+              "bestPlayerVotes": 1,
+              "worstPlayerVotes": 2,
+              "matches": [],
+              "image": "assets/images/default_player.png",
+              "nickname": "",
+              "reelUrl": "",
+              "form": []
+            },
+            {
+              "name": "Tarek",
+              "points": 15,
+              "played": 10,
+              "wins": 5,
+              "draws": 0,
+              "losses": 5,
+              "goalsFor": 15,
+              "goalsAgainst": 20,
+              "goalDifference": -5,
+              "bestPlayerVotes": 0,
+              "worstPlayerVotes": 3,
+              "matches": [],
+              "image": "assets/images/default_player.png",
+              "nickname": "",
+              "reelUrl": "",
+              "form": []
+            }
+          ],
+          "allMatches": [],
+          "leagueSettings": {
+            "leagueName": "Pre-App Championship (Houssam's Era)",
+            "pointsWin": 3,
+            "pointsDraw": 1,
+            "pointsLoss": 0
+          },
+          "news": []
+        }
+      ],
+      "completionDate": "2025-07-08T22:29:34.852Z",
+      "leagueName": "PIFA 02 (09/07/2025)"
+    }
+  ]
+}
+    
