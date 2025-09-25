@@ -81,6 +81,8 @@ export interface Competition {
   maxPlayers: number;
   entryFee: number;
   prizePool: number;
+  winnerId?: string | null;
+  runnerUpId?: string | null;
 }
 
 export interface LeagueSettings {

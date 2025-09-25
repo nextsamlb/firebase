@@ -237,25 +237,71 @@ export default function SuperAdminPanel() {
     });
   };
 
-  const handleFinalizeLeague = (league: Competition) => {
-      const topPlayer = [...players.filter(p => p.role === 'player')].sort((a,b) => b.stats.points - a.stats.points)[0];
-      if(!topPlayer) {
+  const handleFinalizeLeague = async (league: Competition) => {
+      const competitionMatches = matches.filter(m => m.competitionId === league.id);
+      const playerList = players.filter(p => p.role === 'player');
+      
+      const competitionPlayerStats: Record<string, { points: number, goalDifference: number, goalsFor: number }> = {};
+      playerList.forEach(p => {
+          competitionPlayerStats[p.id] = { points: 0, goalDifference: 0, goalsFor: 0 };
+      });
+
+      competitionMatches.forEach(match => {
+          if (!match.result) return;
+          const scores = match.result.split('-').map(Number);
+          const p1 = match.player1Id;
+          const p2 = match.player2Id || match.player2Ids?.[0]; // Simplified for this logic
+
+          if (competitionPlayerStats[p1]) {
+            competitionPlayerStats[p1].goalsFor += scores[0];
+            competitionPlayerStats[p1].goalDifference += scores[0] - scores[1];
+            if (scores[0] > scores[1]) competitionPlayerStats[p1].points += 3;
+            else if (scores[0] === scores[1]) competitionPlayerStats[p1].points += 1;
+          }
+          if (p2 && competitionPlayerStats[p2]) {
+             competitionPlayerStats[p2].goalsFor += scores[1];
+             competitionPlayerStats[p2].goalDifference += scores[1] - scores[0];
+             if (scores[1] > scores[0]) competitionPlayerStats[p2].points += 3;
+             else if (scores[0] === scores[1]) competitionPlayerStats[p2].points += 1;
+          }
+      });
+      
+      const sortedPlayers = Object.keys(competitionPlayerStats).sort((a, b) => {
+          const statsA = competitionPlayerStats[a];
+          const statsB = competitionPlayerStats[b];
+          if (statsB.points !== statsA.points) return statsB.points - statsA.points;
+          if (statsB.goalDifference !== statsA.goalDifference) return statsB.goalDifference - statsA.goalDifference;
+          return statsB.goalsFor - statsA.goalsFor;
+      });
+
+      const winnerId = sortedPlayers[0];
+      const runnerUpId = sortedPlayers[1];
+
+      if(!winnerId) {
           toast({variant: 'destructive', title: 'Error', description: 'No players available to award prize.'});
           return;
       }
       
-      const updatedPlayer = { ...topPlayer, balance: topPlayer.balance + league.prizePool };
+      const winnerPlayer = players.find(p => p.id === winnerId);
+      if (!winnerPlayer) return;
 
-      updatePlayerData(updatedPlayer).then(() => {
+      const updatedPlayer = { ...winnerPlayer, balance: winnerPlayer.balance + league.prizePool };
+
+      try {
+          await updatePlayerData(updatedPlayer);
           setPlayers(players.map(p => p.id === updatedPlayer.id ? updatedPlayer : p));
-          const updatedLeague = { ...league, status: 'completed' as const };
-          updateCompetition(updatedLeague).then(() => {
-            setLeagues(leagues.map(l => l.id === league.id ? updatedLeague : l));
-            toast({ title: 'League Finalized!', description: `${topPlayer.name} has been awarded $${league.prizePool.toLocaleString()}!`});
-          })
-      }).catch(() => {
-          toast({variant: 'destructive', title: 'Error', description: 'Failed to update player balance.'});
-      });
+          const updatedLeague: Competition = { 
+              ...league, 
+              status: 'completed' as const,
+              winnerId: winnerId,
+              runnerUpId: runnerUpId || null,
+          };
+          await updateCompetition(updatedLeague);
+          setLeagues(leagues.map(l => l.id === league.id ? updatedLeague : l));
+          toast({ title: 'League Finalized!', description: `${winnerPlayer.name} has been awarded $${league.prizePool.toLocaleString()}!`});
+      } catch (error) {
+           toast({variant: 'destructive', title: 'Error', description: 'Failed to finalize league.'});
+      }
   }
 
   const confirmDelete = async () => {
