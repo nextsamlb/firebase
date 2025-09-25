@@ -1,5 +1,4 @@
 
-
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from "react"
@@ -223,6 +222,33 @@ export default function SuperAdminPanel() {
 
     return () => clearInterval(interval)
   }, [])
+  
+  if (user?.role !== 'admin') {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <Card className="max-w-md">
+          <CardContent className="p-8 text-center">
+            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2">Access Denied</h2>
+            <p className="text-muted-foreground">Administrator privileges required</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="text-center glass p-8 rounded-2xl">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
+            <p className="text-white text-xl font-semibold">Loading Admin Panel...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
 
   const handleCreate = (type: 'user' | 'match') => {
@@ -605,33 +631,6 @@ export default function SuperAdminPanel() {
       matches: { label: "Matches", color: "hsl(var(--chart-2))" },
   }
 
-  if (user?.role !== 'admin') {
-    return (
-      <div className="flex items-center justify-center p-4">
-        <Card className="max-w-md">
-          <CardContent className="p-8 text-center">
-            <Shield className="w-16 h-16 text-destructive mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Access Denied</h2>
-            <p className="text-muted-foreground">Administrator privileges required</p>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center">
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="text-center glass p-8 rounded-2xl">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
-            <p className="text-white text-xl font-semibold">Loading Admin Panel...</p>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="relative overflow-y-auto">
         <div className="absolute inset-0">
@@ -865,51 +864,66 @@ export default function SuperAdminPanel() {
           </TabsContent>
 
           {/* Leagues Tab */}
-          <TabsContent value="leagues" className="space-y-4">
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {leagues.map((league) => (
-                <Card key={league.id} className="glass flex flex-col">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle>{league.name}</CardTitle>
-                      <Badge className={getStatusColor(league.status)}>
-                        {league.status.toUpperCase()}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-3 flex-grow">
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div><span className="text-muted-foreground">Players:</span><span className="ml-2">{league.players}/{league.maxPlayers}</span></div>
-                      <div><span className="text-muted-foreground">Entry Fee:</span><span className="text-green-500 ml-2">${league.entryFee.toLocaleString()}</span></div>
-                      <div><span className="text-muted-foreground">Prize Pool:</span><span className="text-yellow-500 ml-2">${league.prizePool.toLocaleString()}</span></div>
-                    </div>
-                  </CardContent>
-                  <div className="p-4 pt-0 mt-auto">
-                    {league.status === 'registration' && (
-                        <Button size="sm" className="w-full" onClick={() => handleStartLeague(league.id)}>
-                            <PlayCircle className="w-4 h-4 mr-1" /> Start
-                        </Button>
-                    )}
-                    {league.status === 'active' && (
-                        <Button size="sm" className="w-full" onClick={() => handleFinalizeLeague(league)}>
-                           <Trophy className="w-4 h-4 mr-1" /> Finalize
-                        </Button>
-                    )}
-                    {league.status === 'completed' && <Button size="sm" className="w-full" disabled>Completed</Button>}
-
-                    <div className="flex gap-2 mt-2">
-                        <Button size="sm" variant="outline" className="flex-1" onClick={() => handleOpenLeagueDialog(league)} disabled={league.status === 'completed'}>
-                          <Edit className="w-4 h-4 mr-1" /> Edit
-                        </Button>
-                        <Button size="sm" variant="destructive" className="flex-1" onClick={() => handleDelete('competition', league)}>
-                          <Trash2 className="w-4 h-4 mr-1" /> Delete
-                        </Button>
-                    </div>
-                  </div>
+            <TabsContent value="leagues" className="space-y-4">
+                <Card className="glass">
+                    <CardHeader>
+                         <CardTitle className="flex items-center gap-2">
+                            <Trophy className="w-5 h-5 text-primary" />
+                            League Management
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>League Name</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Players</TableHead>
+                                    <TableHead>Prize Pool</TableHead>
+                                    <TableHead>Winner</TableHead>
+                                    <TableHead className="text-right">Actions</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {leagues.map(league => {
+                                    const winner = players.find(p => p.id === league.winnerId);
+                                    return (
+                                        <TableRow key={league.id}>
+                                            <TableCell className="font-medium">{league.name}</TableCell>
+                                            <TableCell>
+                                                <Badge className={getStatusColor(league.status)}>
+                                                    {league.status}
+                                                </Badge>
+                                            </TableCell>
+                                            <TableCell>{league.players}/{league.maxPlayers}</TableCell>
+                                            <TableCell>${league.prizePool.toLocaleString()}</TableCell>
+                                            <TableCell>{winner?.name || 'N/A'}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                 {league.status === 'registration' && (
+                                                    <Button size="sm" onClick={() => handleStartLeague(league.id)}>
+                                                        <PlayCircle className="w-4 h-4 mr-1" /> Start
+                                                    </Button>
+                                                )}
+                                                {league.status === 'active' && (
+                                                    <Button size="sm" onClick={() => handleFinalizeLeague(league)}>
+                                                    <Trophy className="w-4 h-4 mr-1" /> Finalize
+                                                    </Button>
+                                                )}
+                                                <Button size="sm" variant="outline" onClick={() => handleOpenLeagueDialog(league)} disabled={league.status === 'completed'}>
+                                                    <Edit className="w-4 h-4" />
+                                                </Button>
+                                                <Button size="sm" variant="destructive" onClick={() => handleDelete('competition', league)}>
+                                                    <Trash2 className="w-4 h-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
                 </Card>
-              ))}
-            </div>
-          </TabsContent>
+            </TabsContent>
 
           {/* Matches Tab */}
           <TabsContent value="matches" className="space-y-4">
