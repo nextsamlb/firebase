@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { MainSidebar } from '@/components/main-sidebar';
@@ -180,3 +181,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
